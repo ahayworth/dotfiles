@@ -53,6 +53,7 @@ profiles:
     - 05_f_plug.vim
     - 06_f_vimrc
     - 07_f_tmux.conf
+    - 08_f_bash_aliases
 trans:
   gpg: gpg -q -d {0} > {1}
 actions:
