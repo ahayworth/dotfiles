@@ -1,0 +1,9 @@
+[user]
+	name = Andrew Hayworth
+	email = ahayworth@gmail.com
+[push]
+	default = matching
+[github]
+	user = ahayworth
+[credential]
+	helper = osxkeychain

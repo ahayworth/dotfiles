@@ -1,0 +1,46 @@
+"Display
+syntax on
+set background=dark
+set number
+set showmatch "jump when completing a brace
+set mat=3 "highlight that match for .3 seconds
+set linebreak "dont wrap in the middle of a word
+set scrolloff=3 "start scrolling 3 lines before the end
+hi CursorLine   cterm=NONE ctermbg=darkgrey ctermfg=white guibg=darkred guifg=white
+hi CursorColumn cterm=NONE ctermbg=grey ctermfg=white guibg=darkred guifg=white
+
+"Tabs
+set expandtab
+set tabstop=2
+set shiftwidth=2
+
+"Search
+set hlsearch
+set incsearch "incremental search
+set ic "ignore case
+set smartcase "but, care about case if you type something uppercase
+nmap % :nohlsearch<CR>
+
+"Randoms
+set nocompatible
+set autoindent
+set copyindent
+
+set ruler "always show line postion
+set wildmode=list:longest "match up to the point of ambiguity
+set title "set terminal title intelligently
+nnoremap <Leader>l :set cursorline! <CR>
+nnoremap <Leader>c :set cursorcolumn! <CR>
+
+"remap j/k to treat long lines as broken lines
+map j gj
+map k gk
+
+"srhea's awesome show-me-my-whitespace stuff
+highlight WhiteSpaceEOL ctermbg=darkgreen
+match WhiteSpaceEOL /\s\+$/
+
+call plug#begin('~/.vim/plugged')
+Plug 'vim-syntastic/syntastic'
+Plug 'rodjek/vim-puppet'
+call plug#end()

@@ -1,0 +1,59 @@
+config:
+  backup: true
+  banner: true
+  create: true
+  dotpath: dotfiles
+  keepdot: false
+  link_by_default: false
+  longkey: false
+  showdiff: true
+  workdir: ~/.config/dotdrop
+dotfiles:
+  00_f_bash_login:
+    dst: ~/.bash_login
+    src: bash_login
+  01_f_bashrc:
+    dst: ~/.bashrc
+    src: bashrc
+  02_f_gitconfig:
+    dst: ~/.gitconfig
+    src: gitconfig
+  03_f_id_rsa:
+    dst: ~/.ssh/id_rsa
+    src: ssh/id_rsa
+    trans:
+    - gpg
+  04_f_id_rsa.pub:
+    dst: ~/.ssh/id_rsa.pub
+    src: ssh/id_rsa.pub
+  05_f_plug.vim:
+    dst: ~/.vim/autoload/plug.vim
+    src: vim/autoload/plug.vim
+  06_f_vimrc:
+    dst: ~/.vimrc
+    src: vimrc
+    actions:
+      - vim-plug
+  07_f_tmux.conf:
+    dst: ~/.tmux.conf
+    src: tmux.conf
+  08_f_bash_aliases:
+    dst: ~/.bash_aliases
+    src: bash_aliases
+    trans:
+    - gpg
+profiles:
+  zordon.local:
+    dotfiles:
+    - 00_f_bash_login
+    - 01_f_bashrc
+    - 02_f_gitconfig
+    - 03_f_id_rsa
+    - 04_f_id_rsa.pub
+    - 05_f_plug.vim
+    - 06_f_vimrc
+    - 07_f_tmux.conf
+trans:
+  gpg: gpg -q -d {0} > {1}
+actions:
+  vim-plug: vim +PlugInstall +qall
