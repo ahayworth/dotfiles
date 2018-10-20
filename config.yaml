@@ -43,6 +43,9 @@ dotfiles:
     trans:
     - gpg
 profiles:
+  alpha5:
+    include:
+      - zordon.local
   zordon.local:
     dotfiles:
     - 00_f_bash_login
