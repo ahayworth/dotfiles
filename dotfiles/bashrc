@@ -1,9 +1,6 @@
-HISTCONTROL=ignoredups
-
-# append to the history file, don't overwrite it
+# history
 shopt -s histappend
-
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTCONTROL=ignoredups
 HISTSIZE=10000000
 HISTFILESIZE=10000000000000
 
@@ -11,57 +8,41 @@ HISTFILESIZE=10000000000000
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-  xterm-color|xterm-256color) color_prompt=yes;;
-esac
-
-
 # start ssh-agent if it's not running
-if [ "x`ps ax |grep ssh-agent |grep -v grep`" == "x" ]; then ssh-agent; fi
+ps -ef | grep -q '[s]sh-agent' || ssh-agent > /dev/null
 
 if [ -f ~/projects/go_appengine ]; then
   export PATH=${PATH}:~/projects/go_appengine
   export PATH=${PATH}:~/projects/go_appengine/gopath/bin
 fi
 
-if [ -f ~/bin ]; then
-  export PATH=${PATH}:~/bin
-fi
+[ -f ~/bin ] && export PATH=${PATH}:~/bin
 
 if [ -f ~/projects/google-cloud-sdk ]; then
   source "~/projects/google-cloud-sdk/path.bash.inc"
   source "~/projects/google-cloud-sdk/completion.bash.inc"
 fi
 
-
-# system-wide editor default
-# mainly for svn/git stuff
 export EDITOR=vim
 
+# git setup
 export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWSTASHSTATE=1
 export GIT_PS1_SHOWUNTRACKEDFILES=1
-#export GIT_PS1_SHOWUPSTREAM="verbose name git"
 export GIT_PS1_SHOWUPSTREAM="verbose"
 export GIT_PS1_SHOWCOLORHINTS=1
 export PROMPT_COMMAND='history -a; history -n; __git_ps1 "\[\e[2;m\][\d \A]\[\e[m\] \[\e[35m\]\u@\h:\[\e[m\]\[\e[38;5;107m\]\w\[\e[m\]" "\n\[\e[35m\]\\\$\[\e[m\] " " [%s]"'
-
-if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
-fi
-
-ressh() {
-  export SSH_AUTH_SOCK=$(find /tmp/ssh-* -name agent.\* -uid $(id -u) | head -n 1)
-}
+[ -f /usr/share/git/completion/git-prompt.sh ] && . /usr/share/git/completion/git-prompt.sh
+[ -f /usr/share/git/completion/git-completion.bash ] && . /usr/share/git/completion/git-completion.bash
 
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
-[ -f ~/.bash_aliases ] && . ~/.bash_aliases
+[ -f /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
+[ -f /etc/bash_completion ] && . /etc/bash_completion
 
-export PATH=$PATH:/usr/local/opt/rbenv/shims
-eval "$(rbenv init -)"
-eval "$(nodenv init -)"
+[ -f ~/.bash_aliases ] && . ~/.bash_aliases
+{%@@ if profile == "zordon.local" @@%}
+[ -f ~/.bash_aliases.work ] && . ~/.bash_aliases.work
+{%@@ endif @@%}
+[ -f /usr/local/opt/rbenv/shims ] && export PATH=$PATH:/usr/local/opt/rbenv/shims
+type -t rbenv && eval "$(rbenv init -)"
+type -t nodenv && eval "$(nodenv init -)"
