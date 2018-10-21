@@ -5,7 +5,7 @@ alias egrep='egrep --color=auto'
 
 if [[ `uname` == "Darwin" ]]; then
   alias ls='ls -G'
-  type -t colordiff && alias diff='colordiff'
+  type -t colordiff >/dev/null && alias diff='colordiff'
 else
   alias ls='ls --color=auto'
   alias diff='diff --color=auto'
