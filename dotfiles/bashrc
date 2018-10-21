@@ -44,5 +44,5 @@ export PROMPT_COMMAND='history -a; history -n; __git_ps1 "\[\e[2;m\][\d \A]\[\e[
 [ -f ~/.bash_aliases.work ] && . ~/.bash_aliases.work
 {%@@ endif @@%}
 [ -f /usr/local/opt/rbenv/shims ] && export PATH=$PATH:/usr/local/opt/rbenv/shims
-type -t rbenv && eval "$(rbenv init -)"
-type -t nodenv && eval "$(nodenv init -)"
+type -t rbenv >/dev/null && eval "$(rbenv init -)"
+type -t nodenv >/dev/null && eval "$(nodenv init -)"
