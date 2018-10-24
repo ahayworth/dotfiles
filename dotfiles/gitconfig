@@ -7,3 +7,6 @@
 	user = ahayworth
 [credential]
 	helper = osxkeychain
+[alias]
+  st = status
+  me = log --pretty=oneline --author=ahayworth
