@@ -1,9 +1,9 @@
+{%@@ if profile == "zordon.local" @@%}
+Include config.work
+{%@@ endif @@%}
 Host *
   ServerAliveInterval 300
   ServerAliveCountMax 2
 Host home.boyfriend.network
   Port 4223
   User andrew
-{%@@ if profile == "zordon.local" @@%}
-Include config.work
-{%@@ endif @@%}
