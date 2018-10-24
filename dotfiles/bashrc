@@ -17,6 +17,7 @@ if [ -f ~/projects/go_appengine ]; then
 fi
 
 [ -f ~/bin ] && export PATH=${PATH}:~/bin
+[ -f /Applications/Postgres.app/Contents/Versions/latest/bin ] && export PATH=${PATH}:/Applications/Postgres.app/Contents/Versions/latest/bin
 
 if [ -f ~/projects/google-cloud-sdk ]; then
   source "~/projects/google-cloud-sdk/path.bash.inc"
