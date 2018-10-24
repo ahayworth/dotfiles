@@ -45,9 +45,17 @@ dotfiles:
   08_f_bash_aliases:
     dst: ~/.bash_aliases
     src: bash_aliases
-  09_f_bash_aliases.work:
+  09_f_ssh_config:
+    dst: ~/.ssh/config
+    src: ssh/config
+  10_f_bash_aliases.work:
     dst: ~/.bash_aliases.work
     src: bash_aliases.work
+    trans:
+      - gpg
+  11_f_ssh_config.work:
+    dst: ~/.ssh/config.work
+    src: ssh/config.work
     trans:
       - gpg
 profiles:
@@ -62,10 +70,9 @@ profiles:
       - 06_f_vimrc
       - 07_f_tmux.conf
       - 08_f_bash_aliases
+      - 09_f_ssh_config
   zordon.local:
     dotfiles:
-      - 09_f_bash_aliases.work
-    include:
-      - alpha5
+      - ALL
 trans:
   gpg: gpg -q -d {0} > {1}
