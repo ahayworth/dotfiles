@@ -18,7 +18,11 @@ fi
 
 [ -f ~/bin ] && export PATH=${PATH}:~/bin
 [ -d /Applications/Postgres.app/Contents/Versions/latest/bin ] && export PATH=${PATH}:/Applications/Postgres.app/Contents/Versions/latest/bin
-[ -d /usr/local/opt/mysql@5.7/bin ] && export PATH=${PATH}:/usr/local/opt/mysql@5.7/bin
+if [ -d /usr/local/opt/mysql@5.7 ]; then
+  export PATH=${PATH}:/usr/local/opt/mysql@5.7/bin
+  export LDFLAGS="-L/usr/local/opt/mysql@5.7/lib"
+  export CPPFLAGS="-I/usr/local/opt/mysql@5.7/include"
+fi
 
 if [ -f ~/projects/google-cloud-sdk ]; then
   source "~/projects/google-cloud-sdk/path.bash.inc"
