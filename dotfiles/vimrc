@@ -44,4 +44,5 @@ call plug#begin('~/.vim/plugged')
 Plug 'vim-syntastic/syntastic'
 Plug 'rodjek/vim-puppet'
 Plug 'bogado/file-line'
+Plug 'leafgarland/typescript-vim'
 call plug#end()
