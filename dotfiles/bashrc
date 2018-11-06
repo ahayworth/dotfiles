@@ -25,8 +25,8 @@ if [ -d /usr/local/opt/mysql@5.7 ]; then
 fi
 
 if [ -d ~/projects/google-cloud-sdk ]; then
-  source "~/projects/google-cloud-sdk/path.bash.inc"
-  source "~/projects/google-cloud-sdk/completion.bash.inc"
+  . ~/projects/google-cloud-sdk/path.bash.inc
+  . ~/projects/google-cloud-sdk/completion.bash.inc
 fi
 
 export EDITOR=vim
