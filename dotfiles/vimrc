@@ -43,4 +43,7 @@ match WhiteSpaceEOL /\s\+$/
 call plug#begin('~/.vim/plugged')
 Plug 'vim-syntastic/syntastic'
 Plug 'rodjek/vim-puppet'
+Plug 'bogado/file-line'
+Plug 'leafgarland/typescript-vim'
+Plug 'kchmck/vim-coffee-script'
 call plug#end()
