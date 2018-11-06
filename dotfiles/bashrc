@@ -11,7 +11,7 @@ shopt -s checkwinsize
 # start ssh-agent if it's not running
 ps -ef | grep -q '[s]sh-agent' || ssh-agent > /dev/null
 
-if [ -f ~/projects/go_appengine ]; then
+if [ -d ~/projects/go_appengine ]; then
   export PATH=${PATH}:~/projects/go_appengine
   export PATH=${PATH}:~/projects/go_appengine/gopath/bin
 fi
@@ -19,7 +19,7 @@ fi
 [ -f ~/bin ] && export PATH=${PATH}:~/bin
 [ -d /Applications/Postgres.app/Contents/Versions/latest/bin ] && export PATH=${PATH}:/Applications/Postgres.app/Contents/Versions/latest/bin
 
-if [ -f ~/projects/google-cloud-sdk ]; then
+if [ -d ~/projects/google-cloud-sdk ]; then
   source "~/projects/google-cloud-sdk/path.bash.inc"
   source "~/projects/google-cloud-sdk/completion.bash.inc"
 fi
