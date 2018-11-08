@@ -46,4 +46,5 @@ Plug 'rodjek/vim-puppet'
 Plug 'bogado/file-line'
 Plug 'leafgarland/typescript-vim'
 Plug 'kchmck/vim-coffee-script'
+Plug 'fatih/vim-go'
 call plug#end()
