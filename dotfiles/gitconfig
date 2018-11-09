@@ -10,3 +10,5 @@
 [alias]
   st = status
   me = log --pretty=oneline --author=ahayworth
+[protocol]
+  version = 2
