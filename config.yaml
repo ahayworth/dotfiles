@@ -1,6 +1,10 @@
 actions:
   vim-plug: vim +PlugInstall +qall
   chmod_ssh_key: chmod 0600 {0}
+  pre:
+    tpm_install: test -e ~/.tmux/plugins/tpm || (mkdir -p ~/.tmux/plugins && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm)
+  post:
+    tpm_install_plugins: TMUX_PLUGIN_MANAGER_PATH=~/.tmux/plugins ~/.tmux/plugins/tpm/bin/install_plugins
 config:
   backup: true
   banner: true
@@ -42,6 +46,9 @@ dotfiles:
   07_f_tmux.conf:
     dst: ~/.tmux.conf
     src: tmux.conf
+    actions:
+      - tpm_install
+      - tpm_install_plugins
   08_f_bash_aliases:
     dst: ~/.bash_aliases
     src: bash_aliases
