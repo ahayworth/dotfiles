@@ -5,6 +5,7 @@ actions:
     tpm_install: test -e ~/.tmux/plugins/tpm || (mkdir -p ~/.tmux/plugins && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm)
   post:
     tpm_install_plugins: TMUX_PLUGIN_MANAGER_PATH=~/.tmux/plugins ~/.tmux/plugins/tpm/bin/install_plugins
+    tmux_reload: env | grep -q TMUX && tmux source-file ~/.tmux.conf
 config:
   backup: true
   banner: true
@@ -49,6 +50,7 @@ dotfiles:
     actions:
       - tpm_install
       - tpm_install_plugins
+      - tmux_reload
   08_f_bash_aliases:
     dst: ~/.bash_aliases
     src: bash_aliases

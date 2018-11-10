@@ -7,3 +7,7 @@ Host *
 Host home.boyfriend.network
   Port 4223
   User andrew
+Host home
+  Hostname home.boyfriend.network
+  Port 4223
+  User andrew
