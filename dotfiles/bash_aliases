@@ -27,3 +27,6 @@ ressh() {
   export SSH_AUTH_SOCK=$(find /tmp/ssh-* -name agent.\* -uid $(id -u) | head -n 1)
 }
 
+gr() {
+  git grep -l "$1" | xargs sed -i "s/$1/$2/g"
+}
