@@ -1,11 +1,12 @@
 actions:
-  vim-plug: vim +PlugInstall +qall
   chmod_ssh_key: chmod 0600 {0}
-  pre:
-    tpm_install: test -e ~/.tmux/plugins/tpm || (mkdir -p ~/.tmux/plugins && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm)
   post:
-    tpm_install_plugins: TMUX_PLUGIN_MANAGER_PATH=~/.tmux/plugins ~/.tmux/plugins/tpm/bin/install_plugins
     tmux_reload: env | grep -q TMUX && tmux source-file ~/.tmux.conf
+    tpm_install_plugins: TMUX_PLUGIN_MANAGER_PATH=~/.tmux/plugins ~/.tmux/plugins/tpm/bin/install_plugins
+  pre:
+    tpm_install: test -e ~/.tmux/plugins/tpm || (mkdir -p ~/.tmux/plugins && git clone
+      https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm)
+  vim-plug: vim +PlugInstall +qall
 config:
   backup: true
   banner: true
@@ -27,12 +28,12 @@ dotfiles:
     dst: ~/.gitconfig
     src: gitconfig
   03_f_id_rsa:
+    actions:
+    - chmod_ssh_key ~/.ssh/id_rsa
     dst: ~/.ssh/id_rsa
     src: ssh/id_rsa
     trans:
-      - gpg
-    actions:
-      - chmod_ssh_key ~/.ssh/id_rsa
+    - gpg
   04_f_id_rsa.pub:
     dst: ~/.ssh/id_rsa.pub
     src: ssh/id_rsa.pub
@@ -41,16 +42,16 @@ dotfiles:
     src: vim/autoload/plug.vim
   06_f_vimrc:
     actions:
-      - vim-plug
+    - vim-plug
     dst: ~/.vimrc
     src: vimrc
   07_f_tmux.conf:
+    actions:
+    - tpm_install
+    - tpm_install_plugins
+    - tmux_reload
     dst: ~/.tmux.conf
     src: tmux.conf
-    actions:
-      - tpm_install
-      - tpm_install_plugins
-      - tmux_reload
   08_f_bash_aliases:
     dst: ~/.bash_aliases
     src: bash_aliases
@@ -61,27 +62,40 @@ dotfiles:
     dst: ~/.bash_aliases.work
     src: bash_aliases.work
     trans:
-      - gpg
+    - gpg
   11_f_ssh_config.work:
     dst: ~/.ssh/config.work
     src: ssh/config.work
     trans:
-      - gpg
+    - gpg
 profiles:
   alpha5:
+    include:
+    - linux
+  linux:
     dotfiles:
-      - 00_f_bash_login
-      - 01_f_bashrc
-      - 02_f_gitconfig
-      - 03_f_id_rsa
-      - 04_f_id_rsa.pub
-      - 05_f_plug.vim
-      - 06_f_vimrc
-      - 07_f_tmux.conf
-      - 08_f_bash_aliases
-      - 09_f_ssh_config
+    - 07_f_tmux.conf
+    include:
+    - linux_server
+  linux_server:
+    dotfiles:
+    - 00_f_bash_login
+    - 01_f_bashrc
+    - 02_f_gitconfig
+    - 03_f_id_rsa
+    - 04_f_id_rsa.pub
+    - 05_f_plug.vim
+    - 06_f_vimrc
+    - 08_f_bash_aliases
+    - 09_f_ssh_config
+  mac_work:
+    dotfiles:
+    - ALL
+  nuc:
+    include:
+    - linux_server
   zordon.local:
-    dotfiles:
-      - ALL
+    include:
+    - mac_work
 trans:
   gpg: gpg -q -d {0} > {1}
