@@ -1,6 +1,6 @@
 actions:
-  chmod_ssh_key: chmod 0600 {0}
   post:
+    chmod_ssh_key: chmod 0600 {0}
     tmux_reload: env | grep -q TMUX && tmux source-file ~/.tmux.conf
     tpm_install_plugins: TMUX_PLUGIN_MANAGER_PATH=~/.tmux/plugins ~/.tmux/plugins/tpm/bin/install_plugins
   pre:
