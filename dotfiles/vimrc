@@ -41,11 +41,12 @@ highlight WhiteSpaceEOL ctermbg=darkgreen
 match WhiteSpaceEOL /\s\+$/
 
 call plug#begin('~/.vim/plugged')
-Plug 'vim-syntastic/syntastic'
-Plug 'rodjek/vim-puppet'
+"Plug 'vim-syntastic/syntastic'
+"Plug 'rodjek/vim-puppet'
 Plug 'bogado/file-line'
-Plug 'leafgarland/typescript-vim'
-Plug 'kchmck/vim-coffee-script'
-Plug 'fatih/vim-go'
-Plug 'mrk21/yaml-vim'
+"Plug 'leafgarland/typescript-vim'
+"Plug 'kchmck/vim-coffee-script'
+"Plug 'fatih/vim-go'
+"Plug 'mrk21/yaml-vim'
+Plug 'w0rp/ale'
 call plug#end()
