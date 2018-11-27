@@ -41,6 +41,7 @@ highlight WhiteSpaceEOL ctermbg=darkgreen
 match WhiteSpaceEOL /\s\+$/
 
 let g:ale_sign_column_always = 1
+let g:ale_lint_delay = 500
 
 call plug#begin('~/.vim/plugged')
 "Plug 'vim-syntastic/syntastic'
