@@ -34,7 +34,7 @@ export GIT_PS1_SHOWUPSTREAM="verbose"
 export GIT_PS1_SHOWCOLORHINTS=1
 function venv() {
   if [[ ! -z "$VIRTUAL_ENV" ]]; then
-    echo -n " (venv $(basename $VIRTUAL_ENV)) "
+    echo -n " (venv $(basename $VIRTUAL_ENV))"
   fi
 }
 export PROMPT_COMMAND='history -a; history -n; __git_ps1 "\[\e[2;m\][\d \A]\[\e[m\] \[\e[35m\]\u@\h:\[\e[m\]\[\e[38;5;107m\]\w\[\e[m\]$(venv)" "\n\[\e[35m\]\\\$\[\e[m\] " " [%s]"'
