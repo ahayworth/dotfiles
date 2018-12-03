@@ -36,3 +36,14 @@ else
     git grep -l "$1" | xargs sed -i "s/$1/$2/g"
   }
 fi
+
+ffind() {
+  if [[ "$1" == "." ]]; then
+    dir=$(pwd)
+  else
+    dir=$1
+  fi
+  shift
+
+  find "$dir" -name '.*' -prune -o $* -print 2> /dev/null
+}
