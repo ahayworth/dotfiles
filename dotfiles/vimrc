@@ -42,14 +42,18 @@ match WhiteSpaceEOL /\s\+$/
 
 let g:ale_sign_column_always = 1
 let g:ale_lint_delay = 500
+let g:airline#extensions#ale#enabled = 1
+let g:airline_theme='minimalist'
 
 call plug#begin('~/.vim/plugged')
 "Plug 'vim-syntastic/syntastic'
-Plug 'rodjek/vim-puppet'
-Plug 'bogado/file-line'
 "Plug 'leafgarland/typescript-vim'
 "Plug 'kchmck/vim-coffee-script'
-Plug 'fatih/vim-go'
 "Plug 'mrk21/yaml-vim'
+Plug 'rodjek/vim-puppet'
+Plug 'bogado/file-line'
+Plug 'fatih/vim-go'
 Plug 'w0rp/ale'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 call plug#end()
