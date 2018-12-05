@@ -40,10 +40,11 @@ fi
 ffind() {
   if [[ "$1" == "." ]]; then
     dir=$(pwd)
+    replace=$(pwd)
   else
     dir=$1
   fi
   shift
 
-  find "$dir" -name '.*' -prune -o "$@" -print 2> /dev/null
+  find "$dir" -name '.*' -prune -o "$@" -print 2> /dev/null | sed -e "s@$replace@.@g"
 }
