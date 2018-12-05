@@ -45,5 +45,5 @@ ffind() {
   fi
   shift
 
-  find "$dir" -name '.*' -prune -o $* -print 2> /dev/null
+  find "$dir" -name '.*' -prune -o "$@" -print 2> /dev/null
 }

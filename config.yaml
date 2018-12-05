@@ -1,6 +1,5 @@
 actions:
   post:
-    chmod_ssh_key: chmod 0600 {0}
     tmux_reload: env | grep -q TMUX && tmux source-file ~/.tmux.conf
     tpm_install_plugins: TMUX_PLUGIN_MANAGER_PATH=~/.tmux/plugins ~/.tmux/plugins/tpm/bin/install_plugins
   pre:
@@ -28,12 +27,10 @@ dotfiles:
     dst: ~/.gitconfig
     src: gitconfig
   03_f_id_rsa:
-    actions:
-    - chmod_ssh_key ~/.ssh/id_rsa
     dst: ~/.ssh/id_rsa
     src: ssh/id_rsa
     trans:
-    - gpg
+    - gpg_ssh
   04_f_id_rsa.pub:
     dst: ~/.ssh/id_rsa.pub
     src: ssh/id_rsa.pub
@@ -99,4 +96,5 @@ profiles:
     include:
     - mac_work
 trans:
+  gpg_ssh: gpg -q -d {0} > {1} && chmod 0600 {1}
   gpg: gpg -q -d {0} > {1}
