@@ -92,6 +92,9 @@ profiles:
   nuc:
     include:
     - linux_server
+  pi-games:
+    include:
+    - linux_server
   zordon.local:
     include:
     - mac_work
