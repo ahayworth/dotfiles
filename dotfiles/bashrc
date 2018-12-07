@@ -60,7 +60,7 @@ if [[ $HOSTNAME =~ $LOW_POWER_REGEX ]]; then
 else
   HISTSIZE=10000000
   HISTFILESIZE=10000000000000
-  PROMPT_HISTORY='history -a; history -n'
+  PROMPT_HISTORY='history -a; history -n;'
 fi
 PROMPT_GIT_PS1='__git_ps1'
 PROMPT_GIT_PS1_ARG1='"\[\e[2;m\][\d \A]\[\e[m\] '
