@@ -29,8 +29,7 @@ dotfiles:
   03_f_id_rsa:
     dst: ~/.ssh/id_rsa
     src: ssh/id_rsa
-    trans:
-    - gpg_ssh
+    trans: gpg_ssh
   04_f_id_rsa.pub:
     dst: ~/.ssh/id_rsa.pub
     src: ssh/id_rsa.pub
@@ -58,13 +57,11 @@ dotfiles:
   10_f_bash_aliases.work:
     dst: ~/.bash_aliases.work
     src: bash_aliases.work
-    trans:
-    - gpg
+    trans: gpg
   11_f_ssh_config.work:
     dst: ~/.ssh/config.work
     src: ssh/config.work
-    trans:
-    - gpg
+    trans: gpg
 profiles:
   alpha5:
     include:
