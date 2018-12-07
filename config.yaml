@@ -6,6 +6,9 @@ actions:
     tpm_install: test -e ~/.tmux/plugins/tpm || (mkdir -p ~/.tmux/plugins && git clone
       https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm)
   vim-plug: vim +PlugInstall +qall
+trans:
+  gpg_ssh: gpg -q -d {0} > {1} && chmod 0600 {1}
+  gpg: gpg -q -d {0} > {1}
 config:
   backup: true
   banner: true
@@ -95,6 +98,3 @@ profiles:
   zordon.local:
     include:
     - mac_work
-trans:
-  gpg_ssh: gpg -q -d {0} > {1} && chmod 0600 {1}
-  gpg: gpg -q -d {0} > {1}
