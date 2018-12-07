@@ -1,8 +1,5 @@
-# history
 shopt -s histappend
 HISTCONTROL=ignoredups
-HISTSIZE=10000000
-HISTFILESIZE=10000000000000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -37,7 +34,44 @@ function venv() {
     echo -n " (venv $(basename $VIRTUAL_ENV))"
   fi
 }
-export PROMPT_COMMAND='history -a; history -n; __git_ps1 "\[\e[2;m\][\d \A]\[\e[m\] \[\e[35m\]\u@\h:\[\e[m\]\[\e[38;5;107m\]\w\[\e[m\]$(venv)" "\n\[\e[35m\]\\\$\[\e[m\] " " [%s]"'
+
+case $HOSTNAME in
+  alpha5)
+    PROMPT_COLOR='\[\e[35m\]'
+    ;;
+  nuc)
+    PROMPT_COLOR='\[\e[36m\]'
+    ;;
+  zordon.local)
+    PROMPT_COLOR='\[\e[34m\]'
+    ;;
+  pi-games)
+    PROMPT_COLOR='\[\e[33m\]'
+    ;;
+  *)
+    PROMPT_COLOR='\[\e[31m\]'
+esac
+
+LOW_POWER_REGEX="^pi-"
+if [[ $HOSTNAME =~ $LOW_POWER_REGEX ]]; then
+  HISTSIZE=1000
+  HISTFILESIZE=10000
+  PROMPT_HISTORY=''
+else
+  HISTSIZE=10000000
+  HISTFILESIZE=10000000000000
+  PROMPT_HISTORY='history -a; history -n;'
+fi
+PROMPT_GIT_PS1='__git_ps1'
+PROMPT_GIT_PS1_ARG1='"\[\e[2;m\][\d \A]\[\e[m\] '
+PROMPT_GIT_PS1_ARG1+=$PROMPT_COLOR
+PROMPT_GIT_PS1_ARG1+='\u@\h:\[\e[m\]\[\e[38;5;107m\]\w\[\e[m\]$(venv)"'
+PROMPT_GIT_PS1_ARG2='"\n'
+PROMPT_GIT_PS1_ARG2+=$PROMPT_COLOR
+PROMPT_GIT_PS1_ARG2+='\\\$\[\e[m\] "'
+PROMPT_GIT_PS1_ARG3='" [%s]"'
+export PROMPT_COMMAND="$PROMPT_HISTORY $PROMPT_GIT_PS1 $PROMPT_GIT_PS1_ARG1 $PROMPT_GIT_PS1_ARG2 $PROMPT_GIT_PS1_ARG3"
+
 
 # git completion
 [ -f /usr/share/git/completion/git-prompt.sh ] && . /usr/share/git/completion/git-prompt.sh
