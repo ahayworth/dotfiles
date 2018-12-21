@@ -88,3 +88,5 @@ export PROMPT_COMMAND="$PROMPT_HISTORY $PROMPT_GIT_PS1 $PROMPT_GIT_PS1_ARG1 $PRO
 [ -f /usr/local/opt/rbenv/shims ] && export PATH=$PATH:/usr/local/opt/rbenv/shims
 type -t rbenv >/dev/null && eval "$(rbenv init -)"
 type -t nodenv >/dev/null && eval "$(nodenv init -)"
+
+export GOPATH=~/projects/go
