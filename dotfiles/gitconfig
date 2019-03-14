@@ -9,6 +9,7 @@
 	helper = osxkeychain
 [alias]
   st = status
+  co = checkout
   me = log --pretty=oneline --author=ahayworth
 [protocol]
   version = 2
