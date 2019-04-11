@@ -51,6 +51,10 @@ let g:ale_linters = {
 let g:airline#extensions#ale#enabled = 1
 let g:airline_theme='minimalist'
 
+"terraform bits
+let g:terraform_align=1
+let g:terraform_fmt_on_save=1
+
 call plug#begin('~/.vim/plugged')
 Plug 'bogado/file-line'
 Plug 'fatih/vim-go'
