@@ -64,6 +64,9 @@ dotfiles:
     dst: ~/.ssh/config.work
     src: ssh/config.work
     trans: gpg
+  12_gitconfig_Work:
+    dst: ~/.gitconfig-work
+    src: gitconfig-work
 profiles:
   alpha5:
     dotfiles: []
