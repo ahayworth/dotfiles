@@ -82,11 +82,12 @@ export PROMPT_COMMAND="$PROMPT_HISTORY $PROMPT_GIT_PS1 $PROMPT_GIT_PS1_ARG1 $PRO
 [ -f /etc/bash_completion ] && . /etc/bash_completion
 
 [ -f ~/.bash_aliases ] && . ~/.bash_aliases
-{%@@ if profile == "zordon.local" @@%}
-[ -f ~/.bash_aliases.work ] && . ~/.bash_aliases.work
-{%@@ endif @@%}
 [ -f /usr/local/opt/rbenv/shims ] && export PATH=$PATH:/usr/local/opt/rbenv/shims
 type -t rbenv >/dev/null && eval "$(rbenv init -)"
 type -t nodenv >/dev/null && eval "$(nodenv init -)"
 
 export GOPATH=~/projects/go
+
+{%@@ if profile == "zordon.local" @@%}
+[ -f ~/.bash_aliases.work ] && . ~/.bash_aliases.work
+{%@@ endif @@%}
