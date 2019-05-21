@@ -40,6 +40,12 @@ map k gk
 highlight WhiteSpaceEOL ctermbg=darkgreen
 match WhiteSpaceEOL /\s\+$/
 
+"swap nonsense
+set undodir=~/.vim/.undo//
+set backupdir=~/.vim/.backup//
+set directory=~/.vim/.swp//
+
+"ale config
 let g:ale_sign_column_always = 1
 let g:ale_lint_delay = 500
 let g:ale_echo_msg_error_str = 'E'

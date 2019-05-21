@@ -5,6 +5,7 @@ actions:
   pre:
     tpm_install: test -e ~/.tmux/plugins/tpm || (mkdir -p ~/.tmux/plugins && git clone
       https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm)
+    vim-dirs: (mkdir -p ~/.vim/.backup ~/.vim/.swp ~/.vim/.undo)
   vim-plug: vim +PlugInstall +qall
 config:
   backup: true
@@ -41,6 +42,7 @@ dotfiles:
   06_f_vimrc:
     actions:
     - vim-plug
+    - vim-dirs
     dst: ~/.vimrc
     src: vimrc
   07_f_tmux.conf:
