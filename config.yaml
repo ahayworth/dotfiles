@@ -32,7 +32,7 @@ dotfiles:
   03_f_id_rsa:
     dst: ~/.ssh/id_rsa
     src: ssh/id_rsa
-    trans: gpg_ssh
+    trans_read: gpg_ssh
   04_f_id_rsa.pub:
     dst: ~/.ssh/id_rsa.pub
     src: ssh/id_rsa.pub
@@ -61,11 +61,11 @@ dotfiles:
   10_f_bash_aliases.work:
     dst: ~/.bash_aliases.work
     src: bash_aliases.work
-    trans: gpg
+    trans_read: gpg
   11_f_ssh_config.work:
     dst: ~/.ssh/config.work
     src: ssh/config.work
-    trans: gpg
+    trans_read: gpg
   12_gitconfig_Work:
     dst: ~/.gitconfig-work
     src: gitconfig-work
@@ -78,8 +78,6 @@ profiles:
   linux:
     dotfiles:
     - 07_f_tmux.conf
-    include:
-    - linux_server
   linux_server:
     dotfiles:
     - 00_f_bash_login
@@ -97,6 +95,7 @@ profiles:
   nuc:
     dotfiles: []
     include:
+    - linux
     - linux_server
   pi-games:
     dotfiles: []
@@ -106,6 +105,6 @@ profiles:
     dotfiles: []
     include:
     - mac_work
-trans:
+trans_read:
   gpg: gpg -q -d {0} > {1}
   gpg_ssh: gpg -q -d {0} > {1} && chmod 0600 {1}
