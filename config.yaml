@@ -97,6 +97,11 @@ profiles:
     include:
     - linux
     - linux_server
+  lcars:
+    dotfiles: []
+    include:
+    - linux
+    - linux_server
   pi-games:
     dotfiles: []
     include:

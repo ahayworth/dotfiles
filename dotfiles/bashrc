@@ -76,6 +76,7 @@ export PROMPT_COMMAND="$PROMPT_HISTORY $PROMPT_GIT_PS1 $PROMPT_GIT_PS1_ARG1 $PRO
 # git completion
 [ -f /usr/share/git/completion/git-prompt.sh ] && . /usr/share/git/completion/git-prompt.sh
 [ -f /usr/share/git/completion/git-completion.bash ] && . /usr/share/git/completion/git-completion.bash
+[ -f /etc/bash_completion.d/git-prompt ] && . /etc/bash_completion.d/git-prompt
 
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 [ -f /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
