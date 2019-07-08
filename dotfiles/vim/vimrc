@@ -32,6 +32,8 @@ set title "set terminal title intelligently
 nnoremap <Leader>l :set cursorline! <CR>
 nnoremap <Leader>c :set cursorcolumn! <CR>
 
+set backspace=indent,eol,start
+
 "remap j/k to treat long lines as broken lines
 map j gj
 map k gk
