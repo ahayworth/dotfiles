@@ -12,6 +12,7 @@ profiles:
   base:
     variables:
       work: false
+      laptop: false
     dynvariables:
       uname: "uname -s | tr '[:upper:]' '[:lower:]'"
     include:
@@ -28,6 +29,8 @@ profiles:
       - git.work
       - ssh.work
   janeway:
+    variables:
+      laptop: true
     include:
       - base
   nuc:
@@ -37,6 +40,8 @@ profiles:
     include:
       - base
   zordon.local:
+    variables:
+      laptop: true
     include:
       - base
       - base.work
