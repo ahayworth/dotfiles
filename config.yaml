@@ -12,13 +12,13 @@ config:
 dotfiles:
   00_bash_login:
     dst: ~/.bash_login
-    src: bash_login
+    src: shell/bash_login
   01_bashrc:
     dst: ~/.bashrc
-    src: bashrc
+    src: shell/bashrc
   02_gitconfig:
     dst: ~/.gitconfig
-    src: gitconfig
+    src: git/gitconfig
   03_id_rsa:
     dst: ~/.ssh/id_rsa
     src: ssh/id_rsa
@@ -34,23 +34,23 @@ dotfiles:
     - vim-plug
     - vim-dirs
     dst: ~/.vimrc
-    src: vimrc
+    src: vim/vimrc
   07_tmux.conf:
     actions:
     - tpm_install
     - tpm_install_plugins
     - tmux_reload
     dst: ~/.tmux.conf
-    src: tmux.conf
+    src: tmux/tmux.conf
   08_bash_aliases:
     dst: ~/.bash_aliases
-    src: bash_aliases
+    src: shell/bash_aliases
   09_ssh_config:
     dst: ~/.ssh/config
     src: ssh/config
   10_bash_aliases.work:
     dst: ~/.bash_aliases.work
-    src: bash_aliases.work
+    src: shell/bash_aliases.work
     trans_read: gpg
   11_ssh_config.work:
     dst: ~/.ssh/config.work
@@ -58,7 +58,7 @@ dotfiles:
     trans_read: gpg
   12_gitconfig_Work:
     dst: ~/.gitconfig-work
-    src: gitconfig-work
+    src: git/gitconfig-work
   13_ssh_authorized_keys:
     dst: ~/.ssh/authorized_keys
     src: ssh/authorized_keys
