@@ -73,7 +73,7 @@ dotfiles:
     dst: ~/.ssh/authorized_keys
     src: ssh/authorized_keys
 profiles:
-  alpha5:
+  janeway:
     dotfiles: []
     include:
     - linux
