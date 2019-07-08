@@ -10,56 +10,56 @@ actions:
 config:
   showdiff: true
 dotfiles:
-  00_bash_login:
+  bash_login:
     dst: ~/.bash_login
     src: shell/bash_login
-  01_bashrc:
+  bashrc:
     dst: ~/.bashrc
     src: shell/bashrc
-  02_gitconfig:
+  gitconfig:
     dst: ~/.gitconfig
     src: git/gitconfig
-  03_id_rsa:
+  id_rsa:
     dst: ~/.ssh/id_rsa
     src: ssh/id_rsa
     trans_read: gpg_ssh
-  04_id_rsa.pub:
+  id_rsa.pub:
     dst: ~/.ssh/id_rsa.pub
     src: ssh/id_rsa.pub
-  05_plug.vim:
+  plug.vim:
     dst: ~/.vim/autoload/plug.vim
     src: vim/autoload/plug.vim
-  06_vimrc:
+  vimrc:
     actions:
     - vim-plug
     - vim-dirs
     dst: ~/.vimrc
     src: vim/vimrc
-  07_tmux.conf:
+  tmux.conf:
     actions:
     - tpm_install
     - tpm_install_plugins
     - tmux_reload
     dst: ~/.tmux.conf
     src: tmux/tmux.conf
-  08_bash_aliases:
+  bash_aliases:
     dst: ~/.bash_aliases
     src: shell/bash_aliases
-  09_ssh_config:
+  ssh_config:
     dst: ~/.ssh/config
     src: ssh/config
-  10_bash_aliases.work:
+  bash_aliases.work:
     dst: ~/.bash_aliases.work
     src: shell/bash_aliases.work
     trans_read: gpg
-  11_ssh_config.work:
+  ssh_config.work:
     dst: ~/.ssh/config.work
     src: ssh/config.work
     trans_read: gpg
-  12_gitconfig_Work:
+  gitconfig_work:
     dst: ~/.gitconfig-work
     src: git/gitconfig-work
-  13_ssh_authorized_keys:
+  ssh_authorized_keys:
     dst: ~/.ssh/authorized_keys
     src: ssh/authorized_keys
 profiles:
@@ -70,19 +70,19 @@ profiles:
     - linux_server
   linux:
     dotfiles:
-    - 07_tmux.conf
+    - tmux.conf
   linux_server:
     dotfiles:
-    - 00_bash_login
-    - 01_bashrc
-    - 02_gitconfig
-    - 03_id_rsa
-    - 04_id_rsa.pub
-    - 05_plug.vim
-    - 06_vimrc
-    - 08_bash_aliases
-    - 09_ssh_config
-    - 13_ssh_authorized_keys
+    - bash_login
+    - bashrc
+    - gitconfig
+    - id_rsa
+    - id_rsa.pub
+    - plug.vim
+    - vimrc
+    - bash_aliases
+    - ssh_config
+    - ssh_authorized_keys
   mac_work:
     dotfiles:
     - ALL
