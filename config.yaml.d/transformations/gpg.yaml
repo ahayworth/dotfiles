@@ -1,0 +1,7 @@
+config: {}
+profiles: {}
+dotfiles: {}
+
+trans_read:
+  gpg_0600: "gpg -q -d {0} > {1} && chmod 0600 {1}"
+  gpg: "gpg -q -d {0} > {1}"

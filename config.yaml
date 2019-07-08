@@ -1,67 +1,13 @@
-actions:
-  post:
-    tmux_reload: env | grep -q TMUX && tmux source-file ~/.tmux.conf
-    tpm_install_plugins: TMUX_PLUGIN_MANAGER_PATH=~/.tmux/plugins ~/.tmux/plugins/tpm/bin/install_plugins
-  pre:
-    tpm_install: test -e ~/.tmux/plugins/tpm || (mkdir -p ~/.tmux/plugins && git clone
-      https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm)
-    vim-dirs: (mkdir -p ~/.vim/.backup ~/.vim/.swp ~/.vim/.undo)
-  vim-plug: vim +PlugInstall +qall
 config:
   showdiff: true
-dotfiles:
-  bash_login:
-    dst: ~/.bash_login
-    src: shell/bash_login
-  bashrc:
-    dst: ~/.bashrc
-    src: shell/bashrc
-  gitconfig:
-    dst: ~/.gitconfig
-    src: git/gitconfig
-  id_rsa:
-    dst: ~/.ssh/id_rsa
-    src: ssh/id_rsa
-    trans_read: gpg_ssh
-  id_rsa.pub:
-    dst: ~/.ssh/id_rsa.pub
-    src: ssh/id_rsa.pub
-  plug.vim:
-    dst: ~/.vim/autoload/plug.vim
-    src: vim/autoload/plug.vim
-  vimrc:
-    actions:
-    - vim-plug
-    - vim-dirs
-    dst: ~/.vimrc
-    src: vim/vimrc
-  tmux.conf:
-    actions:
-    - tpm_install
-    - tpm_install_plugins
-    - tmux_reload
-    dst: ~/.tmux.conf
-    src: tmux/tmux.conf
-  bash_aliases:
-    dst: ~/.bash_aliases
-    src: shell/bash_aliases
-  ssh_config:
-    dst: ~/.ssh/config
-    src: ssh/config
-  bash_aliases.work:
-    dst: ~/.bash_aliases.work
-    src: shell/bash_aliases.work
-    trans_read: gpg
-  ssh_config.work:
-    dst: ~/.ssh/config.work
-    src: ssh/config.work
-    trans_read: gpg
-  gitconfig_work:
-    dst: ~/.gitconfig-work
-    src: git/gitconfig-work
-  ssh_authorized_keys:
-    dst: ~/.ssh/authorized_keys
-    src: ssh/authorized_keys
+  import_configs:
+    - config.yaml.d/dotfiles/shell.yaml
+    - config.yaml.d/dotfiles/vim.yaml
+    - config.yaml.d/dotfiles/git.yaml
+    - config.yaml.d/dotfiles/tmux.yaml
+    - config.yaml.d/dotfiles/ssh.yaml
+    - config.yaml.d/transformations/gpg.yaml
+dotfiles: {}
 profiles:
   janeway:
     dotfiles: []
@@ -78,7 +24,7 @@ profiles:
     - gitconfig
     - id_rsa
     - id_rsa.pub
-    - plug.vim
+    - autoload_vimplug
     - vimrc
     - bash_aliases
     - ssh_config
@@ -104,6 +50,3 @@ profiles:
     dotfiles: []
     include:
     - mac_work
-trans_read:
-  gpg: gpg -q -d {0} > {1}
-  gpg_ssh: gpg -q -d {0} > {1} && chmod 0600 {1}

@@ -1,0 +1,18 @@
+config:
+  dotpath: ../../dotfiles
+profiles: {}
+
+dotfiles:
+  bash_login:
+    dst: ~/.bash_login
+    src: shell/bash_login
+  bashrc:
+    dst: ~/.bashrc
+    src: shell/bashrc
+  bash_aliases:
+    dst: ~/.bash_aliases
+    src: shell/bash_aliases
+  bash_aliases.work:
+    dst: ~/.bash_aliases.work
+    src: shell/bash_aliases.work
+    trans_read: gpg

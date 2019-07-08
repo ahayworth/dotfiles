@@ -1,0 +1,11 @@
+config:
+  dotpath: ../../dotfiles
+profiles: {}
+
+dotfiles:
+  gitconfig:
+    dst: ~/.gitconfig
+    src: git/gitconfig
+  gitconfig_work:
+    dst: ~/.gitconfig-work
+    src: git/gitconfig-work

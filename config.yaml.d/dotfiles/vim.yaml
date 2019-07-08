@@ -1,0 +1,19 @@
+config:
+  dotpath: ../../dotfiles
+profiles: {}
+
+actions:
+  pre:
+    vim-dirs: (mkdir -p ~/.vim/.backup ~/.vim/.swp ~/.vim/.undo)
+  post:
+    vim-plug: vim +PlugInstall +qall
+dotfiles:
+  autoload_vimplug:
+    dst: ~/.vim/autoload/plug.vim
+    src: vim/autoload/plug.vim
+  vimrc:
+    actions:
+    - vim-plug
+    - vim-dirs
+    dst: ~/.vimrc
+    src: vim/vimrc
