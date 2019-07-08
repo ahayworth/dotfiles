@@ -1,7 +1,5 @@
 config:
   dotpath: ../../dotfiles
-profiles: {}
-
 actions:
   pre:
     vim-dirs: (mkdir -p ~/.vim/.backup ~/.vim/.swp ~/.vim/.undo)
@@ -17,3 +15,7 @@ dotfiles:
     - vim-dirs
     dst: ~/.vimrc
     src: vim/vimrc
+profiles:
+  vim:
+    dotfiles:
+      - ALL

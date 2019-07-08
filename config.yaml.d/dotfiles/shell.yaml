@@ -1,7 +1,5 @@
 config:
   dotpath: ../../dotfiles
-profiles: {}
-
 dotfiles:
   bash_login:
     dst: ~/.bash_login
@@ -16,3 +14,14 @@ dotfiles:
     dst: ~/.bash_aliases.work
     src: shell/bash_aliases.work
     trans_read: gpg
+profiles:
+  shell:
+    dotfiles:
+      - bash_login
+      - bashrc
+      - bash_aliases
+  shell.work:
+    include:
+      - shell
+    dotfiles:
+      - bash_aliases.work

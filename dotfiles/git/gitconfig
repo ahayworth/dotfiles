@@ -1,9 +1,9 @@
 [user]
 	name = Andrew Hayworth
 	email = ahayworth@gmail.com
-{%@@ if profile == "zordon.local" @@%}
+{%@@ if work @@%}
 [includeIf "gitdir:~/github/"]
-  path = .gitconfig-work
+  path = .gitconfig.work
 {%@@ endif @@%}
 [push]
 	default = matching

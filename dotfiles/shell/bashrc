@@ -89,6 +89,6 @@ type -t nodenv >/dev/null && eval "$(nodenv init -)"
 
 export GOPATH=~/projects/go
 
-{%@@ if profile == "zordon.local" @@%}
+{%@@ if work @@%}
 [ -f ~/.bash_aliases.work ] && . ~/.bash_aliases.work
 {%@@ endif @@%}

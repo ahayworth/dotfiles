@@ -1,4 +1,4 @@
-{%@@ if profile == "zordon.local" @@%}
+{%@@ if work @@%}
 Include config.work
 {%@@ endif @@%}
 Host *

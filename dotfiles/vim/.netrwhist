@@ -1,9 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
-let g:netrw_dirhist_1='/Users/ahayworth/.vim'
-let g:netrw_dirhist_2='/Users/ahayworth/github/nagios/lib/nagios'
-let g:netrw_dirhist_3='/Users/ahayworth/github/vault-config/config/cp1-iad-prd'
-let g:netrw_dirhist_4='/Users/ahayworth/github/nagios/config/skeleton/objects/host.d'
-let g:netrw_dirhist_5='/Users/ahayworth/github/observability-grafana/config/kubernetes/default/configmaps'
-let g:netrw_dirhist_6='/Users/ahayworth/github/shell/lib/nagios'
-let g:netrw_dirhist_7='/Users/ahayworth/github/shell/lib/github/maintenance'

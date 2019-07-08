@@ -9,44 +9,34 @@ config:
     - config.yaml.d/transformations/gpg.yaml
 dotfiles: {}
 profiles:
+  base:
+    variables:
+      work: false
+    dynvariables:
+      uname: "uname -s | tr '[:upper:]' '[:lower:]'"
+    include:
+      - shell
+      - git
+      - ssh
+      - vim
+      - tmux
+  base.work:
+    variables:
+      work: true
+    include:
+      - shell.work
+      - git.work
+      - ssh.work
   janeway:
-    dotfiles: []
     include:
-    - linux
-    - linux_server
-  linux:
-    dotfiles:
-    - tmux.conf
-  linux_server:
-    dotfiles:
-    - bash_login
-    - bashrc
-    - gitconfig
-    - id_rsa
-    - id_rsa.pub
-    - autoload_vimplug
-    - vimrc
-    - bash_aliases
-    - ssh_config
-    - ssh_authorized_keys
-  mac_work:
-    dotfiles:
-    - ALL
+      - base
   nuc:
-    dotfiles: []
     include:
-    - linux
-    - linux_server
+      - base
   lcars:
-    dotfiles: []
     include:
-    - linux
-    - linux_server
-  pi-games:
-    dotfiles: []
-    include:
-    - linux_server
+      - base
   zordon.local:
-    dotfiles: []
     include:
-    - mac_work
+      - base
+      - base.work

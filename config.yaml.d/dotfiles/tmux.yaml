@@ -1,7 +1,5 @@
 config:
   dotpath: ../../dotfiles
-profiles: {}
-
 actions:
   post:
     tmux_reload: env | grep -q TMUX && tmux source-file ~/.tmux.conf
@@ -17,3 +15,7 @@ dotfiles:
     - tmux_reload
     dst: ~/.tmux.conf
     src: tmux/tmux.conf
+profiles:
+  tmux:
+    dotfiles:
+      - ALL

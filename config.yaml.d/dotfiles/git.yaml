@@ -1,11 +1,18 @@
 config:
   dotpath: ../../dotfiles
-profiles: {}
-
 dotfiles:
   gitconfig:
     dst: ~/.gitconfig
     src: git/gitconfig
-  gitconfig_work:
-    dst: ~/.gitconfig-work
-    src: git/gitconfig-work
+  gitconfig.work:
+    dst: ~/.gitconfig.work
+    src: git/gitconfig.work
+profiles:
+  git:
+    dotfiles:
+      - gitconfig
+  git.work:
+    include: 
+      - git
+    dotfiles:
+      - gitconfig.work
