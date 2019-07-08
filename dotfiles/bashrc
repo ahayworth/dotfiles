@@ -36,7 +36,7 @@ function venv() {
 }
 
 case $HOSTNAME in
-  alpha5)
+  janeway)
     PROMPT_COLOR='\[\e[35m\]'
     ;;
   nuc)
