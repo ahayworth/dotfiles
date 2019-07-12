@@ -22,6 +22,6 @@ profiles:
       - bash_aliases
   bash.work:
     include:
-      - shell
+      - bash
     dotfiles:
       - bash_aliases.work

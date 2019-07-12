@@ -1,38 +1,60 @@
+"Plugins
+call plug#begin('~/.vim/plugged')
+Plug 'tpope/vim-sensible'  "sensible defaults
+Plug 'tpope/vim-fugitive'  "git wrapper (eg: Gblame)
+Plug 'tpope/vim-surround'  "easily modify surrounding characters
+Plug 'tomtom/tcomment_vim' "comment things
+Plug 'christoomey/vim-tmux-navigator'
+
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+Plug 'sheerun/vim-polyglot'
+
+Plug 'bogado/file-line'
+Plug 'fatih/vim-go' "?
+Plug 'hashivim/vim-terraform' "?
+Plug 'leafgarland/typescript-vim' "?
+Plug 'rodjek/vim-puppet' "?
+Plug 'strogonoff/vim-coffee-script' "?  Plug 'w0rp/ale'
+
+"Plug 'jaxbot/semantic-highlight.vim'
+call plug#end()
+
 "Display
-syntax on
 set background=dark
 set number
 set showmatch "jump when completing a brace
 set mat=3 "highlight that match for .3 seconds
 set linebreak "dont wrap in the middle of a word
-set scrolloff=3 "start scrolling 3 lines before the end
+set ttyfast "I almost always have one
+set mouse= "I really dislike using a mouse in vim
 hi CursorLine   cterm=NONE ctermbg=darkgrey ctermfg=white guibg=darkred guifg=white
 hi CursorColumn cterm=NONE ctermbg=grey ctermfg=white guibg=darkred guifg=white
 
 "Tabs
-set expandtab
+set smarttab
+set expandtab "spaces, yo
 set tabstop=2
 set shiftwidth=2
 
 "Search
 set hlsearch
-set incsearch "incremental search
 set ic "ignore case
-set smartcase "but, care about case if you type something uppercase
-nmap % :nohlsearch<CR>
+set smartcase "care about case if you type something uppercase
 
 "Randoms
 set nocompatible
-set autoindent
-set copyindent
+set copyindent "Auto-indent for new lines should use whatever indents are in-use
+let g:is_posix=1 "Yes, we have a 'posix' shell.
+"Stay out of ex-mode unless you really, really mean it.
+nnoremap Q gQ
+set belloff=all "The terminal-bell be damned
 
-set ruler "always show line postion
 set wildmode=list:longest "match up to the point of ambiguity
 set title "set terminal title intelligently
 nnoremap <Leader>l :set cursorline! <CR>
 nnoremap <Leader>c :set cursorcolumn! <CR>
-
-set backspace=indent,eol,start
 
 "remap j/k to treat long lines as broken lines
 map j gj
@@ -63,15 +85,10 @@ let g:airline_theme='minimalist'
 let g:terraform_align=1
 let g:terraform_fmt_on_save=1
 
-call plug#begin('~/.vim/plugged')
-Plug 'bogado/file-line'
-Plug 'fatih/vim-go'
-Plug 'hashivim/vim-terraform'
-Plug 'leafgarland/typescript-vim'
-Plug 'rodjek/vim-puppet'
-Plug 'strogonoff/vim-coffee-script'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'jaxbot/semantic-highlight.vim'
-Plug 'w0rp/ale'
-call plug#end()
+"semantic-highlight
+nnoremap <Leader>s :SemanticHighlightToggle <CR>
+
+
+set termguicolors
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
