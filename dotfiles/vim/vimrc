@@ -72,5 +72,6 @@ Plug 'rodjek/vim-puppet'
 Plug 'strogonoff/vim-coffee-script'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'jaxbot/semantic-highlight.vim'
 Plug 'w0rp/ale'
 call plug#end()
