@@ -2,7 +2,7 @@ config:
   dotpath: ../../dotfiles
 actions:
   post:
-    tmux_reload: env | grep -q TMUX && tmux source-file ~/.tmux.conf
+    tmux_reload: (env | grep -q TMUX && tmux source-file ~/.tmux.conf) || true
     tpm_install_plugins: TMUX_PLUGIN_MANAGER_PATH=~/.tmux/plugins ~/.tmux/plugins/tpm/bin/install_plugins
   pre:
     tpm_install: test -e ~/.tmux/plugins/tpm || (mkdir -p ~/.tmux/plugins && git clone
