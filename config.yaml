@@ -9,6 +9,7 @@ config:
     - config.yaml.d/transformations/gpg.yaml
 dotfiles: {}
 profiles:
+  ## Meta
   base:
     variables:
       work: false
@@ -28,6 +29,8 @@ profiles:
       - bash.work
       - git.work
       - ssh.work
+
+  ## Machines
   janeway:
     variables:
       laptop: true
