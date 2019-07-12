@@ -2,17 +2,16 @@ config:
   dotpath: ../../dotfiles
 actions:
   pre:
-    vim-dirs: (mkdir -p ~/.vim/.backup ~/.vim/.swp ~/.vim/.undo)
+    install-vim-plug: test -e ~/.vim/autoload/plug.vim || (mkdir -p ~/.vim/autoload; curl -fLo ~/.vim/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim)
+    mkdir-vim: mkdir -p ~/.vim/.backup ~/.vim/.swp ~/.vim/.undo
   post:
-    vim-plug: vim +PlugInstall +qall
+    install-vim-plugins: vim +PlugUpgrade +PlugClean! +PlugUpdate +qa
 dotfiles:
-  autoload_vimplug:
-    dst: ~/.vim/autoload/plug.vim
-    src: vim/autoload/plug.vim
   vimrc:
     actions:
-    - vim-plug
-    - vim-dirs
+    - install-vim-plug
+    - install-vim-plugins
+    - mkdir-vim
     dst: ~/.vimrc
     src: vim/vimrc
 profiles:
