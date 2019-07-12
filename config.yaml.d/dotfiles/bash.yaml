@@ -3,24 +3,24 @@ config:
 dotfiles:
   bash_login:
     dst: ~/.bash_login
-    src: shell/bash_login
+    src: bash/bash_login
   bashrc:
     dst: ~/.bashrc
-    src: shell/bashrc
+    src: bash/bashrc
   bash_aliases:
     dst: ~/.bash_aliases
-    src: shell/bash_aliases
+    src: bash/bash_aliases
   bash_aliases.work:
     dst: ~/.bash_aliases.work
-    src: shell/bash_aliases.work
+    src: bash/bash_aliases.work
     trans_read: gpg
 profiles:
-  shell:
+  bash:
     dotfiles:
       - bash_login
       - bashrc
       - bash_aliases
-  shell.work:
+  bash.work:
     include:
       - shell
     dotfiles:

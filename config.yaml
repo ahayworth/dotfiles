@@ -1,7 +1,7 @@
 config:
   showdiff: true
   import_configs:
-    - config.yaml.d/dotfiles/shell.yaml
+    - config.yaml.d/dotfiles/bash.yaml
     - config.yaml.d/dotfiles/vim.yaml
     - config.yaml.d/dotfiles/git.yaml
     - config.yaml.d/dotfiles/tmux.yaml
@@ -16,7 +16,7 @@ profiles:
     dynvariables:
       uname: "uname -s | tr '[:upper:]' '[:lower:]'"
     include:
-      - shell
+      - bash
       - git
       - ssh
       - vim
@@ -25,7 +25,7 @@ profiles:
     variables:
       work: true
     include:
-      - shell.work
+      - bash.work
       - git.work
       - ssh.work
   janeway:
