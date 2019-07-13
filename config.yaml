@@ -6,12 +6,14 @@ config:
     - config.yaml.d/dotfiles/git.yaml
     - config.yaml.d/dotfiles/tmux.yaml
     - config.yaml.d/dotfiles/ssh.yaml
+    - config.yaml.d/dotfiles/terminal.yaml
     - config.yaml.d/transformations/gpg.yaml
 dotfiles: {}
 profiles:
   ## Meta
   base:
     variables:
+      mac: false
       work: false
       laptop: false
     dynvariables:
@@ -36,6 +38,7 @@ profiles:
       laptop: true
     include:
       - base
+      - alacritty
   nuc:
     include:
       - base
@@ -45,6 +48,8 @@ profiles:
   zordon.local:
     variables:
       laptop: true
+      mac: true
     include:
       - base
       - base.work
+      - alacritty

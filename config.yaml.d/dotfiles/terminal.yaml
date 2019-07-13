@@ -1,0 +1,15 @@
+config:
+  dotpath: ../../dotfiles
+actions:
+  pre:
+    mkdir-alacritty: mkdir -p ~/.config/alacritty
+dotfiles:
+  alacritty.yml:
+    dst: ~/.config/alacritty/alacritty.yml
+    src: terminal/alacritty.yml
+    actions:
+      - mkdir-alacritty
+profiles:
+  alacritty:
+    dotfiles:
+      - alacritty.yml
