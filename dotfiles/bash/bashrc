@@ -6,7 +6,7 @@ HISTCONTROL=ignoredups
 shopt -s checkwinsize
 
 # start ssh-agent if it's not running
-ps -ef | grep -q '[s]sh-agent' || ssh-agent > /dev/null
+ps -ef | grep -q '[s]sh-agent' || eval `ssh-agent` >/dev/null
 
 if [ -d ~/projects/go_appengine ]; then
   export PATH=${PATH}:~/projects/go_appengine
