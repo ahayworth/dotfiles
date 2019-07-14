@@ -3,7 +3,7 @@ env:
 font:
   # Normal (roman) font face
   normal:
-    family: "Hurmit Nerd Font Mono"
+    family: "Hack Nerd Font Mono"
   size: 12.0
 {%@@ if mac @@%}
   use_thin_strokes: true
