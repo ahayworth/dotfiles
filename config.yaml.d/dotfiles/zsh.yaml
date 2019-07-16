@@ -2,9 +2,12 @@ config:
   dotpath: ../../dotfiles
 actions:
   pre:
+    update-zsh-submodules: git submodule update --recursive
     create-zsh-dir: (test -d ~/.zsh || mkdir ~/.zsh)
 dotfiles:
   zshrc:
+    actions:
+      - create-zsh-dir
     dst: ~/.zshrc
     src: zsh/zshrc
   zshenv:
@@ -16,6 +19,16 @@ dotfiles:
   functions:
     dst: ~/.zsh/functions
     src: zsh/functions
+  fpath:
+    dst: ~/.zsh/fpath
+    src: zsh/fpath
+  powerlevel10k:
+    dst: ~/.zsh/powerlevel10k
+    src: zsh/powerlevel10k
+    link: link
+  purepower:
+    dst: ~/.zsh/purepower
+    src: zsh/purepower
   zsh.work:
     dst: ~/.zsh/zsh.work
     src: zsh/zsh.work
@@ -27,8 +40,11 @@ profiles:
       - zshenv
       - aliases
       - functions
+      - fpath
+      - powerlevel10k
+      - purepower
     actions:
-      - create-zsh-dir
+      - update-zsh-submodules
   zsh.work:
     include:
       - zsh

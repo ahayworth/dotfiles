@@ -1,0 +1,18 @@
+config:
+  dotpath: ../../dotfiles
+actions:
+  pre:
+    create-gpg-dir: (test -d ~/.gnupg || mkdir ~/.gnupg)
+dotfiles:
+  gpg-agent.conf:
+    dst: ~/.gnupg/gpg-agent.conf
+    src: gpg/gpg-agent.conf
+  gpg.conf:
+    actions:
+      - create-gpg-dir
+    dst: ~/.gnupg/gpg.conf
+    src: gpg/gpg.conf
+profiles:
+  gpg:
+    dotfiles:
+      - ALL

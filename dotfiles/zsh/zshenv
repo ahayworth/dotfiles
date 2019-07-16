@@ -10,3 +10,5 @@ postgres_bin=~/Applications/Postgres.app/Contents/Versions/latest/bin
 export GOPATH=~/projects/go
 whence rbenv  >/dev/null && eval "$(rbenv init -)"
 whence nodenv >/dev/null && eval "$(nodenv init -)"
+
+fpath=($fpath ~/.zsh/fpath)

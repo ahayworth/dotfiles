@@ -12,11 +12,16 @@ export EDITOR=vim
 
 ps -ef | grep -q '[s]sh-agent' || eval `ssh-agent` >/dev/null
 
-autoload -Uz compinit
-compinit
+autoload_inits=(compinit)
+for f in $autoload_inits; do
+  autoload -Uz $f && $f
+done
 
 source ~/.zsh/aliases
 source ~/.zsh/functions
 {%@@ if work @@%}
 source ~/.zsh/zsh.work
 {%@@ endif @@%}
+
+source ~/.zsh/powerlevel10k/powerlevel10k.zsh-theme
+source ~/.zsh/purepower
