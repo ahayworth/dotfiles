@@ -2,6 +2,7 @@ config:
   showdiff: true
   import_configs:
     - config.yaml.d/dotfiles/bash.yaml
+    - config.yaml.d/dotfiles/zsh.yaml
     - config.yaml.d/dotfiles/vim.yaml
     - config.yaml.d/dotfiles/git.yaml
     - config.yaml.d/dotfiles/tmux.yaml
@@ -20,6 +21,7 @@ profiles:
       uname: "uname -s | tr '[:upper:]' '[:lower:]'"
     include:
       - bash
+      - zsh
       - git
       - ssh
       - vim
@@ -29,6 +31,7 @@ profiles:
       work: true
     include:
       - bash.work
+      - zsh.work
       - git.work
       - ssh.work
 

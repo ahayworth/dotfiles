@@ -1,0 +1,17 @@
+## Git helpers
+alias gg='git grep -ni'
+
+## Color helpers
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+{%@@ if mac @@%}
+alias ls='ls -G'
+command -v colordiff >/dev/null && alias diff='colordiff'
+{%@@ else @@%}
+alias ls='ls --color=auto'
+alias diff='diff --color=auto'
+{%@@ endif @@%}
+
+## Misc
+alias dotdrop='~/projects/dotfiles/dotdrop.sh'

@@ -1,0 +1,37 @@
+man() {
+    LESS_TERMCAP_md=$'\e[01;31m' \
+    LESS_TERMCAP_me=$'\e[0m' \
+    LESS_TERMCAP_se=$'\e[0m' \
+    LESS_TERMCAP_so=$'\e[01;44;33m' \
+    LESS_TERMCAP_ue=$'\e[0m' \
+    LESS_TERMCAP_us=$'\e[01;32m' \
+    command man "$@"
+}
+
+{%@@ if mac @@%}
+gr() {
+  git grep -l "$1" | xargs sed -i '' -e "s/$1/$2/g"
+}
+{%@@ else @@%}
+gr() {
+  git grep -l "$1" | xargs sed -i "s/$1/$2/g"
+}
+{%@@ endif @@%}
+
+ffind() {
+  if [[ "$1" == "." ]]; then
+    dir=$(pwd)
+    replace=$(pwd)
+  else
+    dir=$1
+  fi
+  shift
+
+  find "$dir" -name '.*' -prune -o "$@" -print 2> /dev/null | sed -e "s@$replace@.@g"
+}
+
+function venv() {
+  if [[ ! -z "$VIRTUAL_ENV" ]]; then
+    echo -n " (venv $(basename $VIRTUAL_ENV))"
+  fi
+}

@@ -16,7 +16,8 @@ Plug 'fatih/vim-go' "?
 Plug 'hashivim/vim-terraform' "?
 Plug 'leafgarland/typescript-vim' "?
 Plug 'rodjek/vim-puppet' "?
-Plug 'strogonoff/vim-coffee-script' "?  Plug 'w0rp/ale'
+Plug 'strogonoff/vim-coffee-script' "?
+Plug 'w0rp/ale'
 
 "Plug 'jaxbot/semantic-highlight.vim'
 call plug#end()
@@ -42,6 +43,11 @@ set shiftwidth=2
 set hlsearch
 set ic "ignore case
 set smartcase "care about case if you type something uppercase
+
+"Code Fold
+set foldmethod=syntax
+set nofoldenable
+set foldnestmax=5
 
 "Randoms
 set nocompatible

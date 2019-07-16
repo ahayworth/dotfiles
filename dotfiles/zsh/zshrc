@@ -1,0 +1,22 @@
+HISTFILE=~/.histfile
+HISTSIZE=5000
+SAVEHIST=5000
+setopt APPEND_HISTORY
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
+
+unsetopt BEEP
+bindkey -e
+
+export EDITOR=vim
+
+ps -ef | grep -q '[s]sh-agent' || eval `ssh-agent` >/dev/null
+
+autoload -Uz compinit
+compinit
+
+source ~/.zsh/aliases
+source ~/.zsh/functions
+{%@@ if work @@%}
+source ~/.zsh/zsh.work
+{%@@ endif @@%}

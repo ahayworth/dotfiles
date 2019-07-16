@@ -1,0 +1,44 @@
+config:
+  dotpath: ../../dotfiles
+actions:
+  pre:
+    create-zsh-dir: (test -d ~/.zsh || mkdir ~/.zsh)
+dotfiles:
+  zshrc:
+    dst: ~/.zshrc
+    src: zsh/zshrc
+  zshenv:
+    dst: ~/.zshenv
+    src: zsh/zshenv
+  aliases:
+    dst: ~/.zsh/aliases
+    src: zsh/aliases
+  functions:
+    dst: ~/.zsh/functions
+    src: zsh/functions
+  zsh.work:
+    dst: ~/.zsh/zsh.work
+    src: zsh/zsh.work
+    trans_read: gpg
+profiles:
+  zsh:
+    dotfiles:
+      - zshrc
+      - zshenv
+      - aliases
+      - functions
+    actions:
+      - create-zsh-dir
+  zsh.work:
+    include:
+      - zsh
+    dotfiles:
+      - zsh.work
+      # 1. login, interactive:
+      #   .zshenv -> .zprofile -> .zshrc -> .zlogin -> .zlogout
+      # 2. login, non-interactive:
+      #   .zshenv -> .zprofile -> .zlogin -> .zlogout
+      # 3. non-login, interactive:
+      #   .zshenv -> .zshrc
+      # 4. non-login, non-interactive:
+      #   .zshenv
