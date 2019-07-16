@@ -4,3 +4,6 @@
 [submodule "dotfiles/zsh/powerlevel10k"]
 	path = dotfiles/zsh/powerlevel10k
 	url = https://github.com/romkatv/powerlevel10k
+[submodule "dotfiles/zsh/fast-syntax-highlighting"]
+	path = dotfiles/zsh/fast-syntax-highlighting
+	url = https://github.com/zdharma/fast-syntax-highlighting

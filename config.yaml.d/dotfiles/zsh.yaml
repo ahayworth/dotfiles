@@ -29,6 +29,10 @@ dotfiles:
   purepower:
     dst: ~/.zsh/purepower
     src: zsh/purepower
+  fsh:
+    dst: ~/.zsh/fsh
+    src: zsh/fast-syntax-highlighting
+    link: link
   zsh.work:
     dst: ~/.zsh/zsh.work
     src: zsh/zsh.work
@@ -43,6 +47,7 @@ profiles:
       - fpath
       - powerlevel10k
       - purepower
+      - fsh
     actions:
       - update-zsh-submodules
   zsh.work:
