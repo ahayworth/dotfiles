@@ -20,12 +20,6 @@
 # https://github.com/iboyperson/p9k-theme-pastel. The origin myth is chiseled onto
 # https://www.reddit.com/r/zsh/comments/b45w6v/.
 
-if test -z "${ZSH_VERSION}"; then
-  echo "purepower: unsupported shell; try zsh instead" >&2
-  return 1
-  exit 1
-fi
-
 () {
   emulate -L zsh && setopt no_unset pipe_fail
 
