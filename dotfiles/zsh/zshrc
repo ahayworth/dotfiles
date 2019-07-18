@@ -6,7 +6,9 @@ setopt SHARE_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
 
 unsetopt BEEP
+
 bindkey -v
+KEYTIMEOUT=1
 
 export EDITOR=vim
 
