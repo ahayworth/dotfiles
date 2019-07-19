@@ -35,7 +35,6 @@ hi CursorLine   cterm=NONE ctermbg=darkgrey ctermfg=white guibg=darkred guifg=wh
 hi CursorColumn cterm=NONE ctermbg=grey ctermfg=white guibg=darkred guifg=white
 
 "Tabs
-set smarttab
 set expandtab "spaces, yo
 set tabstop=2
 set shiftwidth=2
@@ -99,6 +98,7 @@ let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 let g:gruvbox_contrast_dark = 'hard'
+let g:gruvbox_italic = 1
 colorscheme gruvbox
 
 nnoremap <silent> [oh :call gruvbox#hls_show()<CR>

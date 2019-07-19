@@ -4,6 +4,7 @@ actions:
   post:
     tmux_reload: (env | grep -q TMUX && tmux source-file ~/.tmux.conf) || true
     tpm_install_plugins: TMUX_PLUGIN_MANAGER_PATH=~/.tmux/plugins ~/.tmux/plugins/tpm/bin/install_plugins
+    terminfo-compile: tic -o ~/.terminfo {0}
   pre:
     tpm_install: test -e ~/.tmux/plugins/tpm || (mkdir -p ~/.tmux/plugins && git clone
       https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm)
@@ -15,7 +16,18 @@ dotfiles:
     - tmux_reload
     dst: ~/.tmux.conf
     src: tmux/tmux.conf
+  terminfo-tmux-256color:
+    dst: ~/.config/tmux-256color.terminfo
+    src: tmux/tmux-256color.terminfo
+    actions:
+      - terminfo-compile ~/.config/tmux-256color.terminfo
+  terminfo-tmux:
+    dst: ~/.config/tmux.terminfo
+    src: tmux/tmux.terminfo
+    actions:
+      - terminfo-compile ~/.config/tmux.terminfo
 profiles:
   tmux:
     dotfiles:
       - ALL
+

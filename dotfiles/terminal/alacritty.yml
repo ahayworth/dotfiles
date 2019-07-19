@@ -1,28 +1,27 @@
 env:
   TERM: xterm-256color
+window:
+  decorations: {{@@ 'buttonless' if mac else 'full' @@}}
+  startup_mode: Maximized
+  padding:
+    x: 5 
+    y: 5
+  dynamic_padding: true
 font:
-  # Normal (roman) font face
+  size: 16.0
+  use_thin_strokes: {{@@ 'true' if mac else 'false' @@}}
   normal:
     family: "Hack Nerd Font Mono"
-{%@@ if mac @@%}
-  size: 16.0
-  use_thin_strokes: true
-{%@@ else @@%}
-  size: 16.0
-  use_thin_strokes: false
-{%@@ endif @@%}
+    style: Regular
+  bold:
+    family: "Hack Nerd Font Mono"
+    style: Bold
+  italic:
+    family: "Hack Nerd Font Mono"
+    style: Italic
 mouse:
   hide_when_typing: true
 debug:
-  # Log level
-  #
-  # Values for `log_level`:
-  #   - None
-  #   - Error
-  #   - Warn
-  #   - Info
-  #   - Debug
-  #   - Trace
   log_level: None
 # Key bindings
 #
