@@ -19,7 +19,7 @@ Plug 'rodjek/vim-puppet' "?
 Plug 'strogonoff/vim-coffee-script' "?
 Plug 'w0rp/ale'
 
-Plug 'morhetz/gruvbox'
+Plug 'gruvbox-community/gruvbox'
 
 call plug#end()
 
