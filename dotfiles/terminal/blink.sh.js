@@ -15,7 +15,7 @@ brightMagenta = '#d3869b';
 brightCyan    = '#8ec07c';
 brightWhite   = '#fbf1c7';
 
-t.prefs_.set('color-palette-overrides', [black, red, green, yellow, blue, magenta, cyan, white, brightBlack, brightRed, brightGreen, brightYellow, brightBlue, brightMagenta, brightCyan, brightWhite];
+t.prefs_.set('color-palette-overrides', [black, red, green, yellow, blue, magenta, cyan, white, brightBlack, brightRed, brightGreen, brightYellow, brightBlue, brightMagenta, brightCyan, brightWhite]);
 
 t.prefs_.set('foreground-color', '#d5c4a1');
 t.prefs_.set('background-color', '#1d2021');
