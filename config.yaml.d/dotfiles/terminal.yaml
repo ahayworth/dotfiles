@@ -20,3 +20,6 @@ profiles:
   alacritty:
     dotfiles:
       - ALL
+  terminfo-xterm-256color:
+    dotfiles:
+      - terminfo-xterm-256color

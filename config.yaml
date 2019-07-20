@@ -50,6 +50,7 @@ profiles:
   lcars:
     include:
       - base
+      - terminfo-xterm-256color
   zordon.local:
     variables:
       laptop: true
