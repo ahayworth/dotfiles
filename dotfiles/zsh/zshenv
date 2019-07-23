@@ -3,7 +3,7 @@ typeset -U path
 [[ -d /usr/local/opt/rbenv/shims ]] && path=(/usr/local/opt/rbenv/shims $path)
 
 {%@@ if mac @@%}
-postgres_bin=~/Applications/Postgres.app/Contents/Versions/latest/bin
+postgres_bin=/Applications/Postgres.app/Contents/Versions/latest/bin
 [[ -d $postgres_bin ]] && path=($postgres_bin $path)
 {%@@ endif @@%}
 
@@ -11,4 +11,4 @@ export GOPATH=~/projects/go
 whence rbenv  >/dev/null && eval "$(rbenv init -)"
 whence nodenv >/dev/null && eval "$(nodenv init -)"
 
-fpath=($fpath ~/.zsh/fpath)
+[[ -d ~/.zsh/fpath ]] && fpath=($fpath ~/.zsh/fpath)

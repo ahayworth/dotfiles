@@ -19,9 +19,6 @@ dotfiles:
   functions:
     dst: ~/.zsh/functions
     src: zsh/functions
-  fpath:
-    dst: ~/.zsh/fpath
-    src: zsh/fpath
   powerlevel10k:
     dst: ~/.zsh/powerlevel10k
     src: zsh/powerlevel10k
@@ -44,7 +41,6 @@ profiles:
       - zshenv
       - aliases
       - functions
-      - fpath
       - powerlevel10k
       - purepower
       - fsh
