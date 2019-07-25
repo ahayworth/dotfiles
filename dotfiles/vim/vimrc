@@ -17,7 +17,7 @@ Plug 'hashivim/vim-terraform' "?
 Plug 'leafgarland/typescript-vim' "?
 Plug 'rodjek/vim-puppet' "?
 Plug 'strogonoff/vim-coffee-script' "?
-Plug 'w0rp/ale'
+Plug 'ahayworth/ale', { 'branch': 'ahayworth-add-ink' }
 
 Plug 'gruvbox-community/gruvbox'
 
@@ -83,6 +83,13 @@ let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_linters = {
 \  'ruby': ['brakeman', 'rails_best_practices', 'reek', 'ruby', 'solargraph'],
+\}
+let g:ale_ink_ls_initialization_options = {
+\  'ink': {
+\    'mainStoryPath': 'init.ink',
+\    'inklecateExecutablePath': '/usr/local/bin/inklecate',
+\    'runThroughMono': v:false,
+\  }
 \}
 let g:airline#extensions#ale#enabled = 1
 let g:airline_theme='minimalist'
