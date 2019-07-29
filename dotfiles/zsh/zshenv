@@ -7,7 +7,5 @@ postgres_bin=/Applications/Postgres.app/Contents/Versions/latest/bin
 {%@@ endif @@%}
 
 export GOPATH=~/projects/go
-which rbenv  >/dev/null && eval "$(rbenv init -)"
-which nodenv >/dev/null && eval "$(nodenv init -)"
 
 [[ -d ~/.zsh/fpath ]] && fpath=($fpath ~/.zsh/fpath)
