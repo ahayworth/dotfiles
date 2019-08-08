@@ -66,10 +66,6 @@ nnoremap <Leader>c :set cursorcolumn! <CR>
 map j gj
 map k gk
 
-"srhea's awesome show-me-my-whitespace stuff
-highlight WhiteSpaceEOL ctermbg=darkgreen
-match WhiteSpaceEOL /\s\+$/
-
 "swap nonsense
 set undodir=~/.vim/.undo//
 set backupdir=~/.vim/.backup//
@@ -115,3 +111,8 @@ nnoremap <silent> coh :call gruvbox#hls_toggle()<CR>
 nnoremap * :let @/ = ""<CR>:call gruvbox#hls_show()<CR>*
 nnoremap / :let @/ = ""<CR>:call gruvbox#hls_show()<CR>/
 nnoremap ? :let @/ = ""<CR>:call gruvbox#hls_show()<CR>?
+
+"show-me-my-whitespace stuff. needs to be at the end.
+highlight WhiteSpaceEOL ctermbg=darkgreen
+match WhiteSpaceEOL /\s\+$/
+
