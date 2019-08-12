@@ -14,7 +14,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'bogado/file-line'
 Plug 'fatih/vim-go' "?
 Plug 'hashivim/vim-terraform' "?
-Plug 'leafgarland/typescript-vim' "?
+Plug 'leafgarland/typescript-vim'
 Plug 'rodjek/vim-puppet' "?
 Plug 'strogonoff/vim-coffee-script' "?
 Plug 'ahayworth/ale', { 'branch': 'ahayworth-add-ink' }
@@ -120,4 +120,3 @@ nnoremap ? :let @/ = ""<CR>:call gruvbox#hls_show()<CR>?
 "show-me-my-whitespace stuff. needs to be at the end.
 highlight WhiteSpaceEOL ctermbg=darkgreen
 match WhiteSpaceEOL /\s\+$/
-
