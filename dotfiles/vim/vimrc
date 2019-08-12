@@ -80,6 +80,10 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_linters = {
 \  'ruby': ['brakeman', 'rails_best_practices', 'reek', 'ruby', 'solargraph'],
 \}
+let g:ale_fixers = {
+\ '*': ['remove_trailing_lines', 'trim_whitespace'],
+\ 'typescript': ['eslint'],
+\}
 let g:ale_ink_ls_initialization_options = {
 \  'ink': {
 \    'mainStoryPath': 'init.ink',
@@ -87,6 +91,7 @@ let g:ale_ink_ls_initialization_options = {
 \    'runThroughMono': v:false,
 \  }
 \}
+let g:ale_fix_on_save = 1
 let g:airline#extensions#ale#enabled = 1
 let g:airline_theme='minimalist'
 
