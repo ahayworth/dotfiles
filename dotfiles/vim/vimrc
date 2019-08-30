@@ -92,7 +92,6 @@ let g:ale_ink_ls_initialization_options = {
 \    'runThroughMono': v:false,
 \  }
 \}
-let g:ale_fix_on_save = 1
 let g:airline#extensions#ale#enabled = 1
 let g:airline_theme='minimalist'
 
