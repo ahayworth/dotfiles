@@ -45,7 +45,7 @@ set ic "ignore case
 set smartcase "care about case if you type something uppercase
 
 "Code Fold
-set foldmethod=syntax
+set foldmethod=manual
 set nofoldenable
 set foldnestmax=5
 
@@ -73,8 +73,14 @@ set directory=~/.vim/.swp//
 
 "ale config
 set mouse=a
-set ttymouse=xterm2
-let g:ale_set_balloons = 1
+if !has('nvim')
+  set ttymouse=xterm2
+  let g:ale_set_balloons = 1
+endif
+if has('nvim')
+  let g:ale_sign_highlight_linenrs = 1
+  let g:ale_virtualtext_cursor = 1
+endif
 let g:ale_sign_column_always = 1
 let g:ale_lint_delay = 500
 let g:ale_echo_msg_error_str = 'E'
