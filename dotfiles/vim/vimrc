@@ -18,6 +18,7 @@ Plug 'leafgarland/typescript-vim'
 Plug 'rodjek/vim-puppet' "?
 Plug 'strogonoff/vim-coffee-script' "?
 Plug 'ahayworth/ale', { 'branch': 'ahayworth-add-ink' }
+Plug 'ahayworth/ink-syntax-vim'
 
 Plug 'gruvbox-community/gruvbox'
 
@@ -86,6 +87,7 @@ let g:ale_lint_delay = 500
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%severity%] [%linter%] %s %(code)%'
+set completeopt=menu,menuone,preview,noselect,noinsert
 let g:ale_completion_enabled = 1
 let g:ale_linters = {
 \  'ruby': ['brakeman', 'rails_best_practices', 'reek', 'ruby', 'solargraph'],
