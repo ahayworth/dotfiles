@@ -44,6 +44,7 @@ profiles:
     include:
       - base
       - alacritty
+      - base.work
   nuc:
     include:
       - base
