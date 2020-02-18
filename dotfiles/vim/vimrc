@@ -17,8 +17,10 @@ Plug 'hashivim/vim-terraform' "?
 Plug 'leafgarland/typescript-vim'
 Plug 'rodjek/vim-puppet' "?
 Plug 'strogonoff/vim-coffee-script' "?
-Plug 'ahayworth/ale', { 'branch': 'ahayworth-add-ink' }
+Plug 'dense-analysis/ale'
+Plug 'editorconfig/editorconfig-vim'
 Plug 'ahayworth/ink-syntax-vim'
+Plug 'embear/vim-localvimrc'
 
 Plug 'gruvbox-community/gruvbox'
 

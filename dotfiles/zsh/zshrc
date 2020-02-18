@@ -15,6 +15,7 @@ export EDITOR=vim
 ps -ef | grep -q '[s]sh-agent' || eval `ssh-agent` >/dev/null
 which rbenv  >/dev/null && eval "$(rbenv init -)"
 which nodenv >/dev/null && eval "$(nodenv init -)"
+which dip >/dev/null && eval "$(dip console)"
 
 autoload_inits=(compinit)
 for f in $autoload_inits; do
