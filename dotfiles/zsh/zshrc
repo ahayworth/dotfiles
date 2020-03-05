@@ -33,3 +33,5 @@ zstyle ':completion:*' menu select
 source ~/.zsh/powerlevel10k/powerlevel10k.zsh-theme
 source ~/.zsh/purepower
 source ~/.zsh/fsh/fast-syntax-highlighting.plugin.zsh
+
+. $HOME/.asdf/asdf.sh
