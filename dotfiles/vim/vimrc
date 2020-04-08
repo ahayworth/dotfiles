@@ -113,6 +113,7 @@ let g:airline_theme='minimalist'
 let g:terraform_align=1
 let g:terraform_fmt_on_save=1
 
+let g:localvimrc_persistent=1
 
 "colors!
 set termguicolors

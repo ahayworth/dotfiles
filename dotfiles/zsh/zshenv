@@ -1,5 +1,6 @@
 typeset -U path
 [[ -d ~/bin ]] && path=(~/bin $path)
+[[ -d ~/.poetry/bin ]] && path=(~/.poetry/bin $path)
 
 {%@@ if mac @@%}
 postgres_bin=/Applications/Postgres.app/Contents/Versions/latest/bin

@@ -34,4 +34,6 @@ source ~/.zsh/powerlevel10k/powerlevel10k.zsh-theme
 source ~/.zsh/purepower
 source ~/.zsh/fsh/fast-syntax-highlighting.plugin.zsh
 
-. $HOME/.asdf/asdf.sh
+if [[ -f $HOME/.asdf/asdf.sh ]]; then
+  . $HOME/.asdf/asdf.sh
+fi
