@@ -4,6 +4,7 @@ actions:
   pre:
     update-zsh-submodules: git submodule update --recursive
     create-zsh-dir: (test -d ~/.zsh || mkdir ~/.zsh)
+    create-zsh-fpath: (test -d ~/.zsh/fpath || mkdir -p ~/.zsh/fpath)
 dotfiles:
   zshrc:
     actions:
@@ -19,6 +20,11 @@ dotfiles:
   functions:
     dst: ~/.zsh/functions
     src: zsh/functions
+  poetry:
+    actions:
+      - create-zsh-fpath
+    dst: ~/.zsh/fpath/_poetry
+    src: zsh/fpath/_poetry
   powerlevel10k:
     dst: ~/.zsh/powerlevel10k
     src: zsh/powerlevel10k
@@ -41,6 +47,7 @@ profiles:
       - zshenv
       - aliases
       - functions
+      - poetry
       - powerlevel10k
       - purepower
       - fsh
