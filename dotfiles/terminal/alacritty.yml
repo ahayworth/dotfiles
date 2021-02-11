@@ -22,7 +22,7 @@ font:
 mouse:
   hide_when_typing: true
 debug:
-  log_level: None
+  log_level: OFF
 # Available fields:
 #   - key
 #   - mods (optional)
@@ -89,7 +89,7 @@ key_bindings:
   - { key: N,        mods: Control|Shift,   action: SpawnNewInstance         }
 {%@@ endif @@%}
   - { key: Key0,     mods: {{@@ cmod @@}},  action: ResetFontSize            }
-  - { key: Add,      mods: {{@@ cmod @@}},  action: IncreaseFontSize         }
+  - { key: Plus,     mods: {{@@ cmod @@}},  action: IncreaseFontSize         }
   - { key: Minus,    mods: {{@@ cmod @@}},  action: DecreaseFontSize         }
 
   - { key: L,        mods: Control, action: ClearLogNotice                   }

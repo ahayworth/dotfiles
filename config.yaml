@@ -44,6 +44,13 @@ profiles:
     include:
       - base
       - alacritty
+  Andrews-MacBook-Pro.local:
+    variables:
+      laptop: true
+      mac: true
+    include:
+      - base
+      - alacritty
   nuc:
     include:
       - base
