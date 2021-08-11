@@ -57,4 +57,3 @@ profiles:
       - bash
       - zsh
       - git
-      - vim
