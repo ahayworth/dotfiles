@@ -3,3 +3,7 @@
 git submodule update --recursive
 pip3 install -r dotdrop/requirements.txt --user
 ./dotdrop/bootstrap.sh
+
+if [[ `uname` = 'Darwin' ]]; then
+  brew bundle
+fi

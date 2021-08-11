@@ -6,12 +6,8 @@ HISTCONTROL=ignoredups
 shopt -s checkwinsize
 
 # start ssh-agent if it's not running
-ps -ef | grep -q '[s]sh-agent' || eval `ssh-agent` >/dev/null
+ps -ef | grep -q '[s]sh-agent' || eval $(ssh-agent) >/dev/null
 
-if [ -d ~/projects/go_appengine ]; then
-  export PATH=${PATH}:~/projects/go_appengine
-  export PATH=${PATH}:~/projects/go_appengine/gopath/bin
-fi
 
 [ -f ~/bin ] && export PATH=${PATH}:~/bin
 [ -d /Applications/Postgres.app/Contents/Versions/latest/bin ] && export PATH=${PATH}:/Applications/Postgres.app/Contents/Versions/latest/bin
@@ -23,55 +19,9 @@ fi
 
 export EDITOR=vim
 
-# prompt setup
-export GIT_PS1_SHOWDIRTYSTATE=1
-export GIT_PS1_SHOWSTASHSTATE=1
-export GIT_PS1_SHOWUNTRACKEDFILES=1
-export GIT_PS1_SHOWUPSTREAM="verbose"
-export GIT_PS1_SHOWCOLORHINTS=1
-function venv() {
-  if [[ ! -z "$VIRTUAL_ENV" ]]; then
-    echo -n " (venv $(basename $VIRTUAL_ENV))"
-  fi
-}
-
-case $HOSTNAME in
-  janeway)
-    PROMPT_COLOR='\[\e[35m\]'
-    ;;
-  nuc)
-    PROMPT_COLOR='\[\e[36m\]'
-    ;;
-  zordon.local)
-    PROMPT_COLOR='\[\e[34m\]'
-    ;;
-  pi-games)
-    PROMPT_COLOR='\[\e[33m\]'
-    ;;
-  *)
-    PROMPT_COLOR='\[\e[31m\]'
-esac
-
-LOW_POWER_REGEX="^pi-"
-if [[ $HOSTNAME =~ $LOW_POWER_REGEX ]]; then
-  HISTSIZE=1000
-  HISTFILESIZE=10000
-  PROMPT_HISTORY=''
-else
-  HISTSIZE=10000000
-  HISTFILESIZE=10000000000000
-  PROMPT_HISTORY='history -a; history -n;'
-fi
-PROMPT_GIT_PS1='__git_ps1'
-PROMPT_GIT_PS1_ARG1='"\[\e[2;m\][\d \A]\[\e[m\] '
-PROMPT_GIT_PS1_ARG1+=$PROMPT_COLOR
-PROMPT_GIT_PS1_ARG1+='\u@\h:\[\e[m\]\[\e[38;5;107m\]\w\[\e[m\]$(venv)"'
-PROMPT_GIT_PS1_ARG2='"\n'
-PROMPT_GIT_PS1_ARG2+=$PROMPT_COLOR
-PROMPT_GIT_PS1_ARG2+='\\\$\[\e[m\] "'
-PROMPT_GIT_PS1_ARG3='" [%s]"'
-export PROMPT_COMMAND="$PROMPT_HISTORY $PROMPT_GIT_PS1 $PROMPT_GIT_PS1_ARG1 $PROMPT_GIT_PS1_ARG2 $PROMPT_GIT_PS1_ARG3"
-
+HISTSIZE=10000000
+HISTFILESIZE=10000000000000
+export PROMPT_COMMAND="history -a; history -n;"
 
 # git completion
 [ -f /usr/share/git/completion/git-prompt.sh ] && . /usr/share/git/completion/git-prompt.sh

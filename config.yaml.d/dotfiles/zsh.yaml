@@ -29,9 +29,9 @@ dotfiles:
     dst: ~/.zsh/powerlevel10k
     src: zsh/powerlevel10k
     link: link
-  purepower:
-    dst: ~/.zsh/purepower
-    src: zsh/purepower
+  p10k.zsh:
+    dst: ~/.p10k.zsh
+    src: zsh/p10k.zsh
   fsh:
     dst: ~/.zsh/fsh
     src: zsh/fast-syntax-highlighting
@@ -45,8 +45,8 @@ profiles:
       - functions
       - poetry
       - powerlevel10k
-      - purepower
       - fsh
+      - p10k.zsh
     actions:
       - update-zsh-submodules
 # 1. login, interactive:
