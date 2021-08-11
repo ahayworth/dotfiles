@@ -1,5 +1,6 @@
 [directory]
 truncation_length = 30
+style = "bold blue"
 
 [aws]
 disabled = true
