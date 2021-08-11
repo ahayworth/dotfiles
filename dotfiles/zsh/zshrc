@@ -28,7 +28,6 @@ source ~/.zsh/functions
 
 zstyle ':completion:*' menu select
 
-source ~/.zsh/powerlevel10k/powerlevel10k.zsh-theme
 source ~/.zsh/fsh/fast-syntax-highlighting.plugin.zsh
 
 if [[ -f $HOME/.asdf/asdf.sh ]]; then
@@ -38,4 +37,4 @@ fi
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/terraform terraform
 
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+eval "$(starship init zsh)"

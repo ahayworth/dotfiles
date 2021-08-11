@@ -9,6 +9,7 @@ git submodule update --recursive
 pip3 install -r dotdrop/requirements.txt --user
 ./dotdrop/bootstrap.sh
 
-if [[ "$CODESPACES" -eq "true" ]]; then
+if [[ "$CODESPACES" = "true" ]]; then
+  sh -c "$(curl -fsSL https://starship.rs/install.sh)"
   ./dotdrop.sh install -p codespaces --force
 fi

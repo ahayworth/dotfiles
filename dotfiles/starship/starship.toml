@@ -1,0 +1,15 @@
+[directory]
+truncation_length = 30
+
+[aws]
+disabled = true
+
+[gcloud]
+disabled = true
+
+# I think this is a bug, "default" context is showing...
+[docker_context]
+disabled = true
+
+[shell]
+disabled = false

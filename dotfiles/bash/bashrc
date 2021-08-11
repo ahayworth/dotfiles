@@ -39,3 +39,5 @@ type -t nodenv >/dev/null && eval "$(nodenv init -)"
 
 export GOPATH=~/projects/go
 . "$HOME/.cargo/env"
+
+eval "$(starship init bash)"

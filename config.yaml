@@ -7,6 +7,7 @@ config:
     - config.yaml.d/dotfiles/git.yaml
     - config.yaml.d/dotfiles/tmux.yaml
     - config.yaml.d/dotfiles/ssh.yaml
+    - config.yaml.d/dotfiles/starship.yaml
     - config.yaml.d/dotfiles/terminal.yaml
     - config.yaml.d/dotfiles/gpg.yaml
     - config.yaml.d/transformations/gpg.yaml
@@ -25,6 +26,7 @@ profiles:
       - zsh
       - git
       - ssh
+      - starship
       - vim
       - tmux
       - gpg
@@ -55,5 +57,5 @@ profiles:
       laptop: false
     include:
       - bash
-      - zsh
       - git
+      - starship

@@ -1,0 +1,10 @@
+config:
+  dotpath: ../../dotfiles
+dotfiles:
+  starship_toml:
+    dst: ~/.config/starship.toml
+    src: starship/starship.toml
+profiles:
+  starship:
+    dotfiles:
+      - ALL
