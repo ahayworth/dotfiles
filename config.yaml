@@ -31,38 +31,19 @@ profiles:
   base.work:
     variables:
       work: true
-    include:
-      - bash.work
-      - zsh.work
-      - git.work
-      - ssh.work
+    # include: []
 
   ## Machines
-  janeway:
-    variables:
-      laptop: true
-    include:
-      - base
-      - alacritty
-  Andrews-MacBook-Pro.local:
+  janeway.local:
     variables:
       laptop: true
       mac: true
     include:
       - base
-      - alacritty
-  nuc:
-    include:
-      - base
-  lcars:
-    include:
-      - base
-      - terminfo-xterm-256color
-  zordon.local:
+  chakotay:
     variables:
       laptop: true
       mac: true
     include:
       - base
       - base.work
-      - alacritty

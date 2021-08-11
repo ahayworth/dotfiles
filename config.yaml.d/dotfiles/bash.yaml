@@ -10,18 +10,9 @@ dotfiles:
   bash_aliases:
     dst: ~/.bash_aliases
     src: bash/bash_aliases
-  bash_aliases.work:
-    dst: ~/.bash_aliases.work
-    src: bash/bash_aliases.work
-    trans_read: gpg
 profiles:
   bash:
     dotfiles:
       - bash_login
       - bashrc
       - bash_aliases
-  bash.work:
-    include:
-      - bash
-    dotfiles:
-      - bash_aliases.work

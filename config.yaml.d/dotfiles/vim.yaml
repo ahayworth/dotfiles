@@ -4,7 +4,6 @@ actions:
   pre:
     install-vim-plug: test -e ~/.vim/autoload/plug.vim || (mkdir -p ~/.vim/autoload; curl -fLo ~/.vim/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim)
     mkdir-vim: mkdir -p ~/.vim/.backup ~/.vim/.swp ~/.vim/.undo
-    mkdir-nvim: mkdir -p ~/.config/nvim
   post:
     install-vim-plugins: vim +PlugUpgrade +PlugClean! +PlugUpdate +qa
 dotfiles:
@@ -15,14 +14,6 @@ dotfiles:
     - mkdir-vim
     dst: ~/.vimrc
     src: vim/vimrc
-  nvim:
-    actions:
-    - mkdir-vim
-    - mkdir-nvim
-    - install-vim-plug
-    - install-vim-plugins
-    dst: ~/.config/nvim/init.vim
-    src: vim/nvim/init.vim
 profiles:
   vim:
     dotfiles:

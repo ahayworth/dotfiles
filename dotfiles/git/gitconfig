@@ -17,3 +17,7 @@
   me = log --pretty=oneline --author=ahayworth
 [protocol]
   version = 2
+[pull]
+  rebase = false
+[init]
+  defaultBranch = main

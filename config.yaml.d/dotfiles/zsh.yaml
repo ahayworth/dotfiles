@@ -36,10 +36,6 @@ dotfiles:
     dst: ~/.zsh/fsh
     src: zsh/fast-syntax-highlighting
     link: link
-  zsh.work:
-    dst: ~/.zsh/zsh.work
-    src: zsh/zsh.work
-    trans_read: gpg
 profiles:
   zsh:
     dotfiles:
@@ -53,16 +49,11 @@ profiles:
       - fsh
     actions:
       - update-zsh-submodules
-  zsh.work:
-    include:
-      - zsh
-    dotfiles:
-      - zsh.work
-      # 1. login, interactive:
-      #   .zshenv -> .zprofile -> .zshrc -> .zlogin -> .zlogout
-      # 2. login, non-interactive:
-      #   .zshenv -> .zprofile -> .zlogin -> .zlogout
-      # 3. non-login, interactive:
-      #   .zshenv -> .zshrc
-      # 4. non-login, non-interactive:
-      #   .zshenv
+# 1. login, interactive:
+#   .zshenv -> .zprofile -> .zshrc -> .zlogin -> .zlogout
+# 2. login, non-interactive:
+#   .zshenv -> .zprofile -> .zlogin -> .zlogout
+# 3. non-login, interactive:
+#   .zshenv -> .zshrc
+# 4. non-login, non-interactive:
+#   .zshenv

@@ -1,6 +1,3 @@
-{%@@ if work @@%}
-Include config.work
-{%@@ endif @@%}
 Host *
   ServerAliveInterval 300
   ServerAliveCountMax 2

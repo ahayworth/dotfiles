@@ -88,7 +88,4 @@ type -t rbenv >/dev/null && eval "$(rbenv init -)"
 type -t nodenv >/dev/null && eval "$(nodenv init -)"
 
 export GOPATH=~/projects/go
-
-{%@@ if work @@%}
-[ -f ~/.bash_aliases.work ] && . ~/.bash_aliases.work
-{%@@ endif @@%}
+. "$HOME/.cargo/env"
