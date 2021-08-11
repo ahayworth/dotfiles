@@ -25,13 +25,6 @@ dotfiles:
       - create-zsh-fpath
     dst: ~/.zsh/fpath/_poetry
     src: zsh/fpath/_poetry
-  powerlevel10k:
-    dst: ~/.zsh/powerlevel10k
-    src: zsh/powerlevel10k
-    link: link
-  p10k.zsh:
-    dst: ~/.p10k.zsh
-    src: zsh/p10k.zsh
   fsh:
     dst: ~/.zsh/fsh
     src: zsh/fast-syntax-highlighting
@@ -44,9 +37,7 @@ profiles:
       - aliases
       - functions
       - poetry
-      - powerlevel10k
       - fsh
-      - p10k.zsh
     actions:
       - update-zsh-submodules
 # 1. login, interactive:
