@@ -1,5 +1,6 @@
 #!/bin/bash
 
+git submodule init
 git submodule update --recursive
 pip3 install -r dotdrop/requirements.txt --user
 ./dotdrop/bootstrap.sh
