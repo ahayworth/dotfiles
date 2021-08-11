@@ -42,7 +42,7 @@ profiles:
       mac: true
     include:
       - base
-  chakotay:
+  chakotay.local:
     variables:
       laptop: true
       mac: true
