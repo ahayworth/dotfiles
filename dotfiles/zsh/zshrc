@@ -35,6 +35,6 @@ if [[ -f $HOME/.asdf/asdf.sh ]]; then
 fi
 
 autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/local/bin/terraform terraform
+[[ -f /usr/local/bin/terraform ]] && complete -o nospace -C /usr/local/bin/terraform terraform
 
 eval "$(starship init zsh)"

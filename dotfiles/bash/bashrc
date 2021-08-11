@@ -37,7 +37,6 @@ export PROMPT_COMMAND="history -a; history -n;"
 type -t rbenv >/dev/null && eval "$(rbenv init -)"
 type -t nodenv >/dev/null && eval "$(nodenv init -)"
 
-export GOPATH=~/projects/go
-. "$HOME/.cargo/env"
+[[ -f "~/.cargo/env" ]] && . "$HOME/.cargo/env"
 
 eval "$(starship init bash)"

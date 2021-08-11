@@ -7,7 +7,7 @@ postgres_bin=/Applications/Postgres.app/Contents/Versions/latest/bin
 [[ -d $postgres_bin ]] && path=($postgres_bin $path)
 {%@@ endif @@%}
 
-path=(/usr/local/go/bin $path)
+[[ -d /usr/local/go/bin ]] && path=(/usr/local/go/bin $path)
+[[ -d ~/.cargo/env ]] && . "$HOME/.cargo/env"
 
 [[ -d ~/.zsh/fpath ]] && fpath=($fpath ~/.zsh/fpath)
-. "$HOME/.cargo/env"
