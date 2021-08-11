@@ -10,5 +10,5 @@ if [[ `uname` = 'Darwin' ]]; then
 fi
 
 if [[ "$CODESPACES" -eq "true" ]]; then
-  ./dotdrop.sh install -p codespaces
+  ./dotdrop.sh install -p codespaces --force
 fi
