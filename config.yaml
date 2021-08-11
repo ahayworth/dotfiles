@@ -57,5 +57,6 @@ profiles:
       laptop: false
     include:
       - bash
+      - zsh
       - git
       - starship
