@@ -11,7 +11,9 @@ bindkey -v
 KEYTIMEOUT=1
 
 export EDITOR=vim
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+if [[ "$(uname)" = "Darwin" ]]; then
+  export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+fi
 
 ps -ef | grep -q '[s]sh-agent' || eval `ssh-agent` >/dev/null
 which rbenv  >/dev/null && eval "$(rbenv init -)"
