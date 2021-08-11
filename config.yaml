@@ -30,6 +30,7 @@ profiles:
       - vim
       - tmux
       - gpg
+      - terminal
   base.work:
     variables:
       work: true
