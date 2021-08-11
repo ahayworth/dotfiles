@@ -47,3 +47,14 @@ profiles:
     include:
       - base
       - base.work
+
+  codespaces:
+    variables:
+      mac: false
+      work: false
+      laptop: false
+    include:
+      - bash
+      - zsh
+      - git
+      - vim

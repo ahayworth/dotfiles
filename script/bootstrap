@@ -7,3 +7,7 @@ pip3 install -r dotdrop/requirements.txt --user
 if [[ `uname` = 'Darwin' ]]; then
   brew bundle
 fi
+
+if [[ "$CODESPACES" -eq "true" ]]; then
+  ./dotdrop.sh install -p codespaces
+fi
