@@ -4,8 +4,10 @@ actions:
   pre:
     install-vim-plug: test -e ~/.vim/autoload/plug.vim || (mkdir -p ~/.vim/autoload; curl -fLo ~/.vim/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim)
     mkdir-vim: mkdir -p ~/.vim/.backup ~/.vim/.swp ~/.vim/.undo
+    mkdir-nvim: mkdir -p ~/.config/nvim/lua
   post:
     install-vim-plugins: vim +PlugUpgrade +PlugClean! +PlugUpdate +qa
+    install-nvim-plugins: nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 dotfiles:
   vimrc:
     actions:
@@ -14,7 +16,22 @@ dotfiles:
     - mkdir-vim
     dst: ~/.vimrc
     src: vim/vimrc
+  init.vim:
+    actions:
+      - mkdir-nvim
+    dst: ~/.config/nvim/init.vim
+    src: nvim/init.vim
+  plugins.lua:
+    actions:
+      - mkdir-nvim
+      - install-nvim-plugins
+    dst: ~/.config/nvim/lua/plugins.lua
+    src: nvim/lua/plugins.lua
 profiles:
   vim:
     dotfiles:
-      - ALL
+      - vimrc
+  nvim:
+    dotfiles:
+      - init.vim
+      - plugins.lua
