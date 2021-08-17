@@ -19,6 +19,7 @@ ps -ef | grep -q '[s]sh-agent' || eval `ssh-agent` >/dev/null
 which rbenv  >/dev/null && eval "$(rbenv init -)"
 which nodenv >/dev/null && eval "$(nodenv init -)"
 which dip >/dev/null && eval "$(dip console)"
+which brew >/dev/null && eval "$(/opt/homebrew/bin/brew shellenv)"
 
 autoload_inits=(compinit)
 for f in $autoload_inits; do
@@ -39,4 +40,27 @@ fi
 autoload -U +X bashcompinit && bashcompinit
 [[ -f /usr/local/bin/terraform ]] && complete -o nospace -C /usr/local/bin/terraform terraform
 
+typeset -U path
+[[ -d ~/bin ]] && path=(~/bin $path)
+[[ -d ~/.poetry/bin ]] && path=(~/.poetry/bin $path)
+
+{%@@ if mac @@%}
+postgres_bin=/Applications/Postgres.app/Contents/Versions/latest/bin
+[[ -d $postgres_bin ]] && path=($postgres_bin $path)
+{%@@ endif @@%}
+
+[[ -d /usr/local/go/bin ]] && path=(/usr/local/go/bin $path)
+[[ -d ~/.cargo/env ]] && . "$HOME/.cargo/env"
+[[ -d /opt/homebrew ]] && path=(/opt/homebrew/bin /opt/homebrew/sbin $path)
+
+[[ -d ~/.zsh/fpath ]] && fpath=($fpath ~/.zsh/fpath)
+
 eval "$(starship init zsh)"
+{%@@ if work @@%}
+# Some of this is redundant, but this lets the CK setup script work
+# correctly for now...
+autoload -Uz compinit
+fpath=(~/.zsh/completion $fpath)
+compinit -i
+export PATH="/opt/homebrew/opt/node@12/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/go/bin:/Users/andrew/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+{%@@ endif @@%}
