@@ -2,7 +2,7 @@
 	name = Andrew Hayworth
 	email = ahayworth@gmail.com
 {%@@ if work @@%}
-[includeIf "gitdir:~/github/"]
+[includeIf "gitdir:~/ck/"]
   path = .gitconfig.work
 {%@@ endif @@%}
 [push]
