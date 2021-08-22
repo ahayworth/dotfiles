@@ -19,6 +19,7 @@ profiles:
       mac: false
       work: false
       laptop: false
+      homebrew_prefix: /usr/local
     dynvariables:
       uname: "uname -s | tr '[:upper:]' '[:lower:]'"
     include:
@@ -35,6 +36,7 @@ profiles:
   base.work:
     variables:
       work: true
+      homebrew_prefix: /opt/homebrew
     include:
       - git.work
 

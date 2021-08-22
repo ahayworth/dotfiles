@@ -19,7 +19,7 @@ ps -ef | grep -q '[s]sh-agent' || eval `ssh-agent` >/dev/null
 which rbenv  >/dev/null && eval "$(rbenv init -)"
 which nodenv >/dev/null && eval "$(nodenv init -)"
 which dip >/dev/null && eval "$(dip console)"
-which brew >/dev/null && eval "$(/opt/homebrew/bin/brew shellenv)"
+which brew >/dev/null && eval "$({{@@ homebrew_prefix @@}}/bin/brew shellenv)"
 
 autoload_inits=(compinit)
 for f in $autoload_inits; do
@@ -51,7 +51,7 @@ postgres_bin=/Applications/Postgres.app/Contents/Versions/latest/bin
 
 [[ -d /usr/local/go/bin ]] && path=(/usr/local/go/bin $path)
 [[ -d ~/.cargo/env ]] && . "$HOME/.cargo/env"
-[[ -d /opt/homebrew ]] && path=(/opt/homebrew/bin /opt/homebrew/sbin $path)
+[[ -d {{@@ homebrew_prefix @@}} ]] && path=({{@@ homebrew_prefix @@}}/bin {{@@ homebrew_prefix @@}}/sbin $path)
 
 [[ -d ~/.zsh/fpath ]] && fpath=($fpath ~/.zsh/fpath)
 
@@ -62,5 +62,5 @@ eval "$(starship init zsh)"
 autoload -Uz compinit
 fpath=(~/.zsh/completion $fpath)
 compinit -i
-export PATH="/opt/homebrew/opt/node@12/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/go/bin:/Users/andrew/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="{{@@ homebrew_prefix @@}}/opt/node@12/bin:{{@@ homebrew_prefix @@}}/bin:{{@@ homebrew_prefix @@}}/sbin:/usr/local/go/bin:/Users/andrew/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 {%@@ endif @@%}
