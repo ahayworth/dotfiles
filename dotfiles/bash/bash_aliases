@@ -43,6 +43,7 @@ ffind() {
     replace=$(pwd)
   else
     dir=$1
+    replace=$1
   fi
   shift
 
