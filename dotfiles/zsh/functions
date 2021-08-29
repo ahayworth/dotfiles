@@ -36,3 +36,22 @@ function venv() {
     echo -n " (venv $(basename $VIRTUAL_ENV))"
   fi
 }
+
+{%@@ if work @@%}
+ck() {
+  local d=~/ck
+  [[ -d $d ]] || {
+    echo "$d not found"
+    return 1
+  }
+
+  if [[ "$1" == "" ]]; then
+    cd $d
+  else
+    cd $d/$1
+  fi
+}
+
+compdef '_path_files -/ -W ~/ck' ck
+alias ckr='ck'
+{%@@ endif @@%}
