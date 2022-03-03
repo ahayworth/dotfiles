@@ -47,13 +47,14 @@ postgres_bin=/Applications/Postgres.app/Contents/Versions/latest/bin
 [[ -d $postgres_bin ]] && path=($postgres_bin $path)
 {%@@ endif @@%}
 
-[[ -d /usr/local/go/bin ]] && path=(/usr/local/go/bin $path)
 [[ -d ~/.cargo/env ]] && . "$HOME/.cargo/env"
 
 which rbenv  >/dev/null && eval "$(rbenv init -)"
 which nodenv >/dev/null && eval "$(nodenv init -)"
 which dip >/dev/null && eval "$(dip console)"
 which brew >/dev/null && eval "$({{@@ homebrew_prefix @@}}/bin/brew shellenv)"
+[[ -d /usr/local/go/bin ]] && path=($path /usr/local/go/bin)
+[[ -d $HOME/go/bin ]] && path=($path $HOME/go/bin)
 
 [[ -d ~/.zsh/fpath ]] && fpath=($fpath ~/.zsh/fpath)
 
@@ -64,5 +65,11 @@ eval "$(starship init zsh)"
 autoload -Uz compinit
 fpath=(~/.zsh/completion $fpath)
 compinit -i
-export PATH="{{@@ homebrew_prefix @@}}/opt/node@12/bin:{{@@ homebrew_prefix @@}}/bin:{{@@ homebrew_prefix @@}}/sbin:/usr/local/go/bin:/Users/andrew/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="{{@@ homebrew_prefix @@}}/opt/node@12/bin:$PATH"
+
+source {{@@ homebrew_prefix @@}}/etc/bash_completion.d/ckutil
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 {%@@ endif @@%}
