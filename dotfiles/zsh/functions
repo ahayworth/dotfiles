@@ -38,8 +38,8 @@ function venv() {
 }
 
 {%@@ if work @@%}
-ck() {
-  local d=~/ck
+shop() {
+  local d=~/shopify
   [[ -d $d ]] || {
     echo "$d not found"
     return 1
@@ -52,6 +52,6 @@ ck() {
   fi
 }
 
-compdef '_path_files -/ -W ~/ck' ck
-alias ckr='ck'
+compdef '_path_files -/ -W ~/shopify' shop
+alias shr='shop'
 {%@@ endif @@%}

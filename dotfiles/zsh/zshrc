@@ -60,16 +60,4 @@ which brew >/dev/null && eval "$({{@@ homebrew_prefix @@}}/bin/brew shellenv)"
 
 eval "$(starship init zsh)"
 {%@@ if work @@%}
-# Some of this is redundant, but this lets the CK setup script work
-# correctly for now...
-autoload -Uz compinit
-fpath=(~/.zsh/completion $fpath)
-compinit -i
-export PATH="{{@@ homebrew_prefix @@}}/opt/node@12/bin:$PATH"
-
-source {{@@ homebrew_prefix @@}}/etc/bash_completion.d/ckutil
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 {%@@ endif @@%}
