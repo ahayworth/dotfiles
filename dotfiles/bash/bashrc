@@ -33,10 +33,18 @@ export PROMPT_COMMAND="history -a; history -n;"
 [ -f /etc/bash_completion ] && . /etc/bash_completion
 
 [ -f ~/.bash_aliases ] && . ~/.bash_aliases
+{%@@ if not work @@%}
 [ -f /usr/local/opt/rbenv/shims ] && export PATH=$PATH:/usr/local/opt/rbenv/shims
 type -t rbenv >/dev/null && eval "$(rbenv init -)"
+{%@@ endif @@%}
 type -t nodenv >/dev/null && eval "$(nodenv init -)"
 
 [[ -f "~/.cargo/env" ]] && . "$HOME/.cargo/env"
 
 eval "$(starship init bash)"
+{%@@ if work @@%}
+
+[[ -f /opt/dev/sh/chruby/chruby.sh ]] && type chruby >/dev/null 2>&1 || chruby () { source /opt/dev/sh/chruby/chruby.sh; chruby "$@"; }
+
+[[ -x /opt/homebrew/bin/brew ]] && eval $(/opt/homebrew/bin/brew shellenv)
+{%@@ endif @@%}

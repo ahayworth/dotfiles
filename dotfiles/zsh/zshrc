@@ -49,7 +49,9 @@ postgres_bin=/Applications/Postgres.app/Contents/Versions/latest/bin
 
 [[ -d ~/.cargo/env ]] && . "$HOME/.cargo/env"
 
+{%@@ if not work @@%}
 which rbenv  >/dev/null && eval "$(rbenv init -)"
+{%@@ endif @@%}
 which nodenv >/dev/null && eval "$(nodenv init -)"
 which dip >/dev/null && eval "$(dip console)"
 which brew >/dev/null && eval "$({{@@ homebrew_prefix @@}}/bin/brew shellenv)"
@@ -60,4 +62,10 @@ which brew >/dev/null && eval "$({{@@ homebrew_prefix @@}}/bin/brew shellenv)"
 
 eval "$(starship init zsh)"
 {%@@ if work @@%}
+
+[[ -f /opt/dev/sh/chruby/chruby.sh ]] && type chruby >/dev/null 2>&1 || chruby () { source /opt/dev/sh/chruby/chruby.sh; chruby "$@"; }
+
+[[ -x /opt/homebrew/bin/brew ]] && eval $(/opt/homebrew/bin/brew shellenv)
+
+[ -f /opt/dev/dev.sh ] && source /opt/dev/dev.sh
 {%@@ endif @@%}

@@ -4,6 +4,8 @@
 {%@@ if work @@%}
 [includeIf "gitdir:~/shopify/"]
   path = .gitconfig.work
+[includeIf "gitdir:~/src/github.com/Shopify/"]
+  path = .gitconfig.work
 {%@@ endif @@%}
 [push]
 	default = matching
@@ -21,3 +23,7 @@
   rebase = false
 [init]
   defaultBranch = main
+{%@@ if work @@%}
+[include]
+  path = /Users/ahayworth/.config/dev/gitconfig
+{%@@ endif @@%}

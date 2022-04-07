@@ -1,3 +1,10 @@
+{%@@ if work @@%}
+# Configuration to connect to Spin-managed development environments.
+# Important: leave this at the top of this SSH configuration file.
+Include ~/.spin/ssh/include
+Include ~/.config/spin/ssh/include
+
+{%@@ endif @@%}
 Host *
   ServerAliveInterval 300
   ServerAliveCountMax 2
