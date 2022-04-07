@@ -8,12 +8,12 @@ actions:
 dotfiles:
   alacritty.yml:
     dst: ~/.config/alacritty/alacritty.yml
-    src: terminal/alacritty.yml
+    src: alacritty/alacritty.yml
     actions:
       - mkdir-alacritty
   terminfo-xterm-256color:
     dst: ~/.config/xterm-256color.terminfo
-    src: terminal/xterm-256color.terminfo
+    src: alacritty/xterm-256color.terminfo
     actions:
       - terminfo-compile ~/.config/xterm-256color.terminfo
 profiles:

@@ -8,7 +8,7 @@ config:
     - config.yaml.d/dotfiles/tmux.yaml
     - config.yaml.d/dotfiles/ssh.yaml
     - config.yaml.d/dotfiles/starship.yaml
-    - config.yaml.d/dotfiles/terminal.yaml
+    - config.yaml.d/dotfiles/alacritty.yaml
     - config.yaml.d/dotfiles/gpg.yaml
     - config.yaml.d/transformations/gpg.yaml
 dotfiles: {}
