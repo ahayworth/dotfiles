@@ -24,6 +24,8 @@
 [init]
   defaultBranch = main
 {%@@ if work @@%}
-[include]
+[includeIf "gitdir:~/shopify/"]
+  path = /Users/ahayworth/.config/dev/gitconfig
+[includeIf "gitdir:~/src/github.com/Shopify/"]
   path = /Users/ahayworth/.config/dev/gitconfig
 {%@@ endif @@%}
