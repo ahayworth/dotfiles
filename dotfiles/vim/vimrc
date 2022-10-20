@@ -22,6 +22,8 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'ahayworth/ink-syntax-vim'
 Plug 'embear/vim-localvimrc'
 
+Plug 'github/copilot.vim'
+
 Plug 'gruvbox-community/gruvbox'
 
 call plug#end()
