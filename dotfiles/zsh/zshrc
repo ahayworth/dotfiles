@@ -31,10 +31,6 @@ zstyle ':completion:*' menu select
 
 source ~/.zsh/fsh/fast-syntax-highlighting.plugin.zsh
 
-if [[ -f $HOME/.asdf/asdf.sh ]]; then
-  . $HOME/.asdf/asdf.sh
-fi
-
 autoload -U +X bashcompinit && bashcompinit
 [[ -f /usr/local/bin/terraform ]] && complete -o nospace -C /usr/local/bin/terraform terraform
 
