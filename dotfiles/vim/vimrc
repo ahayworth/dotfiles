@@ -12,21 +12,21 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'sheerun/vim-polyglot'
 
 Plug 'bogado/file-line'
-Plug 'fatih/vim-go' "?
-Plug 'hashivim/vim-terraform' "?
-Plug 'leafgarland/typescript-vim'
-Plug 'rodjek/vim-puppet' "?
-Plug 'strogonoff/vim-coffee-script' "?
+Plug 'fatih/vim-go'
+Plug 'hashivim/vim-terraform'
 Plug 'dense-analysis/ale'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'ahayworth/ink-syntax-vim'
 Plug 'embear/vim-localvimrc'
 
-Plug 'github/copilot.vim'
-
 Plug 'gruvbox-community/gruvbox'
 
+" Always install as the last one, per instructions
+Plug 'ryanoasis/vim-devicons'
+
 call plug#end()
+
+set encoding=UTF-8
 
 "Display
 set background=dark
@@ -35,7 +35,7 @@ set showmatch "jump when completing a brace
 set mat=3 "highlight that match for .3 seconds
 set linebreak "dont wrap in the middle of a word
 set ttyfast "I almost always have one
-"set mouse= "I really dislike using a mouse in vim
+set mouse= "I really dislike using a mouse in vim
 hi CursorLine   cterm=NONE ctermbg=darkgrey ctermfg=white guibg=darkred guifg=white
 hi CursorColumn cterm=NONE ctermbg=grey ctermfg=white guibg=darkred guifg=white
 
@@ -80,19 +80,39 @@ set directory=~/.vim/.swp//
 set mouse=a
 if !has('nvim')
   set ttymouse=xterm2
-  let g:ale_set_balloons = 1
 endif
 if has('nvim')
   let g:ale_sign_highlight_linenrs = 1
-  let g:ale_virtualtext_cursor = 1
 endif
+
+let g:ale_floating_preview = 1
+let g:ale_cursor_detail = 1
+let g:ale_echo_cursor = 0
+let g:ale_fix_on_save = 1
+let g:ale_lint_on_save = 1
+let g:ale_floating_window_border = ['│', '─', '╭', '╮', '╯', '╰', '│', '─']
+" let g:ale_set_balloons = 1
+
 let g:ale_sign_column_always = 1
-let g:ale_lint_delay = 500
+let g:ale_lint_delay = 2000
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
+
 let g:ale_echo_msg_format = '[%severity%] [%linter%] %s %(code)%'
-set completeopt=menu,menuone,preview,noselect,noinsert
+let g:ale_loclist_msg_format = '[%severity%] [%linter%] %s %(code)%'
+let g:ale_lsp_show_messsge_format = '[%severity%] [%linter%] %s %(code)%'
+
+let g:ale_virtualtext_prefix = '[%severity%] [%linter%] '
+let g:ale_virtualtext_cursor = 'disabled'
+
+let g:ale_lsp_show_message_severity = 'information'
+let g:ale_lsp_suggestions = 1
+
+set completeopt=menu,menuone,popup,noselect,noinsert
 let g:ale_completion_enabled = 1
+set omnifunc=ale#completion#OmniFunc
+
+
 let g:ale_linters = {
 \  'ruby': ['brakeman', 'rails_best_practices', 'reek', 'ruby', 'solargraph'],
 \  'rust': ['analyzer'],
@@ -113,6 +133,7 @@ let g:ale_ink_ls_initialization_options = {
 \}
 let g:airline#extensions#ale#enabled = 1
 let g:airline_theme='minimalist'
+let g:airline_powerline_fonts = 1
 
 "terraform bits
 let g:terraform_align=1
