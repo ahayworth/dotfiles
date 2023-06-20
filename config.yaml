@@ -29,10 +29,10 @@ profiles:
       - ssh
       - starship
       - vim
-      - nvim
       - tmux
       - gpg
       - alacritty
+      # - nvim
   base.work:
     variables:
       work: true
