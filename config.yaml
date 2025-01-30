@@ -53,6 +53,13 @@ profiles:
     include:
       - base
       - base.work
+  tuvok.local:
+    variables:
+      laptop: true
+      mac: true
+    include:
+      - base
+      - base.work
 
   codespaces:
     variables:
