@@ -1,4 +1,0 @@
-[user]
-  email = andrew.hayworth@shopify.com
-[alias]
-  ps = push origin +@:staging

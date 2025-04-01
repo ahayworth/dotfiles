@@ -17,7 +17,6 @@ profiles:
   base:
     variables:
       mac: false
-      work: false
       laptop: false
       homebrew_prefix: /opt/homebrew
     dynvariables:
@@ -33,11 +32,6 @@ profiles:
       - gpg
       - alacritty
       # - nvim
-  base.work:
-    variables:
-      work: true
-    include:
-      - git.work
 
   ## Machines
   janeway.local:
@@ -52,19 +46,22 @@ profiles:
       mac: true
     include:
       - base
-      - base.work
+  sisko.local:
+    variables:
+      laptop: true
+      mac: true
+    include:
+      - base
   tuvok.local:
     variables:
       laptop: true
       mac: true
     include:
       - base
-      - base.work
 
   codespaces:
     variables:
       mac: false
-      work: false
       laptop: false
     include:
       - bash

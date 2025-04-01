@@ -1,12 +1,6 @@
 [user]
 	name = Andrew Hayworth
 	email = ahayworth@gmail.com
-{%@@ if work @@%}
-[includeIf "gitdir:~/shopify/"]
-  path = .gitconfig.work
-[includeIf "gitdir:~/src/github.com/Shopify/"]
-  path = .gitconfig.work
-{%@@ endif @@%}
 [push]
 	default = matching
 [github]
@@ -23,9 +17,3 @@
   rebase = false
 [init]
   defaultBranch = main
-{%@@ if work @@%}
-[includeIf "gitdir:~/shopify/"]
-  path = /Users/ahayworth/.config/dev/gitconfig
-[includeIf "gitdir:~/src/github.com/Shopify/"]
-  path = /Users/ahayworth/.config/dev/gitconfig
-{%@@ endif @@%}
