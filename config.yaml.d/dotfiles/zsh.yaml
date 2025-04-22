@@ -20,11 +20,6 @@ dotfiles:
   functions:
     dst: ~/.zsh/functions
     src: zsh/functions
-  poetry:
-    actions:
-      - create-zsh-fpath
-    dst: ~/.zsh/fpath/_poetry
-    src: zsh/fpath/_poetry
   fsh:
     dst: ~/.zsh/fsh
     src: zsh/fast-syntax-highlighting
@@ -36,7 +31,6 @@ profiles:
       - zshenv
       - aliases
       - functions
-      - poetry
       - fsh
     actions:
       - update-zsh-submodules

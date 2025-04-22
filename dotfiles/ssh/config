@@ -1,3 +1,5 @@
+Include /Users/andrew/.colima/ssh_config
+
 Host *
   ServerAliveInterval 300
   ServerAliveCountMax 2

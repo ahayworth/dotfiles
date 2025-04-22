@@ -1,6 +1,7 @@
 config:
   showdiff: true
   import_configs:
+    - config.yaml.d/dotfiles/asdf.yaml
     - config.yaml.d/dotfiles/bash.yaml
     - config.yaml.d/dotfiles/zsh.yaml
     - config.yaml.d/dotfiles/vim.yaml
@@ -22,6 +23,7 @@ profiles:
     dynvariables:
       uname: "uname -s | tr '[:upper:]' '[:lower:]'"
     include:
+      - asdf
       - bash
       - zsh
       - git

@@ -1,0 +1,10 @@
+config:
+  dotpath: ../../dotfiles
+dotfiles:
+  asdfrc:
+    dst: ~/.asdfrc
+    src: asdf/asdfrc
+profiles:
+  asdf:
+    dotfiles:
+      - asdfrc

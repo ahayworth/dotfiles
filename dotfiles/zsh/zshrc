@@ -13,12 +13,10 @@ KEYTIMEOUT=1
 export EDITOR=vim
 [[ -d {{@@ homebrew_prefix @@}} ]] && path=({{@@ homebrew_prefix @@}}/bin {{@@ homebrew_prefix @@}}/sbin $path)
 
-if [[ "$(uname)" = "Darwin" ]]; then
-  export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
-fi
-
 ps -ef | grep -q '[s]sh-agent' || eval `ssh-agent` >/dev/null
 
+[[ -d ~/.zsh/fpath ]] && fpath=($fpath ~/.zsh/fpath)
+[[ -d /opt/homebrew/share/zsh/site-functions ]] && fpath=($fpath /opt/homebrew/share/zsh/site-functions)
 autoload_inits=(compinit)
 for f in $autoload_inits; do
   autoload -Uz $f && $f
@@ -38,20 +36,11 @@ typeset -U path
 [[ -d ~/bin ]] && path=(~/bin $path)
 [[ -d ~/.poetry/bin ]] && path=(~/.poetry/bin $path)
 
-{%@@ if mac @@%}
-postgres_bin=/Applications/Postgres.app/Contents/Versions/latest/bin
-[[ -d $postgres_bin ]] && path=($postgres_bin $path)
-{%@@ endif @@%}
-
 [[ -d ~/.cargo/env ]] && . "$HOME/.cargo/env"
 
-which rbenv  >/dev/null && eval "$(rbenv init -)"
-which nodenv >/dev/null && eval "$(nodenv init -)"
-which dip >/dev/null && eval "$(dip console)"
 which brew >/dev/null && eval "$({{@@ homebrew_prefix @@}}/bin/brew shellenv)"
+which asdf >/dev/null && path=(${ASDF_DATA_DIR:-$HOME/.asdf}/shims $path)
 [[ -d /usr/local/go/bin ]] && path=($path /usr/local/go/bin)
 [[ -d $HOME/go/bin ]] && path=($path $HOME/go/bin)
-
-[[ -d ~/.zsh/fpath ]] && fpath=($fpath ~/.zsh/fpath)
 
 eval "$(starship init zsh)"
