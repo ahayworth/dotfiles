@@ -60,6 +60,12 @@ profiles:
       mac: true
     include:
       - base
+  quark.local:
+    variables:
+      laptop: true
+      mac: true
+    include:
+      - base
 
   codespaces:
     variables:
