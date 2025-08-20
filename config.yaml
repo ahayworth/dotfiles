@@ -66,6 +66,12 @@ profiles:
       mac: true
     include:
       - base
+  mariner.local:
+    variables:
+      laptop: true
+      mac: true
+    include:
+      - base
 
   codespaces:
     variables:
