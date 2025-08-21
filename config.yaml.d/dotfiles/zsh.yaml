@@ -11,6 +11,10 @@ dotfiles:
       - create-zsh-dir
     dst: ~/.zshrc
     src: zsh/zshrc
+  zshrc.work:
+    dst: ~/.zshrc.work
+    src: zsh/zshrc.work
+    trans_read: gpg
   zshenv:
     dst: ~/.zshenv
     src: zsh/zshenv
@@ -34,6 +38,9 @@ profiles:
       - fsh
     actions:
       - update-zsh-submodules
+  zsh.work:
+    dotfiles:
+      - zshrc.work
 # 1. login, interactive:
 #   .zshenv -> .zprofile -> .zshrc -> .zlogin -> .zlogout
 # 2. login, non-interactive:

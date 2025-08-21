@@ -42,6 +42,10 @@ which brew >/dev/null && eval "$({{@@ homebrew_prefix @@}}/bin/brew shellenv)"
 which asdf >/dev/null && path=(${ASDF_DATA_DIR:-$HOME/.asdf}/shims $path)
 [[ -d /usr/local/go/bin ]] && path=($path /usr/local/go/bin)
 [[ -d $HOME/go/bin ]] && path=($path $HOME/go/bin)
+{%@@ if work @@%}
+source $HOME/.zshrc.work
+{%@@ endif @@%}
+
 [[ -d ${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/golang ]] && . "${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/golang/set-env.zsh"
 
 eval "$(starship init zsh)"

@@ -40,3 +40,9 @@ brew "xz"
 brew "zlib"
 brew "tcl-tk@8"
 brew "libb2"
+
+# Work stuff
+brew "colima"
+brew "node_exporter"
+cask "gcloud-cli"
+brew "docker"

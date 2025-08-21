@@ -34,6 +34,11 @@ profiles:
       - gpg
       - alacritty
       # - nvim
+  base.work:
+    variables:
+      work: true
+    include:
+      - zsh.work
 
   ## Machines
   janeway.local:
@@ -72,6 +77,7 @@ profiles:
       mac: true
     include:
       - base
+      - base.work
 
   codespaces:
     variables:
