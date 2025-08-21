@@ -1,4 +1,6 @@
-Include /Users/andrew/.colima/ssh_config
+{%@@ if work @@%}
+Include ~/.orbstack/ssh/config
+{%@@ endif @@%}
 
 Host *
   ServerAliveInterval 300

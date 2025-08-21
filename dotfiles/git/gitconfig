@@ -17,5 +17,9 @@
   rebase = false
 [init]
   defaultBranch = main
+{%@@ if work @@%}
 [url "git@github.com:"]
   insteadOf = https://github.com/
+[core]
+  hooksPath = /Users/andrew/.config/git/hooks
+{%@@ endif @@%}
