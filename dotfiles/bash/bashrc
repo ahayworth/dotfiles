@@ -10,7 +10,9 @@ ps -ef | grep -q '[s]sh-agent' || eval $(ssh-agent) >/dev/null
 
 
 [ -f ~/bin ] && export PATH=${PATH}:~/bin
+{%@@ if mac @@%}
 [ -d /Applications/Postgres.app/Contents/Versions/latest/bin ] && export PATH=${PATH}:/Applications/Postgres.app/Contents/Versions/latest/bin
+{%@@ endif @@%}
 
 if [ -d ~/projects/google-cloud-sdk ]; then
   . ~/projects/google-cloud-sdk/path.bash.inc
@@ -24,6 +26,7 @@ HISTFILESIZE=10000000000000
 export PROMPT_COMMAND="history -a; history -n;"
 
 # git completion
+{%@@ if mac @@%}
 [ -f /usr/share/git/completion/git-prompt.sh ] && . /usr/share/git/completion/git-prompt.sh
 [ -f /usr/share/git/completion/git-completion.bash ] && . /usr/share/git/completion/git-completion.bash
 [ -f /etc/bash_completion.d/git-prompt ] && . /etc/bash_completion.d/git-prompt
@@ -31,12 +34,39 @@ export PROMPT_COMMAND="history -a; history -n;"
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 [ -f /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
 [ -f /etc/bash_completion ] && . /etc/bash_completion
+{%@@ else @@%}
+if [ -f /usr/share/bash-completion/bash_completion ]; then
+  . /usr/share/bash-completion/bash_completion
+elif [ -f /etc/bash_completion ]; then
+  . /etc/bash_completion
+fi
+{%@@ endif @@%}
 
 [ -f ~/.bash_aliases ] && . ~/.bash_aliases
-[ -f /usr/local/opt/rbenv/shims ] && export PATH=$PATH:/usr/local/opt/rbenv/shims
-type -t rbenv >/dev/null && eval "$(rbenv init -)"
-type -t nodenv >/dev/null && eval "$(nodenv init -)"
 
-[[ -f "~/.cargo/env" ]] && . "$HOME/.cargo/env"
+{%@@ if mac @@%}
+{%@@ else @@%}
+if [[ -f /home/andrew/miniconda3/bin/conda ]]; then
+  # >>> conda initialize >>>
+  # !! Contents within this block are managed by 'conda init' !!
+  __conda_setup="$('/home/andrew/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+  if [ $? -eq 0 ]; then
+      eval "$__conda_setup"
+  else
+      if [ -f "/home/andrew/miniconda3/etc/profile.d/conda.sh" ]; then
+          . "/home/andrew/miniconda3/etc/profile.d/conda.sh"
+      else
+          export PATH="/home/andrew/miniconda3/bin:$PATH"
+      fi
+  fi
+  unset __conda_setup
+  # <<< conda initialize <<<
+fi
+{%@@ endif @@%}
+
+{%@@ if mac @@%}
+{%@@ else @@%}
+eval "$(/usr/bin/mise activate bash)"
+{%@@ endif @@%}
 
 eval "$(starship init bash)"

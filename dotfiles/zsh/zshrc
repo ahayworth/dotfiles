@@ -16,7 +16,11 @@ export EDITOR=vim
 ps -ef | grep -q '[s]sh-agent' || eval `ssh-agent` >/dev/null
 
 [[ -d ~/.zsh/fpath ]] && fpath=($fpath ~/.zsh/fpath)
+{%@@ if mac @@%}
 [[ -d /opt/homebrew/share/zsh/site-functions ]] && fpath=($fpath /opt/homebrew/share/zsh/site-functions)
+{%@@ else @@%}
+[[ -d /usr/share/zsh/site-functions ]] && fpath=($fpath /usr/share/zsh/site-functions)
+{%@@ endif @@%}
 autoload_inits=(compinit)
 for f in $autoload_inits; do
   autoload -Uz $f && $f
@@ -30,7 +34,9 @@ zstyle ':completion:*' menu select
 source ~/.zsh/fsh/fast-syntax-highlighting.plugin.zsh
 
 autoload -U +X bashcompinit && bashcompinit
+{%@@ if mac @@%}
 [[ -f /usr/local/bin/terraform ]] && complete -o nospace -C /usr/local/bin/terraform terraform
+{%@@ endif @@%}
 
 typeset -U path
 [[ -d ~/bin ]] && path=(~/bin $path)
@@ -45,5 +51,7 @@ which brew >/dev/null && eval "$({{@@ homebrew_prefix @@}}/bin/brew shellenv)"
 source $HOME/.zshrc.work
 {%@@ endif @@%}
 
-[[ -f /opt/homebrew/bin/mise ]] && eval "$(mise activate zsh)"
+if [[ $(command -v mise 2>&1 >/dev/null) ]]; then
+  eval "$(mise activate zsh)"
+fi
 eval "$(starship init zsh)"
