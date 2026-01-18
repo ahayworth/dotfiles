@@ -1,7 +1,6 @@
 config:
   showdiff: true
   import_configs:
-    - config.yaml.d/dotfiles/asdf.yaml
     - config.yaml.d/dotfiles/bash.yaml
     - config.yaml.d/dotfiles/zsh.yaml
     - config.yaml.d/dotfiles/vim.yaml
@@ -19,11 +18,11 @@ profiles:
     variables:
       mac: false
       laptop: false
+      work: false
       homebrew_prefix: /opt/homebrew
     dynvariables:
       uname: "uname -s | tr '[:upper:]' '[:lower:]'"
     include:
-      - asdf
       - bash
       - zsh
       - git
@@ -65,7 +64,7 @@ profiles:
       mac: true
     include:
       - base
-  quark.local:
+  quark.localdomain:
     variables:
       laptop: true
       mac: true
