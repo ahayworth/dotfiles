@@ -1,4 +1,3 @@
-brew "asdf"
 brew "bash"
 brew "bat"
 brew "coreutils"
@@ -17,24 +16,13 @@ brew "vim"
 brew "zsh"
 cask "font-hack-nerd-font"
 
-# asdf-nodejs deps
-# brew "gpg"
+brew "gpg"
 brew "gawk"
-
-# asdf-ruby deps
 brew "openssl@3"
 brew "readline"
 brew "libyaml"
 brew "gmp"
 brew "autoconf"
-# technically rust is required too, but that is currently managed with rustup
-
-# asdf-golang deps
-# brew "coreutils"
-
-# asdf-python deps
-# brew "openssl"
-# brew "readline"
 brew "sqlite3"
 brew "xz"
 brew "zlib"
@@ -47,8 +35,15 @@ cask "gcloud-cli"
 cask "orbstack"
 brew "kubectx"
 cask "1password-cli"
-brew "helm"
+brew "helm@3"
 brew "kind"
 brew "bats-core"
 brew "gnu-sed"
 brew "sops"
+brew "k9s"
+tap "calyptia/tap"
+brew "calyptia"
+brew "go"
+brew "yq"
+# Work is using a very specific version of mise at the moment, ugh
+# brew "mise"

@@ -20,3 +20,12 @@
   - https://github.com/nvim-treesitter/nvim-treesitter/wiki/Extra-modules-and-plugins
 - [ ] LSP
   - https://github.com/neovim/nvim-lspconfig
+
+# gh extensions
+- https://github.com/seachicken/gh-poi
+- https://github.com/HaywardMorihara/gh-tidy
+- https://github.com/meiji163/gh-notify
+- https://github.com/AaronMoat/gh-pulls
+- https://github.com/chelnak/gh-changelog
+- https://github.com/yusukebe/gh-markdown-preview
+- gh extension install dlvhdr/gh-dash

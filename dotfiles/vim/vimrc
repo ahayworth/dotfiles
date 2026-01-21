@@ -19,6 +19,8 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'ahayworth/ink-syntax-vim'
 Plug 'embear/vim-localvimrc'
 
+Plug 'terrastruct/d2-vim'
+
 Plug 'gruvbox-community/gruvbox'
 
 " Always install as the last one, per instructions

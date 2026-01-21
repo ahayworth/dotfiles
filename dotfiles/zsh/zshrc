@@ -11,6 +11,7 @@ bindkey -v
 KEYTIMEOUT=1
 
 export EDITOR=vim
+# TODO Is this still needed?
 [[ -d {{@@ homebrew_prefix @@}} ]] && path=({{@@ homebrew_prefix @@}}/bin {{@@ homebrew_prefix @@}}/sbin $path)
 
 ps -ef | grep -q '[s]sh-agent' || eval `ssh-agent` >/dev/null
@@ -41,7 +42,6 @@ autoload -U +X bashcompinit && bashcompinit
 typeset -U path
 [[ -d ~/bin ]] && path=(~/bin $path)
 [[ -d ~/.poetry/bin ]] && path=(~/.poetry/bin $path)
-
 [[ -d ~/.cargo/env ]] && . "$HOME/.cargo/env"
 
 which brew >/dev/null && eval "$({{@@ homebrew_prefix @@}}/bin/brew shellenv)"
@@ -51,7 +51,5 @@ which brew >/dev/null && eval "$({{@@ homebrew_prefix @@}}/bin/brew shellenv)"
 source $HOME/.zshrc.work
 {%@@ endif @@%}
 
-if [[ $(command -v mise 2>&1 >/dev/null) ]]; then
-  eval "$(mise activate zsh)"
-fi
 eval "$(starship init zsh)"
+eval "$(mise activate zsh)"
