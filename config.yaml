@@ -2,14 +2,13 @@ config:
   showdiff: true
   import_configs:
     - config.yaml.d/dotfiles/bash.yaml
-    - config.yaml.d/dotfiles/zsh.yaml
-    - config.yaml.d/dotfiles/vim.yaml
     - config.yaml.d/dotfiles/git.yaml
-    - config.yaml.d/dotfiles/tmux.yaml
+    - config.yaml.d/dotfiles/gpg.yaml
     - config.yaml.d/dotfiles/ssh.yaml
     - config.yaml.d/dotfiles/starship.yaml
-    - config.yaml.d/dotfiles/alacritty.yaml
-    - config.yaml.d/dotfiles/gpg.yaml
+    - config.yaml.d/dotfiles/tmux.yaml
+    - config.yaml.d/dotfiles/vim.yaml
+    - config.yaml.d/dotfiles/zsh.yaml
     - config.yaml.d/transformations/gpg.yaml
 dotfiles: {}
 profiles:

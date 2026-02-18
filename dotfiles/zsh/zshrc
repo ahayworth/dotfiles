@@ -43,6 +43,7 @@ typeset -U path
 [[ -d ~/bin ]] && path=(~/bin $path)
 [[ -d ~/.poetry/bin ]] && path=(~/.poetry/bin $path)
 [[ -d ~/.cargo/env ]] && . "$HOME/.cargo/env"
+[[ -d ~/.local/bin ]] && path=(~/.local/bin $path)
 
 which brew >/dev/null && eval "$({{@@ homebrew_prefix @@}}/bin/brew shellenv)"
 [[ -d /usr/local/go/bin ]] && path=($path /usr/local/go/bin)
