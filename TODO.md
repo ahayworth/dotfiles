@@ -29,3 +29,20 @@
 - https://github.com/chelnak/gh-changelog
 - https://github.com/yusukebe/gh-markdown-preview
 - gh extension install dlvhdr/gh-dash
+
+# ai stuff
+- claude
+  - [ ] status line
+  - [ ] config
+  - [ ] permissions?
+  - [ ] mcp servers
+  - [ ] claude.md
+- codex
+  - [ ] config
+  - [ ] permissions?
+  - [ ] mcp servers
+  - [ ] agents.md?
+- opencode
+
+# misc
+- [ ] update Brewfile
