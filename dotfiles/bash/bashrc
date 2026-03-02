@@ -9,8 +9,8 @@ shopt -s checkwinsize
 ps -ef | grep -q '[s]sh-agent' || eval $(ssh-agent) >/dev/null
 
 
-[ -f ~/bin ] && export PATH=${PATH}:~/bin
-[ -f ~/.local/bin ] && export PATH=${PATH}:~/.local/bin
+[ -d ~/bin ] && export PATH=${PATH}:~/bin
+[ -d ~/.local/bin ] && export PATH=${PATH}:~/.local/bin
 
 {%@@ if mac @@%}
 [ -d /Applications/Postgres.app/Contents/Versions/latest/bin ] && export PATH=${PATH}:/Applications/Postgres.app/Contents/Versions/latest/bin
