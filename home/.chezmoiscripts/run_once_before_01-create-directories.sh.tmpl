@@ -1,0 +1,14 @@
+#!/bin/bash
+set -euo pipefail
+
+mkdir -p ~/.gnupg
+chmod 700 ~/.gnupg
+
+mkdir -p ~/.zsh
+mkdir -p ~/.zsh/fpath
+
+{{ if not .codespaces -}}
+mkdir -p ~/.vim/.backup
+mkdir -p ~/.vim/.swp
+mkdir -p ~/.vim/.undo
+{{- end }}

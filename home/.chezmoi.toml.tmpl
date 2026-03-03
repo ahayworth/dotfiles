@@ -1,0 +1,26 @@
+{{- $mac := eq .chezmoi.os "darwin" -}}
+{{- $laptop := false -}}
+{{- $work := false -}}
+{{- $codespaces := false -}}
+
+{{- if env "CODESPACES" | not | not -}}
+{{-   $codespaces = true -}}
+{{- end -}}
+
+{{- if not $codespaces -}}
+{{-   $laptop = promptBoolOnce . "laptop" "Is this a laptop" -}}
+{{-   $work = promptBoolOnce . "work" "Is this a work machine" -}}
+{{- end -}}
+
+sourceDir = {{ joinPath "~/projects/dotfiles" | quote }}
+encryption = "gpg"
+
+[data]
+  mac = {{ $mac }}
+  laptop = {{ $laptop }}
+  work = {{ $work }}
+  codespaces = {{ $codespaces }}
+  homebrew_prefix = "/opt/homebrew"
+
+[gpg]
+  symmetric = true

@@ -1,0 +1,3 @@
+[tasks.sync-agent-config]
+description = "Sync agent config templates into current project"
+run = ".mise/tasks/sync-agent-config"

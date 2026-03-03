@@ -1,0 +1,5 @@
+[".tmux/plugins/tpm"]
+  type = "git-repo"
+  url = "https://github.com/tmux-plugins/tpm.git"
+  clone.args = ["--depth", "1"]
+  pull.args = ["--depth", "1"]

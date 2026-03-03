@@ -1,0 +1,11 @@
+#!/bin/bash
+set -euo pipefail
+
+{{- if .codespaces }}
+exit 0
+{{ end }}
+# hash: {{ include "dot_vimrc" | sha256sum }}
+
+if command -v vim >/dev/null 2>&1; then
+  vim +PlugUpgrade +PlugClean! +PlugUpdate +qa || true
+fi

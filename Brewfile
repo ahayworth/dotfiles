@@ -1,4 +1,5 @@
 brew "bash"
+brew "chezmoi"
 brew "bat"
 brew "coreutils"
 brew "fd"
