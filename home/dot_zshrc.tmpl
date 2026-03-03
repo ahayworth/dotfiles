@@ -1,6 +1,6 @@
 HISTFILE=~/.histfile
-HISTSIZE=5000
-SAVEHIST=5000
+HISTSIZE=100000
+SAVEHIST=100000
 setopt APPEND_HISTORY
 setopt SHARE_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
@@ -10,11 +10,11 @@ unsetopt BEEP
 bindkey -v
 KEYTIMEOUT=1
 
-export EDITOR=vim
+source ~/.shell/common
+source ~/.shell/aliases
+source ~/.shell/functions
 
 [[ -d {{ .homebrew_prefix }} ]] && path=({{ .homebrew_prefix }}/bin {{ .homebrew_prefix }}/sbin $path)
-
-ps -ef | grep -q '[s]sh-agent' || eval `ssh-agent` >/dev/null
 
 [[ -d ~/.zsh/fpath ]] && fpath=($fpath ~/.zsh/fpath)
 {{- if .mac }}
@@ -22,28 +22,17 @@ ps -ef | grep -q '[s]sh-agent' || eval `ssh-agent` >/dev/null
 {{- else }}
 [[ -d /usr/share/zsh/site-functions ]] && fpath=($fpath /usr/share/zsh/site-functions)
 {{- end }}
-autoload_inits=(compinit)
-for f in $autoload_inits; do
-  autoload -Uz $f && $f
-done
-
-source ~/.zsh/aliases
-source ~/.zsh/functions
+autoload -Uz compinit && compinit
 
 zstyle ':completion:*' menu select
 
 autoload -U +X bashcompinit && bashcompinit
-{{- if .mac }}
-[[ -f /usr/local/bin/terraform ]] && complete -o nospace -C /usr/local/bin/terraform terraform
-{{- end }}
 
 typeset -U path
 [[ -d ~/bin ]] && path=(~/bin $path)
 [[ -d ~/.local/bin ]] && path=(~/.local/bin $path)
-[[ -d ~/.poetry/bin ]] && path=(~/.poetry/bin $path)
-[[ -d ~/.cargo/env ]] && . "$HOME/.cargo/env"
 
-which brew >/dev/null && eval "$({{ .homebrew_prefix }}/bin/brew shellenv)"
+command -v brew >/dev/null && eval "$({{ .homebrew_prefix }}/bin/brew shellenv)"
 [[ -d /usr/local/go/bin ]] && path=($path /usr/local/go/bin)
 [[ -d $HOME/go/bin ]] && path=($path $HOME/go/bin)
 {{- if .work }}

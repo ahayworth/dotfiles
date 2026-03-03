@@ -10,18 +10,16 @@
 [user]
 	name = Andrew Hayworth
 	email = ahayworth@gmail.com
-[push]
-	default = matching
 [github]
 	user = ahayworth
+{{- if .mac }}
 [credential]
 	helper = osxkeychain
+{{- end }}
 [alias]
   st = status
   co = checkout
   me = log --pretty=oneline --author=ahayworth
-[protocol]
-  version = 2
 [pull]
   rebase = false
 [init]

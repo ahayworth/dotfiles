@@ -1,0 +1,11 @@
+export EDITOR=vim
+
+{{ if not .mac -}}
+# start ssh-agent if it's not running (macOS uses launchd)
+ps -ef | grep -q '[s]sh-agent' || eval $(ssh-agent) >/dev/null
+{{ end -}}
+
+[ -d ~/bin ] && export PATH=${PATH}:~/bin
+[ -d ~/.local/bin ] && export PATH=${PATH}:~/.local/bin
+
+[[ -f ~/.cargo/env ]] && . "$HOME/.cargo/env"
