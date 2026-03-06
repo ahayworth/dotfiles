@@ -12,14 +12,14 @@ CLAUDE.md
 
 {{ if .codespaces }}
 # Codespaces: only bash, zsh, git, starship
-dot_vimrc
-dot_tmux.conf.tmpl
-dot_config/tmux-256color.terminfo
-dot_config/tmux.terminfo
-private_dot_gnupg/**
-private_dot_ssh/**
+.vimrc
+.tmux.conf.tmpl
+.config/tmux-256color.terminfo
+.config/tmux.terminfo
+.gnupg/**
+.ssh/**
 {{ end }}
 
 {{ if not .work }}
-encrypted_dot_zshrc.work
+.zshrc.work
 {{ end }}
