@@ -1,0 +1,8 @@
+- Prefer repo task runners, especially `mise`, over ad hoc raw commands when the repo already defines them.
+- Read project docs and continuity artifacts before planning or coding: `README.md`, `AGENTS.md`, `CLAUDE.md`, `ROADMAP.md`, `DECISIONS.md`, and relevant files under `plans/`.
+- Stay within the requested scope. Ask before making structural changes, broad refactors, or other plan drift.
+- Execute approved work one phase at a time and verify after each phase with tests, logs, or real artifacts.
+- Prefer evidence over speculation when debugging. Use failing tests, logs, traces, fixtures, or generated outputs whenever possible.
+- Report anything deferred, omitted, or implemented differently from the approved plan.
+- Refresh handoff docs before stopping when work spans multiple sessions.
+- Keep durable implementation plans repo-local under `plans/YYYY-MM-DD-<slug>.md`.

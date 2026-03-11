@@ -61,6 +61,31 @@ home/                 # chezmoi source root
 old/                  # archived dotdrop setup
 ```
 
+## Agent config
+
+This repo now manages the user-global Claude and Codex workflow entrypoints directly with chezmoi:
+
+- `home/dot_claude/` -> `~/.claude/`
+- `home/dot_codex/` -> `~/.codex/`
+- `home/.chezmoitemplates/agent/` holds the shared workflow and instruction bodies used by both
+
+Inspect the rendered outputs before applying them:
+
+```bash
+chezmoi cat ~/.claude/CLAUDE.md
+chezmoi cat ~/.claude/commands/plan-interview.md
+chezmoi cat ~/.codex/AGENTS.md
+chezmoi cat ~/.codex/skills/plan-interview/SKILL.md
+```
+
+To seed repo-local continuity docs into the current project, run:
+
+```bash
+mise run sync-agent-config
+```
+
+That task creates `AGENTS.md`, `ROADMAP.md`, `DECISIONS.md`, `CLAUDE.md`, and `plans/README.md` if they are missing. It does not manage the user-global `~/.claude` or `~/.codex` files.
+
 ## How the source directory maps to home
 
 The naming conventions are mechanical:

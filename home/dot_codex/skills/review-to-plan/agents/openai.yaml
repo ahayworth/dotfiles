@@ -1,0 +1,6 @@
+interface:
+  display_name: "Review to Plan"
+  short_description: "Turn review findings into a plan."
+  default_prompt: "Use $review-to-plan to review the codebase and write a prioritized improvement plan."
+policy:
+  allow_implicit_invocation: false

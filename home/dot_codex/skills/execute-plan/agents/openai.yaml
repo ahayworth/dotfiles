@@ -1,0 +1,6 @@
+interface:
+  display_name: "Execute Plan"
+  short_description: "Execute an approved repo plan."
+  default_prompt: "Use $execute-plan to execute an approved repo-local plan phase by phase."
+policy:
+  allow_implicit_invocation: false

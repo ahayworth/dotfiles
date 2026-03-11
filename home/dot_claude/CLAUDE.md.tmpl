@@ -1,0 +1,28 @@
+# Global Defaults
+
+Follow these defaults unless a repo-specific `CLAUDE.md` or `AGENTS.md` overrides them.
+
+{{ template "agent/core-instructions.md.tmpl" . }}
+{{- if .mac }}
+{{ template "agent/profile-mac.md.tmpl" . }}
+{{- end }}
+{{- if not .mac }}
+{{ template "agent/profile-linux.md.tmpl" . }}
+{{- end }}
+{{- if .laptop }}
+{{ template "agent/profile-laptop.md.tmpl" . }}
+{{- end }}
+{{- if .work }}
+{{ template "agent/profile-work.md.tmpl" . }}
+{{- end }}
+
+# Explicit Workflows
+
+Use these personal commands when you want the heavier workflow on purpose:
+
+- `/plan-interview`
+- `/execute-plan`
+- `/resume-plan`
+- `/handoff`
+- `/debrief`
+- `/review-to-plan`
