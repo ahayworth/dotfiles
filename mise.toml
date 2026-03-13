@@ -1,3 +1,59 @@
 [tasks.sync-agent-config]
-description = "Seed repo-local agent continuity docs into the current project"
-run = ".mise/tasks/sync-agent-config"
+description = "Seed repo-local agent continuity docs into a project directory"
+usage = '''
+flag "--force"       help="Overwrite existing files with the template versions"
+flag "--target <dir>" help="Seed a directory other than the current working directory" default="."
+flag "--no-claude-md" help="Skip creating CLAUDE.md"
+'''
+run = '''
+#!/bin/bash
+set -euo pipefail
+
+target_dir="${usage_target:-.}"
+force="${usage_force:-false}"
+include_claude_md="${usage_no_claude_md:-false}"
+
+repo_root="${MISE_PROJECT_ROOT}"
+template_dir="${repo_root}/templates/agent-project"
+
+if [[ ! -d "${template_dir}" ]]; then
+  echo "Template directory not found: ${template_dir}" >&2
+  exit 1
+fi
+
+mkdir -p "${target_dir}/plans"
+
+export PROJECT_NAME="$(basename "$(cd "${target_dir}" && pwd)")"
+export TODAY="$(date +%F)"
+
+render_template() {
+  local src="$1"
+  local dst="$2"
+  envsubst '${PROJECT_NAME} ${TODAY}' < "${src}" > "${dst}"
+}
+
+install_template() {
+  local rel="$1"
+  local src="${template_dir}/${rel}"
+  local dst="${target_dir}/${rel}"
+
+  mkdir -p "$(dirname "${dst}")"
+
+  if [[ -e "${dst}" && "${force}" != "true" ]]; then
+    echo "skip ${rel} (already exists)"
+    return
+  fi
+
+  render_template "${src}" "${dst}"
+  echo "write ${rel}"
+}
+
+install_template "AGENTS.md"
+install_template "ROADMAP.md"
+install_template "DECISIONS.md"
+install_template "plans/README.md"
+
+if [[ "${include_claude_md}" != "true" ]]; then
+  install_template "CLAUDE.md"
+fi
+'''
