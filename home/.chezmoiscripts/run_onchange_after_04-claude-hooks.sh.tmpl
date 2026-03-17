@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-# hash: {{ include "dot_claude/hooks/autoresearch-context.sh" | sha256sum }}
+# hash: {{ include "dot_claude/hooks/executable_autoresearch-context.sh" | sha256sum }}
 
 # Inject autoresearch hook into ~/.claude/settings.json if not already present.
 SETTINGS="$HOME/.claude/settings.json"

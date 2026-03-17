@@ -22,4 +22,5 @@ CLAUDE.md
 
 {{ if not .work }}
 .zshrc.work
+.claude/skills/shortcut-tickets/**
 {{ end }}
