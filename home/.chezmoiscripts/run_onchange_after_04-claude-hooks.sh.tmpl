@@ -1,0 +1,42 @@
+#!/bin/bash
+set -euo pipefail
+
+# hash: {{ include "dot_claude/hooks/autoresearch-context.sh" | sha256sum }}
+
+# Inject autoresearch hook into ~/.claude/settings.json if not already present.
+SETTINGS="$HOME/.claude/settings.json"
+
+if ! command -v jq &>/dev/null; then
+  echo "jq not found, skipping Claude hook injection"
+  exit 0
+fi
+
+# Create settings.json with minimal structure if it doesn't exist
+if [ ! -f "$SETTINGS" ]; then
+  echo '{}' > "$SETTINGS"
+fi
+
+# Skip if already configured
+if jq -e '.hooks.UserPromptSubmit' "$SETTINGS" | grep -q 'autoresearch-context.sh' 2>/dev/null; then
+  echo "autoresearch hook already configured in $SETTINGS"
+  exit 0
+fi
+
+HOOK='{"type": "command", "command": "~/.claude/hooks/autoresearch-context.sh"}'
+
+# Add the UserPromptSubmit hook entry
+tmp=$(mktemp)
+if jq -e '.hooks.UserPromptSubmit' "$SETTINGS" &>/dev/null; then
+  # UserPromptSubmit array exists — append a new matcher entry
+  jq --argjson hook "$HOOK" \
+    '.hooks.UserPromptSubmit += [{"hooks": [$hook]}]' \
+    "$SETTINGS" > "$tmp"
+else
+  # No UserPromptSubmit yet — create it (preserve existing hooks object)
+  jq --argjson hook "$HOOK" \
+    '.hooks = (.hooks // {}) + {"UserPromptSubmit": [{"hooks": [$hook]}]}' \
+    "$SETTINGS" > "$tmp"
+fi
+
+mv "$tmp" "$SETTINGS"
+echo "Injected autoresearch hook into $SETTINGS"
