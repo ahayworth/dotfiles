@@ -73,9 +73,7 @@ Inspect the rendered outputs before applying them:
 
 ```bash
 chezmoi cat ~/.claude/CLAUDE.md
-chezmoi cat ~/.claude/commands/plan-interview.md
 chezmoi cat ~/.codex/AGENTS.md
-chezmoi cat ~/.codex/skills/plan-interview/SKILL.md
 ```
 
 To seed repo-local continuity docs into the current project, run:

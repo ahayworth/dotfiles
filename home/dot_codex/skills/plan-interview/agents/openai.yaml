@@ -1,6 +1,0 @@
-interface:
-  display_name: "Plan Interview"
-  short_description: "Interview-first implementation planning."
-  default_prompt: "Use $plan-interview to interview me and write a repo-local implementation plan."
-policy:
-  allow_implicit_invocation: false
