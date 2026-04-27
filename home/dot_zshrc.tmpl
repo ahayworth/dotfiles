@@ -39,5 +39,7 @@ command -v brew >/dev/null && eval "$({{ .homebrew_prefix }}/bin/brew shellenv)"
 source $HOME/.zshrc.work
 {{- end }}
 
+[[ -d $HOME/.cache/lm-studio/bin ]] && path=($path $HOME/.cache/lm-studio/bin)
+
 eval "$(starship init zsh)"
 eval "$(mise activate zsh)"
