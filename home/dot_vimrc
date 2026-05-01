@@ -9,17 +9,18 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-Plug 'jjo/vim-cue'
-Plug 'sheerun/vim-polyglot'
-
+Plug 'editorconfig/editorconfig-vim'
+Plug 'embear/vim-localvimrc'
 Plug 'bogado/file-line'
+
+Plug 'sheerun/vim-polyglot'
+Plug 'jjo/vim-cue'
 Plug 'fatih/vim-go'
 Plug 'hashivim/vim-terraform'
 Plug 'dense-analysis/ale'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'embear/vim-localvimrc'
-
 Plug 'terrastruct/d2-vim'
+Plug 'cappyzawa/starlark.vim'
+Plug 'vmware-tanzu/ytt.vim'
 
 Plug 'gruvbox-community/gruvbox'
 
