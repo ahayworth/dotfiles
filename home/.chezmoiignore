@@ -13,6 +13,7 @@ CLAUDE.md
 {{ if .codespaces }}
 # Codespaces: only bash, zsh, git, starship
 .vimrc
+.config/nvim/**
 .tmux.conf.tmpl
 .config/tmux-256color.terminfo
 .config/tmux.terminfo

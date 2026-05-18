@@ -1,0 +1,56 @@
+{
+  "plugins": {
+    "Comment.nvim": {
+      "rev": "e30b7f2008e52442154b66f7c519bfd2f1e32acb",
+      "src": "https://github.com/numToStr/Comment.nvim"
+    },
+    "conform.nvim": {
+      "rev": "18aeab3d63d350dcf44d64c462cc489a3412af40",
+      "src": "https://github.com/stevearc/conform.nvim"
+    },
+    "d2-vim": {
+      "rev": "cb3eb7fcb1a2d45c4304bf2e91077d787b724a39",
+      "src": "https://github.com/terrastruct/d2-vim"
+    },
+    "gruvbox.nvim": {
+      "rev": "154eb5ff5b96d0641307113fa385eaf0d36d9796",
+      "src": "https://github.com/ellisonleao/gruvbox.nvim"
+    },
+    "lualine.nvim": {
+      "rev": "131a558e13f9f28b15cd235557150ccb23f89286",
+      "src": "https://github.com/nvim-lualine/lualine.nvim"
+    },
+    "nvim-lint": {
+      "rev": "665525810630701b84181e4d9eefd24b49845b29",
+      "src": "https://github.com/mfussenegger/nvim-lint"
+    },
+    "nvim-surround": {
+      "rev": "2e93e154de9ff326def6480a4358bfc149d5da2c",
+      "src": "https://github.com/kylechui/nvim-surround"
+    },
+    "nvim-treesitter": {
+      "rev": "df7489eeea351bece7fd0f9c825be5cb6a1438f0",
+      "src": "https://github.com/neovim-treesitter/nvim-treesitter"
+    },
+    "nvim-web-devicons": {
+      "rev": "2795c26c916bb3c57dde308b82be51971fa92747",
+      "src": "https://github.com/nvim-tree/nvim-web-devicons"
+    },
+    "treesitter-parser-registry": {
+      "rev": "6eb15358bb9fc88f0d3401d8538d56652e9bdf3c",
+      "src": "https://github.com/neovim-treesitter/treesitter-parser-registry"
+    },
+    "vim-fugitive": {
+      "rev": "3b753cf8c6a4dcde6edee8827d464ba9b8c4a6f0",
+      "src": "https://github.com/tpope/vim-fugitive"
+    },
+    "vim-tmux-navigator": {
+      "rev": "e41c431a0c7b7388ae7ba341f01a0d217eb3a432",
+      "src": "https://github.com/christoomey/vim-tmux-navigator"
+    },
+    "ytt.vim": {
+      "rev": "bafa8feb15066d58a9de9a52719906343fb3af73",
+      "src": "https://github.com/vmware-tanzu/ytt.vim"
+    }
+  }
+}

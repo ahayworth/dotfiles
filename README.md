@@ -84,6 +84,23 @@ mise run sync-agent-config
 
 That task creates `AGENTS.md`, `ROADMAP.md`, `DECISIONS.md`, `CLAUDE.md`, and `plans/README.md` if they are missing. It does not manage the user-global `~/.claude` or `~/.codex` files.
 
+## Editors
+
+Neovim is the primary managed editor:
+
+- `home/dot_config/nvim/init.lua` -> `~/.config/nvim/init.lua`
+- Plugins are managed by Neovim's built-in `vim.pack`
+- `~/.config/nvim/nvim-pack-lock.json` pins plugin revisions after the first sync
+- `EDITOR` and `VISUAL` are set to `nvim`
+
+Legacy Vim remains managed during the transition:
+
+- `home/dot_vimrc` -> `~/.vimrc`
+- Existing vim-plug install/update scripts still run
+- Homebrew still installs `vim` as a fallback
+
+Neovim does not source or depend on `.vimrc`; the two editor configs are intentionally separate until the legacy Vim cleanup pass.
+
 ## How the source directory maps to home
 
 The naming conventions are mechanical:
@@ -124,6 +141,8 @@ Scripts in `.chezmoiscripts/` run automatically during `chezmoi apply`:
 
 - `run_once_before_*` — runs once ever (creates directories, installs vim-plug)
 - `run_onchange_after_*` — re-runs when a tracked source file changes (the `# hash:` comments contain checksums that trigger this)
+
+Editor-specific hooks are split: the Vim hook updates vim-plug plugins, while the Neovim hook installs missing `vim.pack` plugins and configured Tree-sitter parsers without removing the legacy Vim setup.
 
 To force a `run_once` script to re-run:
 ```bash

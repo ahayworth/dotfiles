@@ -3,9 +3,10 @@
 - [ ] Emmet for Vim [link](https://medium.com/vim-drops/be-a-html-ninja-with-emmet-for-vim-feee15447ef1)
 - [ ] Vim Adventures! [link](https://vim-adventures.com)
 - [ ] Learn Vim progressively [link](https://yannesposito.com/Scratch/en/blog/Learn-Vim-Progressively/)
-- [ ] neovim
-- [ ] coc.nvim [link](https://github.com/neoclide/coc.nvim)
-- [ ] nvim-lspconfig [link](https://github.com/neovim/nvim-lspconfig)
+- [x] neovim (native config added; legacy Vim remains managed for now)
+- [ ] Remove legacy Vim management after Neovim has proven comfortable
+- [x] coc.nvim not chosen; using native Neovim LSP/completion instead
+- [x] nvim-lspconfig not chosen; using built-in `vim.lsp.config` instead
 - [ ] https://news.ycombinator.com/item?id=26423000
 - [ ] https://vimways.org/2018/from-vimrc-to-vim/
 - [ ] https://news.ycombinator.com/item?id=25036036
@@ -13,13 +14,13 @@
 ## NVIM plugins and such
 - [ ] Telescope
   - https://github.com/nvim-telescope/telescope.nvim/wiki/Extensions
-- [ ] devicons
+- [x] devicons
   - highlight groups? https://github.com/kyazdani42/nvim-web-devicons
-- [ ] tree-sitter
-  - https://github.com/nvim-treesitter/nvim-treesitter
-  - https://github.com/nvim-treesitter/nvim-treesitter/wiki/Extra-modules-and-plugins
-- [ ] LSP
-  - https://github.com/neovim/nvim-lspconfig
+- [x] tree-sitter
+  - https://github.com/neovim-treesitter/nvim-treesitter
+  - https://github.com/neovim-treesitter/treesitter-parser-registry
+- [x] LSP
+  - native Neovim `vim.lsp`
 
 # gh extensions
 - https://github.com/seachicken/gh-poi

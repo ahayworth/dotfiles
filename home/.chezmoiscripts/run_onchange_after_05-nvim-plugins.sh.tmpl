@@ -1,0 +1,13 @@
+#!/bin/bash
+set -euo pipefail
+
+{{- if .codespaces }}
+exit 0
+{{ end }}
+# hash: {{ include "dot_config/nvim/init.lua" | sha256sum }}
+
+if command -v nvim >/dev/null 2>&1; then
+  nvim --headless \
+    '+lua require("nvim-treesitter").install({ "bash", "cue", "ecma", "go", "gomod", "hcl", "javascript", "jsx", "json", "lua", "markdown", "markdown_inline", "ruby", "rust", "starlark", "terraform", "tsx", "typescript", "vim", "vimdoc", "yaml" }):wait(300000)' \
+    +qa || true
+fi
