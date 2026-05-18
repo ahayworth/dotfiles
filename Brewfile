@@ -22,6 +22,7 @@ brew "tmux"
 brew "tree-sitter-cli"
 brew "typescript-language-server"
 brew "vim"
+brew "yaml-language-server"
 brew "zsh"
 cask "font-hack-nerd-font"
 

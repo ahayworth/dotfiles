@@ -350,6 +350,17 @@ local servers = {
     root_markers = { "package.json", "tsconfig.json", "jsconfig.json", ".git" },
     workspace_required = true,
   },
+  yamlls = {
+    cmd = { "yaml-language-server", "--stdio" },
+    filetypes = { "yaml", "yaml.docker-compose", "yaml.gitlab" },
+    root_markers = { ".git" },
+    settings = {
+      yaml = {
+        schemaStore = { enable = true },
+        validate = true,
+      },
+    },
+  },
 }
 
 for name, config in pairs(servers) do
