@@ -37,6 +37,11 @@
     (subpath "/Users/andrew/.cache/starship")         ;; starship log dir (created on init)
 )
 
+;; -- crit plugin (Claude Code review tool) plan/review storage ----------------
+(allow file-read* file-write*
+    (subpath "/Users/andrew/.crit")                   ;; crit plan/review storage dir
+)
+
 ;; ---------------------------------------------------------------------------
 ;; Fallbacks (uncomment ONLY if `safehouse --explain` shows a toolchain you use
 ;; was not auto-detected, or an agent errors on a denied path). Prefer narrow
