@@ -26,6 +26,10 @@ brew "yaml-language-server"
 brew "zsh"
 cask "font-hack-nerd-font"
 
+# Sandbox wrapper for coding agents (sandbox-exec policy generator)
+tap "eugene1g/safehouse"
+brew "agent-safehouse"
+
 brew "gpg"
 brew "gawk"
 brew "openssl@3"

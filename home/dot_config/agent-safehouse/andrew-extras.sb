@@ -1,0 +1,49 @@
+;; ===========================================================================
+;; agent-safehouse: machine-specific append profile  (Andrew / mariner.local)
+;;
+;; This is NOT a standalone profile. It is appended AFTER the policy that the
+;; `safehouse` binary generates (via `--append-profile=`), so it inherits:
+;;   - deny-by-default + HOME_DIR/home-* macros (00-base)
+;;   - system runtime, network, auto-detected toolchains, Apple CLT
+;;   - git / gh / git-over-ssh, keychain (auto-required by agent profiles)
+;;   - the per-launch workdir read/write grant
+;;
+;; It exists ONLY to add the few paths safehouse + `--enable=shell-init` miss
+;; on this machine: my custom ~/.shell sourcing chain and prompt/init reads.
+;; Absolute paths are used (no reliance on macro scope) so it stays auditable
+;; on its own. Keep this list minimal; prefer adding here over widening flags.
+;; ===========================================================================
+
+;; -- Custom zsh sourcing chain (my ~/.zshrc does `source ~/.shell/...`) ------
+;; shell-init grants ~/.zshrc/.zshenv/.zprofile but NOT these nested files.
+(allow file-read*
+    (subpath "/Users/andrew/.shell")          ;; ~/.shell/{common,aliases,functions}
+    (subpath "/Users/andrew/.zsh")            ;; ~/.zsh/fpath completion dir
+    (prefix  "/Users/andrew/.zshrc.")         ;; ~/.zshrc.work (decrypted) + variants
+)
+
+;; HISTFILE is read+write so an interactive `safe-shell` can append history
+;; (APPEND_HISTORY/SHARE_HISTORY). `prefix` also covers zsh's ~/.histfile.LOCK
+;; lock file. Non-interactive agent subshells don't write it.
+(allow file-read* file-write*
+    (prefix "/Users/andrew/.histfile")
+)
+
+;; -- Prompt / shell init reads + writes done in every spawned subshell --------
+(allow file-read*
+    (literal "/Users/andrew/.config/starship.toml")  ;; starship config (every prompt)
+)
+(allow file-read* file-write*
+    (subpath "/Users/andrew/.cache/starship")         ;; starship log dir (created on init)
+)
+
+;; ---------------------------------------------------------------------------
+;; Fallbacks (uncomment ONLY if `safehouse --explain` shows a toolchain you use
+;; was not auto-detected, or an agent errors on a denied path). Prefer narrow
+;; subpaths here over `--add-dirs`, which grants read/WRITE.
+;; ---------------------------------------------------------------------------
+;; (allow file-read* file-write*
+;;     (subpath "/Users/andrew/.config/mise")
+;;     (subpath "/Users/andrew/.local/share/mise")
+;;     (subpath "/Users/andrew/.cache/mise")
+;; )

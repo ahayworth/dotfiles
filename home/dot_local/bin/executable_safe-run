@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+#
+# safe-run -- launch an agent under Agent Safehouse with my standard flags.
+#
+# Thin wrapper around the `safehouse` binary (https://agent-safehouse.dev):
+# safehouse does the deny-by-default policy assembly, agent auto-selection by
+# binary name, toolchain auto-detection, keychain injection, and grants the
+# current working directory (pwd) read/write. This wrapper just layers on my
+# machine-specific choices so the shell aliases stay tiny.
+#
+# Usage:   safe-run <agent> [agent-args...]
+#   e.g.   cd ~/projects/foo && safe-run claude
+#          safe-run codex --help
+#
+# Per-invocation overrides (env vars):
+#   SAFEHOUSE_BIN          path to the safehouse binary (default: from PATH)
+#   SAFEHOUSE_EXTRA_PROFILE  append-profile path (default: the file below)
+#   SAFEHOUSE_PROJECT_DIRS   colon-sep rw roots (default: ~/projects:~/chronosphere)
+#   SAFEHOUSE_ENABLE         comma-sep features (default: shell-init,keychain,cloud-credentials)
+#   SAFEHOUSE_ENV_PASS       comma-sep env names to forward (default: API keys +
+#                            Vertex/GCloud config + EDITOR/VISUAL)
+#   SAFEHOUSE_EXPLAIN=1      add --explain (print effective grants to stderr)
+
+set -euo pipefail
+
+bin_safehouse="${SAFEHOUSE_BIN:-$(command -v safehouse || true)}"
+if [[ -z "$bin_safehouse" ]]; then
+    echo "safe-run: 'safehouse' not found. Install: brew install eugene1g/safehouse/agent-safehouse" >&2
+    exit 127
+fi
+
+if [[ $# -lt 1 ]]; then
+    echo "safe-run: usage: safe-run <agent> [agent-args...]" >&2
+    exit 64
+fi
+
+extra_profile="${SAFEHOUSE_EXTRA_PROFILE:-$HOME/.config/agent-safehouse/andrew-extras.sb}"
+project_dirs="${SAFEHOUSE_PROJECT_DIRS:-$HOME/projects:$HOME/chronosphere}"
+enable_feats="${SAFEHOUSE_ENABLE:-shell-init,keychain,cloud-credentials}"
+env_pass="${SAFEHOUSE_ENV_PASS:-ANTHROPIC_API_KEY,OPENAI_API_KEY,GEMINI_API_KEY,GOOGLE_API_KEY,CLAUDE_CODE_USE_VERTEX,ANTHROPIC_VERTEX_PROJECT_ID,CLOUD_ML_REGION,GOOGLE_CLOUD_PROJECT,GOOGLE_APPLICATION_CREDENTIALS,EDITOR,VISUAL}"
+
+flags=()
+[[ -r "$extra_profile" ]] && flags+=("--append-profile=$extra_profile")
+[[ -n "$enable_feats" ]]  && flags+=("--enable=$enable_feats")
+[[ -n "$project_dirs" ]]  && flags+=("--add-dirs=$project_dirs")  # rw, in addition to auto-granted CWD
+[[ -n "$env_pass" ]]      && flags+=("--env-pass=$env_pass")
+[[ "${SAFEHOUSE_EXPLAIN:-}" == "1" ]] && flags+=("--explain")
+
+exec "$bin_safehouse" "${flags[@]}" "$@"

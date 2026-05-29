@@ -8,3 +8,13 @@ command -v colordiff >/dev/null && alias diff='colordiff'
 alias ls='ls --color=auto'
 alias diff='diff --color=auto'
 {{ end -}}
+
+{{ if .mac -}}
+# sandboxed agent shortcuts (safe-run wraps each via agent-safehouse)
+alias safe-claude='safe-run claude --dangerously-skip-permissions'
+alias safe-codex='safe-run codex --dangerously-bypass-approvals-and-sandbox'
+alias safe-cursor='safe-run cursor-agent'
+alias safe-gemini='safe-run gemini'
+# sandboxed interactive shell rooted at the current dir (poke around safely)
+alias safe-shell='safe-run zsh -i'
+{{ end -}}
