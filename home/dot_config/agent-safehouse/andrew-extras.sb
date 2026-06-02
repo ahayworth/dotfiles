@@ -42,6 +42,16 @@
     (subpath "/Users/andrew/.crit")                   ;; crit plan/review storage dir
 )
 
+;; -- Neovim runtime state (ctrl+g external editor spawns nvim in-sandbox) -----
+;; My $EDITOR is nvim; Claude Code's editor opens it inside this sandbox. On
+;; :wq nvim merges+writes ShaDa (and may touch swap/backup) under its default
+;; state dir, which is otherwise write-denied. Without this you get E886 on
+;; ~/.local/state/nvim/shada/main.shada. State only; share/cache stay read-only
+;; (home read is already granted by base) and aren't written during a quick edit.
+(allow file-read* file-write*
+    (subpath "/Users/andrew/.local/state/nvim")       ;; shada, swap, backup, undo, log
+)
+
 ;; ---------------------------------------------------------------------------
 ;; Fallbacks (uncomment ONLY if `safehouse --explain` shows a toolchain you use
 ;; was not auto-detected, or an agent errors on a denied path). Prefer narrow
