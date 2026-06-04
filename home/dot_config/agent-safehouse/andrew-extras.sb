@@ -41,6 +41,9 @@
 (allow file-read* file-write*
     (subpath "/Users/andrew/.crit")                   ;; crit plan/review storage dir
 )
+(allow file-read*
+    (literal "/Users/andrew/.crit.config.json")       ;; crit config (read at startup)
+)
 
 ;; -- Neovim runtime state (ctrl+g external editor spawns nvim in-sandbox) -----
 ;; My $EDITOR is nvim; Claude Code's editor opens it inside this sandbox. On
