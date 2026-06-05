@@ -3,8 +3,6 @@ old/**
 Brewfile
 Brewfile.lock.json
 TODO.md
-mise.toml
-.mise/**
 bootstrap.sh
 LICENSE
 README.md
@@ -23,5 +21,4 @@ CLAUDE.md
 
 {{ if not .work }}
 .zshrc.work
-.claude/skills/shortcut-tickets/**
 {{ end }}

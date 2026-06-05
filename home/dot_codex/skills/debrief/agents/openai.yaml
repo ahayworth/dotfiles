@@ -1,6 +1,6 @@
 interface:
   display_name: "Debrief"
-  short_description: "Compare finished work to the plan."
-  default_prompt: "Use $debrief to compare completed work against the plan and report drift."
+  short_description: "Compare finished work to the session's plan."
+  default_prompt: "Use $debrief to compare completed work against the session's plan (or what we discussed) and report drift."
 policy:
   allow_implicit_invocation: false

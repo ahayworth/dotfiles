@@ -46,7 +46,6 @@ Shows the rendered output for your current machine's config (mac=true, work=true
 ```
 bootstrap.sh          # fresh machine setup
 Brewfile              # homebrew packages
-mise.toml             # mise task definitions
 README.md
 home/                 # chezmoi source root
   .chezmoi.toml.tmpl  # init-time config template
@@ -75,14 +74,6 @@ Inspect the rendered outputs before applying them:
 chezmoi cat ~/.claude/CLAUDE.md
 chezmoi cat ~/.codex/AGENTS.md
 ```
-
-To seed repo-local continuity docs into the current project, run:
-
-```bash
-mise run sync-agent-config
-```
-
-That task creates `AGENTS.md`, `ROADMAP.md`, `DECISIONS.md`, `CLAUDE.md`, and `plans/README.md` if they are missing. It does not manage the user-global `~/.claude` or `~/.codex` files.
 
 ## Editors
 

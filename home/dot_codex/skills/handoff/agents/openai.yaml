@@ -1,6 +1,0 @@
-interface:
-  display_name: "Handoff"
-  short_description: "Refresh handoff docs before stopping."
-  default_prompt: "Use $handoff to update repo-local handoff docs before we stop."
-policy:
-  allow_implicit_invocation: false
