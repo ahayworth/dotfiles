@@ -49,10 +49,23 @@
 ;; My $EDITOR is nvim; Claude Code's editor opens it inside this sandbox. On
 ;; :wq nvim merges+writes ShaDa (and may touch swap/backup) under its default
 ;; state dir, which is otherwise write-denied. Without this you get E886 on
-;; ~/.local/state/nvim/shada/main.shada. State only; share/cache stay read-only
-;; (home read is already granted by base) and aren't written during a quick edit.
+;; ~/.local/state/nvim/shada/main.shada. nvim writes state, not share, during
+;; a quick edit, so share stays read-only (just below).
 (allow file-read* file-write*
     (subpath "/Users/andrew/.local/state/nvim")       ;; shada, swap, backup, undo, log
+)
+
+;; nvim's data dir (stdpath('data')) needs READ so isdirectory() can see it.
+;; The base home-read grant does NOT actually reach this path: inside the
+;; sandbox isdirectory(~/.local/share/nvim) is false (stat denied) even though
+;; the parent ~/.local/share is visible. So rplugin.vim takes its
+;; mkdir(dest,'p') branch on every startup; the real mkdir(2) then hits the
+;; already-existing dir and aborts the editor launch with
+;;   E739: Cannot create directory ~/.local/share/nvim: file already exists
+;; Read-only is enough -- it only holds site/ (read at startup), and nvim does
+;; not write share during a quick edit.
+(allow file-read*
+    (subpath "/Users/andrew/.local/share/nvim")       ;; site/, runtime data, rplugin manifest
 )
 
 ;; ---------------------------------------------------------------------------
