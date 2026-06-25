@@ -45,6 +45,27 @@
     (literal "/Users/andrew/.crit.config.json")       ;; crit config (read at startup)
 )
 
+;; -- Neovim user config (stdpath('config')) needs READ -----------------------
+;; My $EDITOR is nvim; Claude Code's ctrl+g opens it inside this sandbox. The
+;; base policy grants the ~/.config dir node (home-literal) for traversal but
+;; NOT the ~/.config/nvim subtree, so stat() on it is denied. Two consequences,
+;; both of which make nvim start as if `--clean` (default colors, no number, no
+;; linebreak -- i.e. every "my settings aren't applying" symptom):
+;;   1. nvim's startup readability check on stdpath('config')/init.lua fails
+;;      (stat denied) so nvim concludes there is no user config and silently
+;;      skips it -- no error, just defaults.
+;;   2. vim.pack can't read its lockfile (~/.config/nvim/nvim-pack-lock.json),
+;;      decides the lock is "corrupted", and tries to repair+rewrite it; the
+;;      rewrite first mkdir -p's ~/.config/nvim, which under denied stat looks
+;;      absent, so mkdir(2) runs and hits EEXIST ->
+;;        E739: Cannot create directory ~/.config/nvim: file already exists
+;;      That throws out of the (un-pcall'd) vim.pack.add and aborts init.lua.
+;; Read-only is enough: with the lock readable, vim.pack just loads the already
+;; -installed plugins from the read-only share dir below -- no writes needed.
+(allow file-read*
+    (subpath "/Users/andrew/.config/nvim")            ;; init.lua, nvim-pack-lock.json, lua/
+)
+
 ;; -- Neovim runtime state (ctrl+g external editor spawns nvim in-sandbox) -----
 ;; My $EDITOR is nvim; Claude Code's editor opens it inside this sandbox. On
 ;; :wq nvim merges+writes ShaDa (and may touch swap/backup) under its default
