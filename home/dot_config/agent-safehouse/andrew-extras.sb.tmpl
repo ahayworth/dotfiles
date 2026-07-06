@@ -1,5 +1,5 @@
 ;; ===========================================================================
-;; agent-safehouse: machine-specific append profile  (Andrew / mariner.local)
+;; agent-safehouse: machine-specific append profile (personal, not OS-managed)
 ;;
 ;; This is NOT a standalone profile. It is appended AFTER the policy that the
 ;; `safehouse` binary generates (via `--append-profile=`), so it inherits:
@@ -17,32 +17,32 @@
 ;; -- Custom zsh sourcing chain (my ~/.zshrc does `source ~/.shell/...`) ------
 ;; shell-init grants ~/.zshrc/.zshenv/.zprofile but NOT these nested files.
 (allow file-read*
-    (subpath "/Users/andrew/.shell")          ;; ~/.shell/{common,aliases,functions}
-    (subpath "/Users/andrew/.zsh")            ;; ~/.zsh/fpath completion dir
-    (prefix  "/Users/andrew/.zshrc.")         ;; ~/.zshrc.work (decrypted) + variants
+    (subpath "{{ .chezmoi.homeDir }}/.shell")          ;; ~/.shell/{common,aliases,functions}
+    (subpath "{{ .chezmoi.homeDir }}/.zsh")            ;; ~/.zsh/fpath completion dir
+    (prefix  "{{ .chezmoi.homeDir }}/.zshrc.")         ;; ~/.zshrc.work (decrypted) + variants
 )
 
 ;; HISTFILE is read+write so an interactive `safe-shell` can append history
 ;; (APPEND_HISTORY/SHARE_HISTORY). `prefix` also covers zsh's ~/.histfile.LOCK
 ;; lock file. Non-interactive agent subshells don't write it.
 (allow file-read* file-write*
-    (prefix "/Users/andrew/.histfile")
+    (prefix "{{ .chezmoi.homeDir }}/.histfile")
 )
 
 ;; -- Prompt / shell init reads + writes done in every spawned subshell --------
 (allow file-read*
-    (literal "/Users/andrew/.config/starship.toml")  ;; starship config (every prompt)
+    (literal "{{ .chezmoi.homeDir }}/.config/starship.toml")  ;; starship config (every prompt)
 )
 (allow file-read* file-write*
-    (subpath "/Users/andrew/.cache/starship")         ;; starship log dir (created on init)
+    (subpath "{{ .chezmoi.homeDir }}/.cache/starship")         ;; starship log dir (created on init)
 )
 
 ;; -- crit plugin (Claude Code review tool) plan/review storage ----------------
 (allow file-read* file-write*
-    (subpath "/Users/andrew/.crit")                   ;; crit plan/review storage dir
+    (subpath "{{ .chezmoi.homeDir }}/.crit")                   ;; crit plan/review storage dir
 )
 (allow file-read*
-    (literal "/Users/andrew/.crit.config.json")       ;; crit config (read at startup)
+    (literal "{{ .chezmoi.homeDir }}/.crit.config.json")       ;; crit config (read at startup)
 )
 
 ;; -- Neovim user config (stdpath('config')) needs READ -----------------------
@@ -63,7 +63,7 @@
 ;; Read-only is enough: with the lock readable, vim.pack just loads the already
 ;; -installed plugins from the read-only share dir below -- no writes needed.
 (allow file-read*
-    (subpath "/Users/andrew/.config/nvim")            ;; init.lua, nvim-pack-lock.json, lua/
+    (subpath "{{ .chezmoi.homeDir }}/.config/nvim")            ;; init.lua, nvim-pack-lock.json, lua/
 )
 
 ;; -- Neovim runtime state (ctrl+g external editor spawns nvim in-sandbox) -----
@@ -73,7 +73,7 @@
 ;; ~/.local/state/nvim/shada/main.shada. nvim writes state, not share, during
 ;; a quick edit, so share stays read-only (just below).
 (allow file-read* file-write*
-    (subpath "/Users/andrew/.local/state/nvim")       ;; shada, swap, backup, undo, log
+    (subpath "{{ .chezmoi.homeDir }}/.local/state/nvim")       ;; shada, swap, backup, undo, log
 )
 
 ;; nvim's data dir (stdpath('data')) needs READ so isdirectory() can see it.
@@ -86,7 +86,7 @@
 ;; Read-only is enough -- it only holds site/ (read at startup), and nvim does
 ;; not write share during a quick edit.
 (allow file-read*
-    (subpath "/Users/andrew/.local/share/nvim")       ;; site/, runtime data, rplugin manifest
+    (subpath "{{ .chezmoi.homeDir }}/.local/share/nvim")       ;; site/, runtime data, rplugin manifest
 )
 
 ;; ---------------------------------------------------------------------------
@@ -95,7 +95,7 @@
 ;; subpaths here over `--add-dirs`, which grants read/WRITE.
 ;; ---------------------------------------------------------------------------
 ;; (allow file-read* file-write*
-;;     (subpath "/Users/andrew/.config/mise")
-;;     (subpath "/Users/andrew/.local/share/mise")
-;;     (subpath "/Users/andrew/.cache/mise")
+;;     (subpath "{{ .chezmoi.homeDir }}/.config/mise")
+;;     (subpath "{{ .chezmoi.homeDir }}/.local/share/mise")
+;;     (subpath "{{ .chezmoi.homeDir }}/.cache/mise")
 ;; )
