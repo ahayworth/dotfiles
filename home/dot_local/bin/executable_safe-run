@@ -15,7 +15,7 @@
 # Per-invocation overrides (env vars):
 #   SAFEHOUSE_BIN          path to the safehouse binary (default: from PATH)
 #   SAFEHOUSE_EXTRA_PROFILE  append-profile path (default: the file below)
-#   SAFEHOUSE_PROJECT_DIRS   colon-sep rw roots (default: ~/projects:~/chronosphere)
+#   SAFEHOUSE_PROJECT_DIRS   colon-sep rw roots (default: ~/projects:~/dev)
 #   SAFEHOUSE_ENABLE         comma-sep features (default: shell-init,keychain,cloud-credentials)
 #   SAFEHOUSE_ENV_PASS       comma-sep env names to forward (default: API keys +
 #                            Vertex/GCloud config + EDITOR/VISUAL)
@@ -35,7 +35,7 @@ if [[ $# -lt 1 ]]; then
 fi
 
 extra_profile="${SAFEHOUSE_EXTRA_PROFILE:-$HOME/.config/agent-safehouse/andrew-extras.sb}"
-project_dirs="${SAFEHOUSE_PROJECT_DIRS:-$HOME/projects:$HOME/chronosphere}"
+project_dirs="${SAFEHOUSE_PROJECT_DIRS:-$HOME/projects:$HOME/dev}"
 enable_feats="${SAFEHOUSE_ENABLE:-shell-init,keychain,cloud-credentials}"
 env_pass="${SAFEHOUSE_ENV_PASS:-ANTHROPIC_API_KEY,OPENAI_API_KEY,GEMINI_API_KEY,GOOGLE_API_KEY,CLAUDE_CODE_USE_VERTEX,ANTHROPIC_VERTEX_PROJECT_ID,CLOUD_ML_REGION,GOOGLE_CLOUD_PROJECT,GOOGLE_APPLICATION_CREDENTIALS,EDITOR,VISUAL}"
 
