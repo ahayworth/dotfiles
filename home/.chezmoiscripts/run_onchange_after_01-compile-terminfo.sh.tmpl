@@ -1,9 +1,6 @@
 #!/bin/bash
 set -euo pipefail
 
-{{- if .codespaces }}
-exit 0
-{{ end }}
 # hash: {{ include "dot_config/tmux-256color.terminfo" | sha256sum }}
 # hash: {{ include "dot_config/tmux.terminfo" | sha256sum }}
 

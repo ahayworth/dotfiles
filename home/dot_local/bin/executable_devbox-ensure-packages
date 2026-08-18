@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+#
+# devbox-ensure-packages -- reinstall tools the devbox loses on restart (only
+# the home directory persists). Invoked from bootstrap.sh on first setup,
+# from ~/.bashrc on interactive logins whenever zsh is missing (the restart
+# tell), and by hand any time. Idempotent; quiet when nothing is needed.
+#
+# apt when the distro carries the package; otherwise installers into
+# persistent ~/.local, so those never need reinstalling.
+set -uo pipefail
+
+log() { printf '[devbox-ensure] %s\n' "$*"; }
+have() { command -v "$1" >/dev/null 2>&1; }
+
+mkdir -p "$HOME/.local/bin"
+
+apt_ok=false
+sudo -n true 2>/dev/null && apt_ok=true
+
+# --- apt-preferred tools (package name == command name) -------------------
+apt_missing=()
+apt_want() {
+  $apt_ok || return 1
+  have "$1" && return 0
+  apt-cache show "$1" >/dev/null 2>&1 || return 1 # not in this distro
+  apt_missing+=("$1")
+}
+
+apt_want zsh || true
+apt_want vim || true
+apt_want chezmoi || true
+apt_want starship || true
+
+if [ "${#apt_missing[@]}" -gt 0 ]; then
+  log "apt install: ${apt_missing[*]}"
+  sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq \
+    -o DPkg::Lock::Timeout=60 -o Acquire::http::Timeout=15 -o Acquire::Retries=2 \
+    "${apt_missing[@]}" \
+    || log "apt install failed; persistent-home fallbacks below still apply"
+fi
+
+# --- persistent-home fallbacks (survive restarts, install at most once) ---
+have chezmoi || sh -c "$(curl -fsLS get.chezmoi.io)" -- -b "$HOME/.local/bin"
+have starship || sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- --yes -b "$HOME/.local/bin"

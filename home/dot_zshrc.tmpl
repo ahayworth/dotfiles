@@ -35,11 +35,11 @@ typeset -U path
 command -v brew >/dev/null && eval "$({{ .homebrew_prefix }}/bin/brew shellenv)"
 [[ -d /usr/local/go/bin ]] && path=($path /usr/local/go/bin)
 [[ -d $HOME/go/bin ]] && path=($path $HOME/go/bin)
-{{- if .work }}
+{{- if and .work (not .devbox) }}
 source $HOME/.zshrc.work
 {{- end }}
 
 [[ -d $HOME/.cache/lm-studio/bin ]] && path=($path $HOME/.cache/lm-studio/bin)
 
-eval "$(starship init zsh)"
-eval "$(mise activate zsh)"
+command -v starship >/dev/null && eval "$(starship init zsh)"
+command -v mise >/dev/null && eval "$(mise activate zsh)"

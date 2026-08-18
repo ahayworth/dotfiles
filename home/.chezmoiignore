@@ -8,17 +8,25 @@ LICENSE
 README.md
 CLAUDE.md
 
-{{ if .codespaces }}
-# Codespaces: only bash, zsh, git, starship
-.vimrc
-.config/nvim/**
-.tmux.conf.tmpl
-.config/tmux-256color.terminfo
-.config/tmux.terminfo
-.gnupg/**
+{{ if .devbox }}
+# devbox: these are managed elsewhere; the personal git/tmux bits are wired
+# in via includes instead. No keys and no macOS-only pieces on the box.
+.gitconfig
+.tmux.conf
+.claude/**
+.codex/**
 .ssh/**
+.gnupg/**
+.config/agent-safehouse/**
+.local/bin/safe-run
+.config/nvim/**
+{{ else }}
+# devbox-only helpers stay off other machines
+.config/tmux/**
+.local/bin/devbox-ensure-packages
 {{ end }}
 
-{{ if not .work }}
+{{ if or (not .work) .devbox }}
+# gpg-encrypted; needs an interactive passphrase to deploy
 .zshrc.work
 {{ end }}

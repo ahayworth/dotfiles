@@ -1,3 +1,17 @@
+{{- if .devbox }}
+# Interactive shells only: if zsh is missing (fresh restart), reinstall
+# tools, then hand off to zsh. Non-interactive shells and scripts stay on
+# bash; NO_ZSH=1 escapes the handoff.
+if [[ $- == *i* ]]; then
+  if ! command -v zsh >/dev/null && [ -x "$HOME/.local/bin/devbox-ensure-packages" ]; then
+    "$HOME/.local/bin/devbox-ensure-packages"
+  fi
+  if [ -z "${NO_ZSH:-}" ] && [ -z "${ZSH_VERSION:-}" ] && command -v zsh >/dev/null; then
+    exec zsh
+  fi
+fi
+
+{{ end -}}
 shopt -s histappend
 HISTCONTROL=ignoredups
 
@@ -38,4 +52,4 @@ fi
 
 command -v mise >/dev/null && eval "$(mise activate bash)"
 
-eval "$(starship init bash)"
+command -v starship >/dev/null && eval "$(starship init bash)"

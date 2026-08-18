@@ -113,10 +113,39 @@ Templates use Go template syntax with data from `.chezmoi.toml.tmpl`. The variab
 
 - `.mac` — auto-detected from OS (`true` on Darwin)
 - `.laptop` / `.work` — prompted once on `chezmoi init`, then remembered
-- `.codespaces` — auto-detected from `$CODESPACES` env var
+- `.devbox` — auto-detected (filesystem markers + hostname); implies
+  `work=true`, `laptop=false`, no prompts
 - `.homebrew_prefix` — always `/opt/homebrew`
 
 Chezmoi builtins like `.chezmoi.os`, `.chezmoi.hostname`, and `.chezmoi.osRelease` are also available in templates.
+
+## Devbox
+
+The work devbox is a special machine class: only the home directory persists
+across restarts, and some files are managed by other tooling. Detection is
+automatic (see `.chezmoi.toml.tmpl`); `bootstrap.sh` mirrors it.
+
+- `.gitconfig` and `.tmux.conf` aren't deployed; the personal bits are wired
+  in via `include.path` → `~/.config/git/personal.gitconfig` and an appended
+  `source-file` line → `~/.config/tmux/personal.conf` (run scripts handle
+  both). `.claude/**`, `.ssh`/`.gnupg` (no keys there), macOS-only pieces,
+  and `.zshrc.work` (needs an interactive gpg passphrase) are skipped.
+- `~/.config/tmux/personal.conf` renders only the shared-server-safe subset
+  in `.chezmoitemplates/tmux/common.conf.tmpl`; kill bindings, terminal
+  overrides, and the big history limit stay in `dot_tmux.conf.tmpl`.
+- `~/.local/bin/devbox-ensure-packages` reinstalls what restarts remove
+  (apt tools like zsh and vim) and keeps persistent-home tools (chezmoi,
+  starship) present. `.bashrc` re-runs it on interactive logins when zsh is
+  missing, then execs into zsh; non-interactive shells are untouched and
+  `NO_ZSH=1` opts out. The editor there is legacy vim (nvim isn't
+  installed; `EDITOR` falls back nvim → vim → vi).
+
+Deploy on a fresh box:
+
+```bash
+git clone https://github.com/ahayworth/dotfiles ~/projects/dotfiles  # HTTPS, no keys
+~/projects/dotfiles/bootstrap.sh
+```
 
 ## Re-initializing (changing answers)
 

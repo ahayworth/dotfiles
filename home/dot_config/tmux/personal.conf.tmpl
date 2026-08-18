@@ -1,0 +1,4 @@
+# Devbox tmux config, sourced from ~/.tmux.conf via an appended include
+# (run_onchange_after_04-devbox-tmux-include). The server there is shared,
+# so only the safe subset in tmux/common.conf.tmpl belongs here.
+{{ template "tmux/common.conf.tmpl" . }}

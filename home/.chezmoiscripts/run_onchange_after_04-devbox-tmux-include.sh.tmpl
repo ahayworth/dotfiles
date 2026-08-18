@@ -1,0 +1,14 @@
+#!/bin/bash
+set -euo pipefail
+
+{{- if not .devbox }}
+exit 0
+{{ end }}
+# Layer ~/.config/tmux/personal.conf into ~/.tmux.conf, which is managed
+# elsewhere, via an idempotent appended include.
+# hash: {{ include "dot_config/tmux/personal.conf.tmpl" | sha256sum }}
+
+line='source-file -q ~/.config/tmux/personal.conf'
+if ! grep -qF "$line" ~/.tmux.conf 2>/dev/null; then
+  printf '\n# personal tmux config (chezmoi-managed include)\n%s\n' "$line" >> ~/.tmux.conf
+fi

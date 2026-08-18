@@ -1,13 +1,20 @@
 {{- $mac := eq .chezmoi.os "darwin" -}}
 {{- $laptop := false -}}
 {{- $work := false -}}
-{{- $codespaces := false -}}
 
-{{- if env "CODESPACES" | not | not -}}
-{{-   $codespaces = true -}}
+{{- /* devbox: detect without prompting, via filesystem markers + hostname
+       (env vars aren't visible to every shell) */ -}}
+{{- $devbox := false -}}
+{{- if stat "/etc/workstation-startup.d" -}}
+{{-   if or (stat (joinPath .chezmoi.homeDir "agentd/workstation.env")) (env "AGENTD_HOME") (.chezmoi.hostname | contains "devbox") -}}
+{{-     $devbox = true -}}
+{{-   end -}}
 {{- end -}}
 
-{{- if not $codespaces -}}
+{{- if $devbox -}}
+{{- /* a work machine, but not a laptop */ -}}
+{{-   $work = true -}}
+{{- else -}}
 {{-   $laptop = promptBoolOnce . "laptop" "Is this a laptop" -}}
 {{-   $work = promptBoolOnce . "work" "Is this a work machine" -}}
 {{- end -}}
@@ -19,7 +26,7 @@ encryption = "gpg"
   mac = {{ $mac }}
   laptop = {{ $laptop }}
   work = {{ $work }}
-  codespaces = {{ $codespaces }}
+  devbox = {{ $devbox }}
   homebrew_prefix = "/opt/homebrew"
 
 [gpg]

@@ -1,0 +1,11 @@
+#!/bin/bash
+set -euo pipefail
+
+{{- if not .devbox }}
+exit 0
+{{ end }}
+# Wire the portable git config into ~/.gitconfig, which is managed
+# elsewhere; `git config` edits keys in place, so the include survives.
+# hash: {{ include "dot_config/git/personal.gitconfig" | sha256sum }}
+
+git config --global include.path '~/.config/git/personal.gitconfig'

@@ -1,0 +1,17 @@
+# Portable git config, safe to include from any machine's ~/.gitconfig.
+# Nothing here may set identity, URL rewrites, or credential helpers.
+[alias]
+  st = status
+  co = checkout
+  me = log --pretty=oneline --author=ahayworth
+[diff]
+  algorithm = histogram
+  colorMoved = zebra
+[merge]
+  conflictStyle = zdiff3
+[rerere]
+  enabled = true
+[pull]
+  rebase = false
+[init]
+  defaultBranch = main

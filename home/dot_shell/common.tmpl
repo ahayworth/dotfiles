@@ -1,12 +1,21 @@
-export EDITOR=nvim
-export VISUAL=nvim
-
-{{ if not .mac -}}
-# start ssh-agent if it's not running (macOS uses launchd)
-ps -ef | grep -q '[s]sh-agent' || eval $(ssh-agent) >/dev/null
-{{ end -}}
-
 [ -d ~/bin ] && export PATH=${PATH}:~/bin
 [ -d ~/.local/bin ] && export PATH=${PATH}:~/.local/bin
 [ -d ~/.opencode/bin ] && export PATH=${PATH}:~/.opencode/bin
 [[ -f ~/.cargo/env ]] && . "$HOME/.cargo/env"
+
+# after the PATH additions, so ~/.local/bin editors count
+if command -v nvim >/dev/null 2>&1; then
+  export EDITOR=nvim
+  export VISUAL=nvim
+elif command -v vim >/dev/null 2>&1; then
+  export EDITOR=vim
+  export VISUAL=vim
+else
+  export EDITOR=vi
+  export VISUAL=vi
+fi
+
+{{ if not (or .mac .devbox) -}}
+# start ssh-agent if it's not running (macOS uses launchd)
+ps -ef | grep -q '[s]sh-agent' || eval $(ssh-agent) >/dev/null
+{{ end -}}
