@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-# hash: {{ include "dot_vimrc" | sha256sum }}
+# hash: {{ include ".chezmoitemplates/vimrc.tmpl" | sha256sum }}
 
 # Headless-safe: chezmoi runs this with no TTY, where any hit-enter prompt
 # (e.g. a vimrc error before plugins exist) hangs vim forever. stdin from

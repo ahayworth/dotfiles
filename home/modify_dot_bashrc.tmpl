@@ -1,0 +1,16 @@
+#!/bin/bash
+# chezmoi modify script: emit the managed content, then preserve any trailing
+# marked block that machine-local tooling appends to the live file (generic
+# shape: a comment line ">>> ... >>>" through the matching "<<< ... <<<").
+# This lets an external manager own its appended block while chezmoi owns
+# everything else -- no drift in either direction, and nothing machine-specific
+# lives in this repo. Managed content: .chezmoitemplates/bashrc.tmpl
+set -euo pipefail
+cat <<'CHEZMOI_MANAGED_CONTENT'
+{{ template "bashrc.tmpl" . -}}
+CHEZMOI_MANAGED_CONTENT
+exec awk '
+  /^["#] >>> .* >>>$/ { inblk = 1; print "" }
+  inblk { print }
+  /^["#] <<< .* <<<$/ { inblk = 0 }
+'
