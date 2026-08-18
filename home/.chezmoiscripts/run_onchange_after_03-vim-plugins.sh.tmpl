@@ -3,6 +3,10 @@ set -euo pipefail
 
 # hash: {{ include "dot_vimrc" | sha256sum }}
 
+# Headless-safe: chezmoi runs this with no TTY, where any hit-enter prompt
+# (e.g. a vimrc error before plugins exist) hangs vim forever. stdin from
+# /dev/null turns a would-be prompt into EOF, and --sync makes the update
+# block until it finishes instead of quitting early.
 if command -v vim >/dev/null 2>&1; then
-  vim +PlugUpgrade +PlugClean! +PlugUpdate +qa || true
+  vim +PlugUpgrade +'PlugClean!' +'PlugUpdate --sync' +qa </dev/null >/dev/null 2>&1 || true
 fi

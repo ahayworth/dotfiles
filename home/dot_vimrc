@@ -141,7 +141,10 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 let g:gruvbox_contrast_dark = 'hard'
 let g:gruvbox_italic = 1
-colorscheme gruvbox
+" silent!: on a fresh machine this line runs before PlugInstall has fetched
+" gruvbox; a bare colorscheme then errors into a hit-enter prompt that hangs
+" the headless plugin-install script.
+silent! colorscheme gruvbox
 
 nnoremap <silent> [oh :call gruvbox#hls_show()<CR>
 nnoremap <silent> ]oh :call gruvbox#hls_hide()<CR>

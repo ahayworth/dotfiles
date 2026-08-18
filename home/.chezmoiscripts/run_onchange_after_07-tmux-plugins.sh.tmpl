@@ -1,0 +1,28 @@
+#!/bin/bash
+set -euo pipefail
+
+# hash: {{ include ".chezmoitemplates/tmux/common.conf.tmpl" | sha256sum }}
+# hash: {{ include "dot_tmux.conf.tmpl" | sha256sum }}
+
+# Numbered after 04-devbox-tmux-include: tpm's install_plugins asks the
+# RUNNING tmux server about configured plugins, so the include must exist --
+# and on the devbox the shared server must have sourced it -- before
+# installing.
+
+{{ if .devbox -}}
+# The shared server predates our include; source only our file into it (its
+# `run tpm` line is what registers TMUX_PLUGIN_MANAGER_PATH in the server).
+if tmux info >/dev/null 2>&1; then
+  tmux source-file -q ~/.config/tmux/personal.conf || true
+fi
+{{- end }}
+
+if [ -x ~/.tmux/plugins/tpm/bin/install_plugins ]; then
+  TMUX_PLUGIN_MANAGER_PATH=~/.tmux/plugins ~/.tmux/plugins/tpm/bin/install_plugins || true
+fi
+
+{{ if not .devbox -}}
+if [ -n "${TMUX:-}" ]; then
+  tmux source-file ~/.tmux.conf || true
+fi
+{{- end }}
