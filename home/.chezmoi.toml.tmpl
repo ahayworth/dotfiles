@@ -21,6 +21,13 @@
 
 sourceDir = {{ joinPath "~/projects/dotfiles" | quote }}
 encryption = "gpg"
+{{ if $devbox }}
+# Match the machine's default umask (0002) so files recreated by host tooling
+# (strip/re-append cycles via mv) keep the mode chezmoi expects: without this,
+# chezmoi wants 644 while recreated files land 664, and status shows a
+# permanent mode-only MM.
+umask = 0o002
+{{ end }}
 
 [data]
   mac = {{ $mac }}
