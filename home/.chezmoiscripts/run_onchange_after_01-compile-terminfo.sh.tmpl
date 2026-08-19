@@ -3,6 +3,9 @@ set -euo pipefail
 
 # hash: {{ include "dot_config/tmux-256color.terminfo" | sha256sum }}
 # hash: {{ include "dot_config/tmux.terminfo" | sha256sum }}
+# hash: {{ include "dot_config/xterm-ghostty.terminfo" | sha256sum }}
 
 tic -o ~/.terminfo ~/.config/tmux-256color.terminfo
 tic -o ~/.terminfo ~/.config/tmux.terminfo
+# -x: ghostty's entry uses extended capabilities
+tic -x -o ~/.terminfo ~/.config/xterm-ghostty.terminfo
