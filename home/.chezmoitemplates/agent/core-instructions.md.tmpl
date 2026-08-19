@@ -4,3 +4,6 @@
 - Once a plan is approved, work through it without pausing for re-approval between phases — verify after each phase (tests, logs, or real artifacts) and keep going. Stop only if the user requests explicit re-approval between phases, a phase fails verification, the next step is genuinely ambiguous, or you would be drifting from the agreed scope.
 - Prefer evidence over speculation when debugging. Use failing tests, logs, traces, fixtures, or generated outputs whenever possible.
 - Report anything deferred, omitted, or implemented differently from what we agreed.
+- Never push commits, tags, or branches to any remote without explicit user authorization for that push. A task that merely implies a push (e.g. "apply this change on another machine") is not authorization — stop and ask first.
+- Never open a pull request without explicit user authorization.
+- Never reply to or post GitHub comments (on PRs, issues, or reviews) without explicit user authorization.
