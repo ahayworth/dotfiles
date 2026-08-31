@@ -6,8 +6,9 @@
 {{- $config = $config | setValueAtPath "approval_policy" .codex.config.approval_policy -}}
 {{- $config = $config | setValueAtPath "approvals_reviewer" .codex.config.approvals_reviewer -}}
 {{- $config = $config | setValueAtPath "sandbox_mode" .codex.config.sandbox_mode -}}
-{{- range $name, $enabled := .codex.config.features -}}
-{{- $config = $config | setValueAtPath (list "features" $name) $enabled -}}
+{{- $config = $config | setValueAtPath "suppress_unstable_features_warning" .codex.config.suppress_unstable_features_warning -}}
+{{- range $name, $value := .codex.config.features -}}
+{{- $config = $config | setValueAtPath (list "features" $name) $value -}}
 {{- end -}}
 {{- $config = $config | setValueAtPath (list "tui" "keymap" "editor" "insert_newline") .codex.config.tui.keymap.editor.insert_newline -}}
 {{- range .codex.plugins.ensure -}}
