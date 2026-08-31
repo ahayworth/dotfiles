@@ -1,0 +1,46 @@
+#!/bin/bash
+set -euo pipefail
+
+required_plugins=(
+{{- range .codex.plugins.ensure }}
+  {{ . | quote }}
+{{- end }}
+)
+
+if ! command -v codex >/dev/null 2>&1; then
+  printf 'warning: codex is not installed; plugin reconciliation will retry on a later apply\n' >&2
+  exit 0
+fi
+
+if ! command -v jq >/dev/null 2>&1; then
+  printf 'error: jq is required to reconcile Codex plugins\n' >&2
+  exit 1
+fi
+
+plugin_json="$(codex plugin list --json)"
+
+for plugin_id in "${required_plugins[@]}"; do
+  if printf '%s\n' "$plugin_json" |
+    jq -e --arg plugin_id "$plugin_id" \
+      '[.installed[]? | select(.pluginId == $plugin_id)] | length > 0' \
+      >/dev/null; then
+    continue
+  fi
+
+  marketplace="${plugin_id##*@}"
+  marketplace_json="$(codex plugin marketplace list --json)"
+  if ! printf '%s\n' "$marketplace_json" |
+    jq -e --arg marketplace "$marketplace" \
+      '[.marketplaces[]? | select(.name == $marketplace)] | length > 0' \
+      >/dev/null; then
+    printf 'warning: Codex marketplace %s is not initialized; plugin %s will be retried on a later apply\n' \
+      "$marketplace" "$plugin_id" >&2
+    continue
+  fi
+
+  if ! codex plugin add "$plugin_id" --json >/dev/null; then
+    printf 'error: failed to install Codex plugin %s from initialized marketplace %s\n' \
+      "$plugin_id" "$marketplace" >&2
+    exit 1
+  fi
+done

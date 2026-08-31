@@ -1,0 +1,3 @@
+# No global command-prefix allowances are intentionally persisted here.
+# Codex auto-review handles ordinary escalation decisions.
+# Project-specific rules belong in their repositories.
