@@ -30,3 +30,10 @@ CLAUDE.md
 # gpg-encrypted; needs an interactive passphrase to deploy
 .zshrc.work
 {{ end }}
+
+{{ if not .mac }}
+# Agent Safehouse is macOS-only.
+.config/agent-safehouse
+.config/agent-safehouse/**
+.local/bin/safe-run
+{{ end }}

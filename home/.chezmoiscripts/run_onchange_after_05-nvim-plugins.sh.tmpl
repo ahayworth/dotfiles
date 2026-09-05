@@ -6,7 +6,22 @@ exit 0
 {{ end }}
 # hash: {{ include "dot_config/nvim/init.lua" | sha256sum }}
 
+default_path="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
+{{- if .mac }}
+default_path="{{ .homebrew_prefix }}/bin:{{ .homebrew_prefix }}/sbin:$default_path"
+{{- end }}
+if [[ -n "${PATH:-}" ]]; then
+  export PATH="$PATH:$default_path"
+else
+  export PATH="$default_path"
+fi
+
 if command -v nvim >/dev/null 2>&1; then
+  if ! command -v tree-sitter >/dev/null 2>&1; then
+    echo "Skipping Neovim Treesitter parser install: tree-sitter CLI not found." >&2
+    exit 0
+  fi
+
   nvim --headless \
     '+lua require("nvim-treesitter").install({ "bash", "cue", "ecma", "go", "gomod", "hcl", "javascript", "jsx", "json", "lua", "markdown", "markdown_inline", "ruby", "rust", "starlark", "terraform", "tsx", "typescript", "vim", "vimdoc", "yaml" }):wait(300000)' \
     +qa || true
