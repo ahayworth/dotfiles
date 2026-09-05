@@ -1,7 +1,10 @@
 ---
 description: Compare completed work against the session's plan (or what we discussed) and report drift.
+disable-model-invocation: true
 ---
 
 Use this command after implementation to make drift, omissions, and residual risk explicit.
+
+If this session identifies a Claude plan file (for example under `~/.claude/plans/`), use that file as the plan reference.
 
 {{ template "agent/workflows/debrief.md.tmpl" . }}

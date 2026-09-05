@@ -1,8 +1,10 @@
 # Global Defaults
 
-Follow these defaults unless a repo-specific `CLAUDE.md` or `AGENTS.md` overrides them.
+Applicable project instructions may override workflow defaults below, but not the personal authorization boundaries.
 
 {{ template "agent/core-instructions.md.tmpl" . }}
+
+- Follow applicable `CLAUDE.md` instructions and their imports. If a project also has `AGENTS.md`, read it for shared project guidance; use `CLAUDE.md` for Claude-specific behavior and resolve conflicts with the user's request before acting.
 {{- if .mac }}
 {{ template "agent/profile-mac.md.tmpl" . }}
 {{- end }}
@@ -18,6 +20,6 @@ Follow these defaults unless a repo-specific `CLAUDE.md` or `AGENTS.md` override
 
 # Explicit Workflows
 
-Use this command when you want the heavier workflow on purpose:
+Use this command only when the user explicitly invokes it:
 
 - `/debrief`

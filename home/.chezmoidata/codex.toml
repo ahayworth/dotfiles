@@ -11,6 +11,9 @@ suppress_unstable_features_warning = true
 default_mode_request_user_input = true
 realtime_conversation = true
 
+[codex.config.features.context_management]
+experimental_mode = true
+
 [codex.config.features.multi_agent_v2]
 enabled = true
 max_concurrent_threads_per_session = 10

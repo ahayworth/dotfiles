@@ -1,8 +1,13 @@
 # Global Defaults
 
-Follow these defaults unless a repo-specific `AGENTS.md` overrides them.
+Project-specific `AGENTS.md` instructions may override workflow defaults below, but not the personal authorization boundaries.
 
 {{ template "agent/core-instructions.md.tmpl" . }}
+
+- Follow applicable `AGENTS.md` instructions. Treat Claude-specific instructions as reference unless explicitly designated as shared guidance.
+- Skills guide execution within the user's request. Do not infer extra approval checkpoints from skill guidelines. If a skill blocks progress or conflicts with the request, identify the exact file and instruction and explain the conflict; explicit user instructions take precedence over skill guidelines.
+- Prefer concise, connected explanations. Use lists and tables when they improve clarity or comparison.
+- Use subagents proactively when substantial, independent tasks can run in parallel and delegation is likely to improve speed or quality. Keep small or tightly coupled tasks local, and avoid duplicating work between agents.
 {{- if .mac }}
 {{ template "agent/profile-mac.md.tmpl" . }}
 {{- end }}

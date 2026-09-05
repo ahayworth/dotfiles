@@ -68,12 +68,38 @@ This repo now manages the user-global Claude and Codex workflow entrypoints dire
 - `home/dot_codex/` -> `~/.codex/`
 - `home/.chezmoitemplates/agent/` holds the shared workflow and instruction bodies used by both
 
+Shared defaults cover scope, authorization, verification, and machine-specific
+constraints. The Codex and Claude entrypoints add their own instruction-loading
+and workflow guidance. Debrief is explicitly invoked as `$debrief` in Codex or
+`/debrief` in Claude; both report against the latest agreed scope without
+implementing follow-ups.
+
 Inspect the rendered outputs before applying them:
 
 ```bash
 chezmoi cat ~/.claude/CLAUDE.md
 chezmoi cat ~/.codex/AGENTS.md
 ```
+
+## GnuPG terminal prompts
+
+GnuPG uses `pinentry-curses` on macOS and Linux so passphrase prompts work in a
+terminal, including over SSH. The shared Bash/Zsh setup exports `GPG_TTY` when
+stdin is a terminal.
+
+On macOS, install `pinentry` with Homebrew (included in `Brewfile`). On Linux,
+ensure `/usr/bin/pinentry-curses` is installed: Arch provides it in `pinentry`;
+Debian/Ubuntu provide the `pinentry-curses` package.
+
+After installing the package, deploy the configuration and reload the agent:
+
+```bash
+chezmoi apply ~/.gnupg/gpg-agent.conf ~/.shell/common
+gpgconf --reload gpg-agent
+```
+
+Open a new terminal, or run `export GPG_TTY=$(tty)` in the current interactive
+shell. Devboxes intentionally exclude `~/.gnupg` from deployment.
 
 ## Editors
 

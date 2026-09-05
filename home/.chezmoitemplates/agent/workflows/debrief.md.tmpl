@@ -1,7 +1,9 @@
-1. Compare what we set out to do against what actually got built. Use this session's plan-mode plan file as the reference when one exists (e.g. Claude writes one under `~/.claude/plans/`); otherwise use what we discussed in the conversation. Review the diff, tests, and any TODOs before summarizing.
+1. Compare what actually got built against the latest agreed scope, including subsequent corrections and approved deviations. Use the session's identified plan when available, reconciled with the conversation; do not search unrelated historical plans. Review the relevant diff, available verification results, and TODOs before summarizing. Distinguish unrelated existing changes from this session's work.
 2. Report four buckets clearly:
    - completed as intended
    - completed differently
    - deferred or omitted
    - follow-up work that surfaced during implementation
 3. Call out missing verification and residual risks, and flag anything that still needs a decision.
+
+Report findings only. Do not implement follow-ups, edit files, or publish anything unless separately requested.

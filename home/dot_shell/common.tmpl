@@ -4,6 +4,12 @@
 [ -d ~/.lmstudio/bin ] && export PATH=${PATH}:~/.lmstudio/bin
 [[ -f ~/.cargo/env ]] && . "$HOME/.cargo/env"
 
+# Route GnuPG passphrase prompts to this terminal, including SSH sessions.
+if [ -t 0 ]; then
+  GPG_TTY=$(tty)
+  export GPG_TTY
+fi
+
 # after the PATH additions, so ~/.local/bin editors count
 if command -v nvim >/dev/null 2>&1; then
   export EDITOR=nvim

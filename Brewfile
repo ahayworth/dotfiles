@@ -29,7 +29,7 @@ brew "vim"
 brew "neovim"
 brew "gnupg"
 brew "gpg"
-brew "pinentry-mac"
+brew "pinentry"
 
 # ── Dev: languages, LSPs, formatters ──
 brew "mise"

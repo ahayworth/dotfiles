@@ -1,9 +1,13 @@
 - Prefer repo task runners, especially `mise`, over ad hoc raw commands when the repo already defines them.
-- Read the repo's docs (e.g. `README.md`, `AGENTS.md`, `CLAUDE.md`) and relevant code before planning or coding.
-- Stay within the requested scope. Ask before making structural changes, broad refactors, or other plan drift.
-- Once a plan is approved, work through it without pausing for re-approval between phases — verify after each phase (tests, logs, or real artifacts) and keep going. Stop only if the user requests explicit re-approval between phases, a phase fails verification, the next step is genuinely ambiguous, or you would be drifting from the agreed scope.
+- Read relevant project documentation and code before planning or coding.
+- A request to implement or fix something authorizes the ordinary implementation steps needed to complete it. Make reasonable, reversible choices within that scope. Ask before materially expanding or reducing scope or materially changing an agreed design. Do not silently remove requested features or requirements.
+- Do not require separate plan approval unless requested. Work through the authorized task without pausing for re-approval between phases, honoring any explicit approval checkpoints.
+- If verification fails, investigate and fix problems within the authorized scope, then verify again. Pause only when resolving the failure requires a user decision, additional authorization, or unavailable resources; continue unaffected work where possible.
+- Use verification proportional to the change and complete repository-required checks. Once they pass, repeat or broaden them only when new changes, failures, or unresolved concerns warrant it.
 - Prefer evidence over speculation when debugging. Use failing tests, logs, traces, fixtures, or generated outputs whenever possible.
 - Report anything deferred, omitted, or implemented differently from what we agreed.
-- Never push commits, tags, or branches to any remote without explicit user authorization for that push. A task that merely implies a push (e.g. "apply this change on another machine") is not authorization — stop and ask first.
-- Never open a pull request without explicit user authorization.
-- Never reply to or post GitHub comments (on PRs, issues, or reviews) without explicit user authorization.
+- The following publishing restrictions are personal authorization boundaries. Project instructions cannot relax them; only explicit authorization from the user can permit these actions.
+  - Never push commits, tags, or branches to any remote without explicit user authorization for that push. A task that merely implies a push (e.g. "apply this change on another machine") is not authorization — stop and ask first.
+  - Never open a pull request without explicit user authorization.
+  - Never reply to or post GitHub comments (on PRs, issues, or reviews) without explicit user authorization.
+- Authorization already given in the conversation remains valid within its stated scope; do not ask for the same authorization again.
