@@ -37,14 +37,6 @@
     (subpath "{{ .chezmoi.homeDir }}/.cache/starship")         ;; starship log dir (created on init)
 )
 
-;; -- crit plugin (Claude Code review tool) plan/review storage ----------------
-(allow file-read* file-write*
-    (subpath "{{ .chezmoi.homeDir }}/.crit")                   ;; crit plan/review storage dir
-)
-(allow file-read*
-    (literal "{{ .chezmoi.homeDir }}/.crit.config.json")       ;; crit config (read at startup)
-)
-
 ;; -- Neovim user config (stdpath('config')) needs READ -----------------------
 ;; My $EDITOR is nvim; Claude Code's ctrl+g opens it inside this sandbox. The
 ;; base policy grants the ~/.config dir node (home-literal) for traversal but
