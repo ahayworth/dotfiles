@@ -22,7 +22,7 @@ else
   export VISUAL=vi
 fi
 
-{{ if not (or .mac .devbox) -}}
+{{ if not .mac -}}
 # start ssh-agent if it's not running (macOS uses launchd)
 ps -ef | grep -q '[s]sh-agent' || eval $(ssh-agent) >/dev/null
 {{ end -}}

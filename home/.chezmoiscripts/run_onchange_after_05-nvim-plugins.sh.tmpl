@@ -1,9 +1,6 @@
 #!/bin/bash
 set -euo pipefail
 
-{{- if .devbox }}
-exit 0
-{{ end }}
 # hash: {{ include "dot_config/nvim/init.lua" | sha256sum }}
 
 default_path="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"

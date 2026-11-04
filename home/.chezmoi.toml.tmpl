@@ -1,39 +1,14 @@
 {{- $mac := eq .chezmoi.os "darwin" -}}
-{{- $laptop := false -}}
-{{- $work := false -}}
-
-{{- /* devbox: detect without prompting, via filesystem markers + hostname
-       (env vars aren't visible to every shell) */ -}}
-{{- $devbox := false -}}
-{{- if stat "/etc/workstation-startup.d" -}}
-{{-   if or (stat (joinPath .chezmoi.homeDir "agentd/workstation.env")) (env "AGENTD_HOME") (.chezmoi.hostname | contains "devbox") -}}
-{{-     $devbox = true -}}
-{{-   end -}}
-{{- end -}}
-
-{{- if $devbox -}}
-{{- /* a work machine, but not a laptop */ -}}
-{{-   $work = true -}}
-{{- else -}}
-{{-   $laptop = promptBoolOnce . "laptop" "Is this a laptop" -}}
-{{-   $work = promptBoolOnce . "work" "Is this a work machine" -}}
-{{- end -}}
+{{- $laptop := promptBoolOnce . "laptop" "Is this a laptop" -}}
+{{- $work := promptBoolOnce . "work" "Is this a work machine" -}}
 
 sourceDir = {{ joinPath "~/projects/dotfiles" | quote }}
 encryption = "gpg"
-{{ if $devbox }}
-# Match the machine's default umask (0002) so files recreated by host tooling
-# (strip/re-append cycles via mv) keep the mode chezmoi expects: without this,
-# chezmoi wants 644 while recreated files land 664, and status shows a
-# permanent mode-only MM.
-umask = 0o002
-{{ end }}
 
 [data]
   mac = {{ $mac }}
   laptop = {{ $laptop }}
   work = {{ $work }}
-  devbox = {{ $devbox }}
   homebrew_prefix = "/opt/homebrew"
 
 [gpg]

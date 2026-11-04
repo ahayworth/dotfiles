@@ -1,0 +1,14 @@
+#!/bin/bash
+# chezmoi modify script: emit the managed content, then keep every marked
+# block other tools write into the live file ("# BEGIN ... managed" through
+# "# END ... managed", e.g. droidcli's devbox host), which offers no other
+# file to write to. Managed content: .chezmoitemplates/ssh_config.tmpl
+set -euo pipefail
+cat <<'CHEZMOI_MANAGED_CONTENT'
+{{ template "ssh_config.tmpl" . -}}
+CHEZMOI_MANAGED_CONTENT
+exec awk '
+  /^# BEGIN .* managed/ { inblk = 1; print "" }
+  inblk { print }
+  /^# END .* managed/ { inblk = 0 }
+'

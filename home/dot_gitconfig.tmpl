@@ -1,3 +1,10 @@
+[diff]
+  algorithm = histogram
+  colorMoved = zebra
+[merge]
+  conflictStyle = zdiff3
+[rerere]
+  enabled = true
 [user]
 	name = Andrew Hayworth
 	email = ahayworth@gmail.com
@@ -7,9 +14,15 @@
 [credential]
 	helper = osxkeychain
 {{- end }}
-[include]
-  path = {{ .chezmoi.homeDir }}/.config/git/personal.gitconfig
-{{- if and .work (not .devbox) }}
+[alias]
+  st = status
+  co = checkout
+  me = log --pretty=oneline --author=ahayworth
+[pull]
+  rebase = false
+[init]
+  defaultBranch = main
+{{- if .work }}
 [url "git@github.com:"]
   insteadOf = https://github.com/
 [core]

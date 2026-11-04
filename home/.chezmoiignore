@@ -8,25 +8,7 @@ LICENSE
 README.md
 CLAUDE.md
 
-{{ if .devbox }}
-# devbox: these are managed elsewhere; the personal git/tmux bits are wired
-# in via includes instead. No keys and no macOS-only pieces on the box.
-.gitconfig
-.tmux.conf
-.claude/**
-.codex/**
-.ssh/**
-.gnupg/**
-.config/agent-safehouse/**
-.local/bin/safe-run
-.config/nvim/**
-{{ else }}
-# devbox-only helpers stay off other machines
-.config/tmux/**
-.local/bin/devbox-ensure-packages
-{{ end }}
-
-{{ if or (not .work) .devbox }}
+{{ if not .work }}
 # gpg-encrypted; needs an interactive passphrase to deploy
 .zshrc.work
 {{ end }}

@@ -35,7 +35,7 @@ typeset -U path
 command -v brew >/dev/null && eval "$({{ .homebrew_prefix }}/bin/brew shellenv)"
 [[ -d /usr/local/go/bin ]] && path=($path /usr/local/go/bin)
 [[ -d $HOME/go/bin ]] && path=($path $HOME/go/bin)
-{{- if and .work (not .devbox) }}
+{{- if .work }}
 source $HOME/.zshrc.work
 {{- end }}
 
